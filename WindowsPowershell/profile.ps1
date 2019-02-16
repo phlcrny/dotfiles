@@ -184,8 +184,6 @@ function prompt
     ) + " "
 }
 
-# Initial Output
-
 # Clear-host at start-up.
 Clear-Host
 # Clean-up stray variables before going out into the wild.
