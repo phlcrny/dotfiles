@@ -119,10 +119,11 @@ PROCESS
                         ErrorAction = "Stop"
                     }
 
-                    New-Item @Splat
+                    New-Item @Splat | Out-Null
                 }
                 catch
                 {
+                    Write-Warning -Message "There was an issue processing '$($SymLink.Description)"
                     $PSCmdlet.ThrowTerminatingError($_)
                 }
             }
