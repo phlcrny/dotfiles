@@ -65,7 +65,7 @@ PROCESS
 
                 @{
                     Source      = "$PSScriptRoot\pwsh\profile.ps1"
-                    Destination = "C:\Users\$User\Documents\Powershell\profile.ps1."
+                    Destination = "C:\Users\$User\Documents\Powershell\profile.ps1"
                     Description = "Powershell Core profile"
                 }
 
