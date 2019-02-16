@@ -127,7 +127,7 @@ PROCESS
                 }
                 catch
                 {
-                    Write-Warning -Message "There was an issue processing '$($SymLink.Description)"
+                    Write-Warning -Message "There was an issue processing '$($SymLink.Description)'"
                     $PSCmdlet.ThrowTerminatingError($_)
                 }
             }
