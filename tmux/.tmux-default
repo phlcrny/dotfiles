@@ -1,0 +1,16 @@
+# Select the second pane and set 60:40 horizontal split.
+select-pane -t 0
+split-window -v -p 60
+
+# Add a clock to the first pane (top-left)
+clock-mode -t 0
+
+# Select the second pane and set a single horizontal split.
+select-pane -t 0
+split-window -h -p 45
+
+# Select the third pane ready to start
+select-pane -t 2
+
+# Enforces 1 second updates for the tmux clock (and maybe other things)
+set-option -s status-interval 1

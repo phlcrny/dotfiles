@@ -1,0 +1,5 @@
+set noerrorbells
+set noswapfile
+set number
+set ruler
+set showcmd

@@ -1,0 +1,70 @@
+{
+  // Terminal Appearance
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.integrated.fontFamily": "Lucida Console, Consolas",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  // Editor Appearance
+  "breadcrumbs.enabled": true,
+  "editor.fontSize": 12,
+  "editor.fontFamily": "Consolas, 'Courier New', monospace",
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.side": "left",
+  "explorer.confirmDelete": false,
+  "explorer.sortOrder": "type",
+  "scm.alwaysShowProviders": true,
+  "window.menuBarVisibility": "default",
+  "window.newWindowDimensions": "maximized",
+  "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Solarized Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "right",
+  "workbench.statusBar.visible": true,
+  "zenMode.centerLayout": false,
+  "zenMode.hideTabs": false,
+  // Editor Mappings/Behaviour
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "files.associations": {
+    "*.ps1xml": "xml",
+    "*.nginx": "NGINX"
+  },
+  "files.defaultLanguage": "powershell",
+  "files.trimTrailingWhitespace": true,
+  // Powershell Formatting
+  "powershell.codeFormatting.preset": "Allman",
+  "powershell.codeFormatting.openBraceOnSameLine": false,
+  "powershell.codeFormatting.newLineAfterOpenBrace": true,
+  "powershell.codeFormatting.newLineAfterCloseBrace": true,
+  "powershell.codeFormatting.alignPropertyValuePairs": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": false,
+  "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
+  "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
+  "powershell.codeFormatting.whitespaceAfterSeparator": true,
+  "powershell.codeFormatting.whitespaceAroundOperator": true,
+  // Powershell Behaviour
+  "powershell.developer.editorServicesLogLevel": "Verbose",
+  "powershell.enableProfileLoading": false,
+  "powershell.integratedConsole.showOnStartup": false,
+  "powershell.startAutomatically": true,
+  // Python
+  "python.venvPath": "C:\\venvs\\",
+  // Git
+  "git.autofetch": true,
+  "git.showPushSuccessNotification": true,
+  // GitLens
+  "gitlens.advanced.telemetry.enabled": false,
+  "gitlens.gitExplorer.autoRefresh": true,
+  "gitlens.gitExplorer.view": "repository",
+  "gitlens.gitExplorer.location": "scm",
+  "gitlens.views.repositories.autoRefresh": true,
+  "gitlens.views.repositories.location": "scm",
+  //BracketPairColorizer
+  "bracketPairColorizer.showBracketsInGutter": true,
+  "bracketPairColorizer.showBracketsInRuler": true,
+  "explorer.confirmDragAndDrop": false,
+}

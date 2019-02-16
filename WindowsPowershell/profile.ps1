@@ -1,0 +1,192 @@
+# Determine if current user is an Administrator
+$CurrentUserID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$WindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($CurrentUserID)
+$Admin = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+$UserIsAdmin = $WindowsPrincipal.IsInRole($Admin)
+
+# Force Powershell to use TLS 1.2 for HTTPS
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+# Lazy variable
+$Hosts = "C:\Windows\System32\drivers\etc\hosts"
+
+# Aliases and preferences
+
+# Aliases
+$NewAliases = @(
+
+    @{
+        Name        = "devicemanager"
+        Value       = "hdwwiz.cpl"
+        Description = "Alias for the Device Manager Control Panel applet."
+    }
+
+    @{
+        Name        = "gd"
+        Value       = "Get-Date"
+        Description = "Short-hand for the Get-Date cmdlet."
+    }
+
+    @{
+        Name        = "gfh"
+        Value       = "Get-Help"
+        Description = "Alias to replace an old custom function."
+    }
+
+    @{
+        Name        = "grep"
+        Value       = "Select-String"
+        Description = "Aliases grep to Select-String cmdlet."
+    }
+
+    @{
+        Name        = "Hosts"
+        Value       = $Hosts
+        Description = "Short-hand for the Hosts file."
+    }
+
+    $(
+        if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
+        {
+            @{
+                Name        = "vim"
+                Value       = "C:\Program Files\Git\usr\bin\vim.exe"
+                Description = "Alias for the vim executable."
+            }
+        }
+    )
+)
+
+forEach ($Alias in $NewAliases)
+{
+    if (-not (Test-Path -Path "alias:\$Alias.Name" -ErrorAction "SilentlyContinue"))
+    {
+        $AliasSplat = @{
+            Name        = $Alias.Name
+            Value       = $Alias.Value
+            Description = $Alias.Description
+        }
+
+        New-Alias @AliasSplat
+    }
+}
+
+# Preferences
+
+# PSReadline
+if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
+{
+    # Set zsh-style tab-complete:
+    Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
+    Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
+    Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
+    Set-PSReadlineOption -BellStyle "None"
+}
+
+# Default Parameter Values
+$PSDefaultParameterValues = @{
+    "Export-Csv:NoTypeInformation" = $True
+    "Format-Table:AutoSize"        = $(if ($Host.Name -eq "ConsoleHost")
+        {
+            $True
+        })
+    "Get-EventLog:LogName"         = "System"
+    "Get-EventLog:After"           = {(Get-Date).AddHours(-6)}
+    "Get-Help:Full"                = $True
+}
+
+# Display
+
+# Window title bar
+$AdminStatus = switch ($UserIsAdmin)
+{
+    $True
+    {
+        "Elevated"
+    }
+    $False
+    {
+        "Non-Elevated"
+    }
+}
+
+[string] $CurrentUser = "$([Environment]::UserDomainName)\$([Environment]::UserName)"
+[string] $Titlebar = "$CurrentUser ($AdminStatus) - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
+$Host.UI.RawUI.WindowTitle = $Titlebar
+$SmallScreenPrompt = $False
+
+# Prompt
+function prompt
+{
+    [string] $Titlebar = "$CurrentUser ($AdminStatus) - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
+    [string] $PromptHost = [Environment]::MachineName
+    [string] $PromptUser = [Environment]::UserName
+    $Host.UI.RawUI.WindowTitle = $Titlebar
+
+    function Format-CurrentPath ($Path)
+    {
+        switch -regex ($Path)
+        {
+            "^C:\\Users\\$PromptUser"
+            {
+                $Path -replace "^C:\\Users\\$PromptUser", "~"
+                Continue
+            }
+
+            "^C:\\"
+            {
+                $Path -replace "^C:\\", "\"
+                Continue
+            }
+
+            "^Microsoft.PowerShell.Core\\FileSystem\:\:"
+            {
+                $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
+                Continue
+            }
+
+            default
+            {
+                $Path
+            }
+        }
+    }
+
+    $CurrentLocation = Format-CurrentPath -Path $ExecutionContext.SessionState.Path.CurrentLocation
+    $SimulatedPrompt = "$PromptUser on $PromptHost at $CurrentLocation"
+    $(
+        if (Test-Path -Path "Variable:\PSDebugContext")
+        {
+            $('[DBG]: ' | Write-Host -ForegroundColor "Green" -NoNewline)
+        }
+        else
+        {
+            ''
+        }
+    ) +
+    $($PromptUser | Write-Host -NoNewline -ForegroundColor "Cyan") +
+    $(" on " | Write-Host -NoNewline) +
+    $($PromptHost | Write-Host -NoNewline -ForegroundColor "Green") +
+    $(" in " | Write-Host -NoNewline) + $($CurrentLocation | Write-Host -ForegroundColor "Magenta" -NoNewline) +
+    $(
+        " "
+    ) +
+    $(
+        if (($SimulatedPrompt.Length -ge 80) -or ($SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
+        {
+            " " + $(Write-Host "") + $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline)
+        }
+        else
+        {
+            $(" $" | Write-Host -ForegroundColor "Cyan" -NoNewline)
+        }
+    ) + " "
+}
+
+# Initial Output
+
+# Clear-host at start-up.
+Clear-Host
+# Clean-up stray variables before going out into the wild.
+Remove-Variable "CurrentUserID", "WindowsPrincipal", "Admin", "UserIsAdmin", "Titlebar", "AliasSplat"
