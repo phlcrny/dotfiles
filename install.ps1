@@ -2,7 +2,9 @@
 .SYNOPSIS
     Installs the dotfiles with symbolic links to the relevant locations.
 .DESCRIPTION
-    Uses the 'New-Item' cmdlet to creat symbolic links between individual dotfiles and their expected 'real' locations.
+    Uses the 'New-Item' cmdlet to create symbolic links between individual dotfiles and their expected 'real' locations.
+.PARAMETER User
+    The user or users who will have the dotfiles installed in their directories. This defaults to the current user.
 .EXAMPLE
     . .\install.ps1 -User "Me", "You"
 
@@ -30,6 +32,7 @@ BEGIN
         $DebugPreference = "Continue"
     }
     Write-Debug -Message "BEGIN Block"
+
     Write-Debug -Message "Determining 'User' parameter."
     if ($PSBoundParameters.ContainsKey("User"))
     {
@@ -39,6 +42,7 @@ BEGIN
     {
         [string[]] $Users = [System.Environment]::UserName
     }
+
     Write-Debug -Message "Determining 'OS' version."
     $OS = [Environment]::OSVersion
 }
