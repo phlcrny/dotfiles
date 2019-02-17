@@ -63,6 +63,8 @@ PROCESS
     Write-Debug -Message "PROCESS Block"
     forEach ($User in $Users)
     {
+        $User = $User.ToLower()
+        # Just to ensure we don't have a case-mismatch. Mainly for Linux.
         $SymLinks = @(
 
             if ($OS.VersionString -match "Windows")
@@ -108,7 +110,6 @@ PROCESS
             else
             {
                 #region Not Windows
-                $User = $User.ToLower() # Just to ensure we don't have a case-mismatch.
                 @{
                     Source      = "$PSScriptRoot/pwsh/profile.ps1"
                     Destination = "/home/$User/.config/powershell/profile.ps1"
@@ -151,7 +152,7 @@ PROCESS
                 {
                     try
                     {
-                        Write-Verbose -Message "Creating sym-link for '$($SymLink.Source)' to '$($SymLink.Destination)'"
+                        Write-Verbose -Message "Creating symlink for '$($SymLink.Source)' to '$($SymLink.Destination)'"
                         $DestinationFolder = Split-Path -Path $SymLink.Destination
                         if (-not (Test-Path -Path $DestinationFolder))
                         {
