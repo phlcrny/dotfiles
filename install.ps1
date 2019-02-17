@@ -5,6 +5,8 @@
     Uses the 'New-Item' cmdlet to create symbolic links between individual dotfiles and their expected 'real' locations.
 .PARAMETER User
     The user or users who will have the dotfiles installed in their directories. This defaults to the current user.
+.PARAMETER Exclude
+    Any symlinks whose descriptions match this string will not be installed. Uses regular expression.
 .EXAMPLE
     . .\install.ps1 -User "Me", "You"
 
@@ -14,7 +16,7 @@
 .OUTPUTS
     N/A
 .NOTES
-    Version 0.1.0
+    Version 0.1.1
 
     Note: This install script is not intended for use with macOS.
 .LINK
@@ -24,7 +26,10 @@
 param
 (
     [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for")]
-    [string[]] $User
+    [string[]] $User,
+
+    [Parameter(Mandatory = $False, Position, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
+    [string] $Exclude
 )
 
 BEGIN
@@ -43,6 +48,10 @@ BEGIN
     else
     {
         [string[]] $Users = [System.Environment]::UserName
+    }
+    if ($PSBoundParameters.ContainsKey("Exclude"))
+    {
+        [string] $Exclude = $Exclude
     }
 
     Write-Debug -Message "Determining 'OS' version."
@@ -136,32 +145,39 @@ PROCESS
 
         forEach ($SymLink in $SymLinks)
         {
-            if ($PSCmdlet.ShouldProcess("$User", "Installing $($SymLink.Description)"))
+            if ((($Exclude) -and ($SymLink.Description -notmatch $Exclude)) -or (-not ($Exclude)))
             {
-                try
+                if ($PSCmdlet.ShouldProcess("$User", "Installing $($SymLink.Description)"))
                 {
-                    Write-Verbose -Message "Creating sym-link for '$($SymLink.Source)' to '$($SymLink.Destination)'"
-                    $DestinationFolder = Split-Path -Path $SymLink.Destination
-                    if (-not (Test-Path -Path $DestinationFolder))
+                    try
                     {
-                        Write-Verbose -Message "Creating directory: '$DestinationFolder'"
-                        New-Item -Path $DestinationFolder -ItemType "Directory" | Out-Null
-                    }
+                        Write-Verbose -Message "Creating sym-link for '$($SymLink.Source)' to '$($SymLink.Destination)'"
+                        $DestinationFolder = Split-Path -Path $SymLink.Destination
+                        if (-not (Test-Path -Path $DestinationFolder))
+                        {
+                            Write-Verbose -Message "Creating directory: '$DestinationFolder'"
+                            New-Item -Path $DestinationFolder -ItemType "Directory" | Out-Null
+                        }
 
-                    $Splat = @{
-                        Path        = $SymLink.Destination
-                        Value       = $SymLink.Source
-                        ItemType    = "SymbolicLink"
-                        ErrorAction = "Stop"
-                    }
+                        $Splat = @{
+                            Path        = $SymLink.Destination
+                            Value       = $SymLink.Source
+                            ItemType    = "SymbolicLink"
+                            ErrorAction = "Stop"
+                        }
 
-                    New-Item @Splat | Out-Null
+                        New-Item @Splat | Out-Null
+                    }
+                    catch
+                    {
+                        Write-Warning -Message "There was an issue processing '$($SymLink.Description)'"
+                        $PSCmdlet.ThrowTerminatingError($_)
+                    }
                 }
-                catch
-                {
-                    Write-Warning -Message "There was an issue processing '$($SymLink.Description)'"
-                    $PSCmdlet.ThrowTerminatingError($_)
-                }
+            }
+            else
+            {
+                Write-Verbose -Message "'$($SymLink.Description)' matches '$Exclude' exclusion regex - Skipping install."
             }
         }
     }
