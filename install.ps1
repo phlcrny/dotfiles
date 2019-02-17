@@ -15,6 +15,8 @@
     N/A
 .NOTES
     Version 0.1.0
+
+    Note: This install script is not intended for use with macOS.
 .LINK
     https://github.com/philccarney/dotfiles
 #>
@@ -97,6 +99,35 @@ PROCESS
             else
             {
                 #region Not Windows
+                @{
+                    Source      = "$PSScriptRoot/pwsh/profile.ps1"
+                    Destination = "C:/Users/$User/Documents/Powershell/profile.ps1"
+                    Description = "Powershell Core profile"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vscode/settings.json"
+                    Destination = "/home/$User/.config/Code/User/settings.json"
+                    Description = "Visual Studio Code settings"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vscode/keybindings.json"
+                    Destination = "/home/$User/.config/Code/User/keybindings.json"
+                    Description = "Visual Studio Code keybindings"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vscode/powershell.json"
+                    Destination = "/home/$User/.config/Code/User/snippets/powershell.json"
+                    Description = "Visual Studio Code Powershell snippets"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vim/vimrc"
+                    Destination = "/home/$User/.vimrc"
+                    Description = "Vim config"
+                }
                 #endregion
             }
         )
