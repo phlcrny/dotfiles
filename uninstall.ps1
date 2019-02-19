@@ -145,7 +145,7 @@ PROCESS
                     try
                     {
                         Write-Verbose -Message "Removing sym-link for '$($SymLink.Source)' from '$($SymLink.Destination)'"
-                        Remove-Item -Path $SymLink.Destination
+                        Remove-Item -Path $SymLink.Destination -Force # Testing some permission issues.
                     }
                     catch
                     {
