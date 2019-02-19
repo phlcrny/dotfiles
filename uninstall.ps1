@@ -97,10 +97,44 @@ PROCESS
             else
             {
                 #region Not Windows
+                @{
+                    Source      = "$PSScriptRoot/pwsh/profile.ps1"
+                    Destination = "/home/$User/.config/powershell/profile.ps1"
+                    Description = "Powershell Core profile"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/tmux/.tmux.conf"
+                    Destination = "/home/$User/.tmux.conf"
+                    Description = "tmux config"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/tmux/.tmux-default"
+                    Destination = "/home/$User/.tmux-default"
+                    Description = "tmux Default Session"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vscode/keybindings.json"
+                    Destination = "/home/$User/.config/Code/User/keybindings.json"
+                    Description = "Visual Studio Code keybindings"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vscode/powershell.json"
+                    Destination = "/home/$User/.config/Code/User/snippets/powershell.json"
+                    Description = "Visual Studio Code Powershell snippets"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vim/vimrc"
+                    Destination = "/home/$User/.vimrc"
+                    Description = "Vim config"
+                }
                 #endregion
             }
         )
-
 
         forEach ($SymLink in $SymLinks)
         {

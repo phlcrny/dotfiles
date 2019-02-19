@@ -117,9 +117,15 @@ PROCESS
                 }
 
                 @{
-                    Source      = "$PSScriptRoot/vscode/settings.json"
-                    Destination = "/home/$User/.config/Code/User/settings.json"
-                    Description = "Visual Studio Code settings"
+                    Source      = "$PSScriptRoot/tmux/.tmux.conf"
+                    Destination = "/home/$User/.tmux.conf"
+                    Description = "tmux config"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/tmux/.tmux-default"
+                    Destination = "/home/$User/.tmux-default"
+                    Description = "tmux Default Session"
                 }
 
                 @{
