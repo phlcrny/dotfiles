@@ -85,8 +85,8 @@ forEach ($Alias in $NewAliases)
 if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
     # Set zsh-style tab-complete:
-    Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     Set-PSReadlineOption -BellStyle "None"
@@ -190,6 +190,12 @@ function prompt
             $(" $" | Write-Host -ForegroundColor "Cyan" -NoNewline)
         }
     ) + " "
+}
+
+if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
+{
+    # Adds work-specific items, not for public consumption.
+    . "$PScriptRoots\work_extras.ps1"
 }
 
 # Clear-host at start-up.
