@@ -13,13 +13,14 @@
   "editor.minimap.showSlider": "always",
   "editor.minimap.side": "left",
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
   "explorer.sortOrder": "type",
   "scm.alwaysShowProviders": true,
   "window.menuBarVisibility": "default",
   "window.newWindowDimensions": "maximized",
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Solarized Dark",
+  "workbench.colorTheme": "Dracula Soft",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "right",
   "workbench.statusBar.visible": true,
@@ -66,5 +67,4 @@
   //BracketPairColorizer
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
-  "explorer.confirmDragAndDrop": false,
 }
