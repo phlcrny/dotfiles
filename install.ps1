@@ -28,8 +28,11 @@ param
     [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for")]
     [string[]] $User,
 
-    [Parameter(Mandatory = $False, Position, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
-    [string] $Exclude
+    [Parameter(Mandatory = $False, Position = 1, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
+    [string] $Exclude,
+
+    [Parameter(Mandatory = $False, HelpMessage = "Allows any existing symlinks/files to be overwritten")]
+    [switch] $Force
 )
 
 BEGIN
@@ -83,6 +86,12 @@ PROCESS
                 }
 
                 @{
+                    Source      = "C:\Users\$User\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt"
+                    Destination = "C:\Users\$User\.ps_history.txt"
+                    Description = "PSReadLine history"
+                }
+
+                @{
                     Source      = "$PSScriptRoot\vscode\settings.json"
                     Destination = "C:\Users\$User\AppData\Roaming\Code\User\settings.json"
                     Description = "Visual Studio Code settings"
@@ -114,6 +123,12 @@ PROCESS
                     Source      = "$PSScriptRoot/pwsh/profile.ps1"
                     Destination = "/home/$User/.config/powershell/profile.ps1"
                     Description = "Powershell Core profile"
+                }
+
+                @{
+                    Source      = "/home/pcadmin/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
+                    Destination = "/home/$User/.ps_history.txt"
+                    Description = "PSReadLine history"
                 }
 
                 @{
@@ -164,6 +179,11 @@ PROCESS
                         {
                             Write-Verbose -Message "Creating directory: '$DestinationFolder'"
                             New-Item -Path $DestinationFolder -ItemType "Directory" | Out-Null
+                        }
+                        if ((Test-Path $SymLink.Destination) -and ($Force))
+                        {
+                            Write-Verbose -Message "Removing existing file ($($SymLink.Destination))"
+                            Remove-Item -Path $SymLink.Destination -Force
                         }
 
                         $Splat = @{
