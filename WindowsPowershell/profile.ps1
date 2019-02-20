@@ -176,10 +176,8 @@ function prompt
     $($PromptUser | Write-Host -NoNewline -ForegroundColor "Cyan") +
     $(" on " | Write-Host -NoNewline) +
     $($PromptHost | Write-Host -NoNewline -ForegroundColor "Green") +
-    $(" in " | Write-Host -NoNewline) + $($CurrentLocation | Write-Host -ForegroundColor "Magenta" -NoNewline) +
-    $(
-        " "
-    ) +
+    $(" in " | Write-Host -NoNewline) +
+    $($CurrentLocation | Write-Host -ForegroundColor "Magenta" -NoNewline) +
     $(
         if (($SimulatedPrompt.Length -ge 80) -or ($SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
         {
