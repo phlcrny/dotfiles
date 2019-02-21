@@ -65,7 +65,7 @@ $NewAliases = @(
 
 forEach ($Alias in $NewAliases)
 {
-    if (-not (Test-Path -Path "alias:\$Alias.Name" -ErrorAction "SilentlyContinue"))
+    if (-not (Test-Path -Path "alias:\$($Alias.Name)" -ErrorAction "SilentlyContinue"))
     {
         $AliasSplat = @{
             Name        = $Alias.Name
