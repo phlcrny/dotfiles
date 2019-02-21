@@ -15,8 +15,6 @@ $Hosts = "C:\Windows\System32\drivers\etc\hosts"
 # Aliases
 $NewAliases = @(
 
-    New-Alias -Name "~" -Value $HOME
-
     @{
         Name        = "~"
         Value       = $HOME
