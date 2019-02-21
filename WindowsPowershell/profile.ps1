@@ -193,7 +193,7 @@ function prompt
 if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
 {
     # Adds work-specific items, not for public consumption.
-    . "$PScriptRoots\work_extras.ps1"
+    . "$PScriptRoot\work_extras.ps1"
 }
 
 # Clear-host at start-up.
