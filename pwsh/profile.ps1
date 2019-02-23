@@ -97,12 +97,13 @@ forEach ($Alias in $NewAliases)
     }
 }
 
-# Preferences
-if (Get-Command Set-PSReadlineKeyHandler -ErrorAction "SilentlyContinue")
+# PSReadline
+if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
+    $HasPSReadline = $True
+    Set-PSReadlineOption -BellStyle "None"
     Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
-    Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
-    Set-PSReadlineOption -BellStyle "None"
+    Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
 }
