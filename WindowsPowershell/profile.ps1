@@ -82,11 +82,19 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
     # Set zsh-style tab-complete:
     $HasPSReadline = $True
-    Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    Set-PSReadlineOption -BellStyle "None"
     Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
-    Set-PSReadlineOption -BellStyle "None"
+    Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    Set-PSReadlineKeyHandler -Chord "Ctrl+P" -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
+    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-Item $(Split-Path -Path $Profile.CurrentUserAllHosts)")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
 }
 
 # Default Parameter Values
