@@ -16,7 +16,7 @@
 .OUTPUTS
     N/A
 .NOTES
-    Version 0.1.1
+    Version 0.1.2
 
     Note: This install script is not intended for use with macOS.
 .LINK
@@ -25,13 +25,13 @@
 [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess = $True)]
 param
 (
-    [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for")]
+    [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user.")]
     [string[]] $User,
 
     [Parameter(Mandatory = $False, Position = 1, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
     [string] $Exclude,
 
-    [Parameter(Mandatory = $False, HelpMessage = "Allows any existing symlinks/files to be overwritten")]
+    [Parameter(Mandatory = $False, HelpMessage = "Allows any existing symlinks/files to be overwritten.")]
     [switch] $Force
 )
 
@@ -73,6 +73,7 @@ PROCESS
             if ($OS.VersionString -match "Windows")
             {
                 #region Windows-based
+                Write-Verbose -Message "Windows-based OS: $($OS.VersionString)"
                 @{
                     Source      = "$PSScriptRoot\WindowsPowershell\profile.ps1"
                     Destination = "C:\Users\$User\Documents\WindowsPowershell\profile.ps1"
@@ -119,6 +120,7 @@ PROCESS
             else
             {
                 #region Not Windows
+                Write-Verbose -Message "Non-Windows OS: $($OS.VersionString)"
                 @{
                     Source      = "$PSScriptRoot/pwsh/profile.ps1"
                     Destination = "/home/$User/.config/powershell/profile.ps1"
