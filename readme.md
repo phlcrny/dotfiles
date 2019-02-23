@@ -2,12 +2,20 @@
 
 Various dotfiles for configuring and personalising programs on Windows and Linux.
 
+## Install
+
 Install with:
-```powershell
-. .\install.ps1 -User "Me"
+
+```
+# Powershell (Windows or Core)
+. .\install.ps1 -User "Me", "You"
 ```
 
+## Uninstall
+
 Uninstall with:
-```powershell
-. .\uninstall.ps1 -User "Me"
+
+```
+# Powershell (Windows or Core)
+. .\uninstall.ps1 -User "Me", "You"
 ```
