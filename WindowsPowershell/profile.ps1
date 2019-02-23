@@ -87,6 +87,10 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    Set-PSReadlineKeyHandler -Chord "Ctrl+H" -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $HOME")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
     Set-PSReadlineKeyHandler -Chord "Ctrl+P" -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
