@@ -102,6 +102,10 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadlineKeyHandler -Chord "Ctrl+F" -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
+    Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
 }
 
 # Default Parameter Values
