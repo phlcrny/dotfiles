@@ -11,24 +11,35 @@
     . .\install.ps1 -User "Me", "You"
 
     Installs the dotfiles for users 'Me' and 'You'.
+.EXAMPLE
+    . .\install.ps1 -User "Me" -Exclude "vim"
+
+    Installs all available dotfiles for 'Me' except those named 'vim'.
+.EXAMPLE
+    . .\install.ps1 -User "Me" -Include "vim"
+
+    Only installs dotfiles that match 'vim' for 'Me'.
 .INPUTS
     Strings (optional)
 .OUTPUTS
     N/A
 .NOTES
-    Version 0.1.2
+    Version 1.0.0.
 
     Note: This install script is not intended for use with macOS.
 .LINK
     https://github.com/philccarney/dotfiles
 #>
-[CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess = $True)]
+[CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess = $True, DefaultParameterSetName = "Default")] # Bit rusty with parameter sets, but this seems to work.
 param
 (
     [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user.")]
     [string[]] $User,
 
-    [Parameter(Mandatory = $False, Position = 1, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
+    [Parameter(Mandatory = $False, HelpMessage = "Only symlinks whose descriptions match this string will be installed. Uses regular expression.", ParameterSetName = "Inclusion")]
+    [string] $Include,
+
+    [Parameter(Mandatory = $False, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.", ParameterSetName = "Exclusion")]
     [string] $Exclude,
 
     [Parameter(Mandatory = $False, HelpMessage = "Allows any existing symlinks/files to be overwritten.")]
@@ -73,7 +84,7 @@ PROCESS
             if ($OS.VersionString -match "Windows")
             {
                 #region Windows-based
-                Write-Verbose -Message "Windows-based OS: $($OS.VersionString)"
+                Write-Debug -Message "Windows-based OS: $($OS.VersionString)"
                 @{
                     Source      = "$PSScriptRoot\WindowsPowershell\profile.ps1"
                     Destination = "C:\Users\$User\Documents\WindowsPowershell\profile.ps1"
@@ -120,7 +131,7 @@ PROCESS
             else
             {
                 #region Not Windows
-                Write-Verbose -Message "Non-Windows OS: $($OS.VersionString)"
+                Write-Debug -Message "Non-Windows OS: $($OS.VersionString)"
                 @{
                     Source      = "$PSScriptRoot/pwsh/profile.ps1"
                     Destination = "/home/$User/.config/powershell/profile.ps1"
@@ -169,7 +180,10 @@ PROCESS
 
         forEach ($SymLink in $SymLinks)
         {
-            if ((($Exclude) -and ($SymLink.Description -notmatch $Exclude)) -or (-not ($Exclude)))
+            # We'll only try anc create the link under certain conditions:
+            if ((($Exclude) -and ($SymLink.Description -notmatch $Exclude)) -or # If the Exclude parameter is used, and the link doesn't match $Exclude
+                (($Include) -and ($SymLink.Description -match $Include)) -or # If the Include parameter is used, and the link matches $Include
+                (-not ($Exclude -or $Include))) # Or, if we're not using Exclude or Include
             {
                 if ($PSCmdlet.ShouldProcess("$User", "Installing $($SymLink.Description)"))
                 {
@@ -177,11 +191,15 @@ PROCESS
                     {
                         Write-Verbose -Message "Creating symlink for '$($SymLink.Source)' to '$($SymLink.Destination)'"
                         $DestinationFolder = Split-Path -Path $SymLink.Destination
+
+                        # Ensure that any parent directories are created.
                         if (-not (Test-Path -Path $DestinationFolder))
                         {
                             Write-Verbose -Message "Creating directory: '$DestinationFolder'"
                             New-Item -Path $DestinationFolder -ItemType "Directory" | Out-Null
                         }
+
+                        # If Force is used, we'll delete any pre-existing files or symlinks.
                         if ((Test-Path $SymLink.Destination) -and ($Force))
                         {
                             Write-Verbose -Message "Removing existing file ($($SymLink.Destination))"
@@ -206,7 +224,18 @@ PROCESS
             }
             else
             {
-                Write-Verbose -Message "'$($SymLink.Description)' matches '$Exclude' exclusion regex - Skipping install."
+                if (($Exclude) -and ($SymLink.Description -match $Exclude))
+                {
+                    Write-Verbose -Message "'$($SymLink.Description)' matches '$Exclude' exclusion regex - Skipping install."
+                }
+                elseif (($Include) -and ($SymLink.Description -notmatch $Include))
+                {
+                    Write-Verbose -Message "'$($SymLink.Description)' does not match '$Include' inclusion regex - Skipping install."
+                }
+                else
+                {
+                    Write-Verbose -Message "Unexpected condition. Skipping install."
+                }
             }
         }
     }
