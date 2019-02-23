@@ -180,7 +180,7 @@ PROCESS
 
         forEach ($SymLink in $SymLinks)
         {
-            # We'll only try anc create the link under certain conditions:
+            # We'll only try and create the link under certain conditions:
             if ((($Exclude) -and ($SymLink.Description -notmatch $Exclude)) -or # If the Exclude parameter is used, and the link doesn't match $Exclude
                 (($Include) -and ($SymLink.Description -match $Include)) -or # If the Include parameter is used, and the link matches $Include
                 (-not ($Exclude -or $Include))) # Or, if we're not using Exclude or Include
