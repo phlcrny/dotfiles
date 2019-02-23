@@ -99,6 +99,9 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-Item $(Split-Path -Path $Profile.CurrentUserAllHosts)")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
+    Set-PSReadlineKeyHandler -Chord "Ctrl+F" -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
+    }
 }
 
 # Default Parameter Values
