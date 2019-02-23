@@ -3,10 +3,8 @@ $CurrentUserID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
 $WindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($CurrentUserID)
 $Admin = [System.Security.Principal.WindowsBuiltInRole]::Administrator
 $UserIsAdmin = $WindowsPrincipal.IsInRole($Admin)
-
 # Force Powershell to use TLS 1.2 for HTTPS
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
 # Lazy variable
 $Hosts = "C:\Windows\System32\drivers\etc\hosts"
 
@@ -83,6 +81,7 @@ forEach ($Alias in $NewAliases)
 if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
     # Set zsh-style tab-complete:
+    $HasPSReadline = $True
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
     Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
@@ -195,6 +194,13 @@ if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
 }
 
 # Clear-host at start-up.
-Clear-Host
+if ($HasPSReadline)
+{
+    [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
+}
+else
+{
+    Clear-Host
+}
 # Clean-up stray variables before going out into the wild.
-Remove-Variable "CurrentUserID", "WindowsPrincipal", "Admin", "UserIsAdmin", "Titlebar", "AliasSplat"
+Remove-Variable "CurrentUserID", "WindowsPrincipal", "Admin", "UserIsAdmin", "Titlebar", "AliasSplat", "HasPSReadLine" -ErrorAction "SilentlyContinue"
