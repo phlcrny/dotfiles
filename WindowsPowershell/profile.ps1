@@ -213,7 +213,7 @@ if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
 }
 
 # Clear-host at start-up.
-if ($HasPSReadline)
+if (($HasPSReadline) -and ($Host.Name -eq "ConsoleHost"))
 {
     [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
 }
