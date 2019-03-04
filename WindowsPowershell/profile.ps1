@@ -88,8 +88,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
     Set-PSReadlineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("ii $HOME")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+        Invoke-Item -Path $HOME
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
