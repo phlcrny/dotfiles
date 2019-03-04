@@ -91,8 +91,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         Invoke-Item -Path $HOME
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+        . $Profile.CurrentUserAllHosts
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
         $_ProfileObject = Get-Item $Profile.CurrentUserAllHosts
