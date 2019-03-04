@@ -108,8 +108,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+        Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip
     }
 }
 
