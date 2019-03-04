@@ -96,8 +96,15 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-Item $(Split-Path -Path $Profile.CurrentUserAllHosts)")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+        $_ProfileObject = Get-Item $Profile.CurrentUserAllHosts
+        if ($_ProfileObject.LinkType -like "SymbolicLink")
+        {
+            Invoke-Item (Split-Path -Path $_ProfileObject.Target)
+        }
+        else
+        {
+            Invoke-Item (Split-Path -Path $Profile.CurrentUserAllHosts)
+        }
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
