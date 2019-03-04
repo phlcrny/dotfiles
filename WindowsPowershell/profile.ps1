@@ -87,22 +87,22 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
-    Set-PSReadlineKeyHandler -Chord "Ctrl+H" -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $HOME")
+    Set-PSReadlineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("ii $HOME")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+P" -ScriptBlock {
+    Set-PSReadlineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -ScriptBlock {
+    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Invoke-Item $(Split-Path -Path $Profile.CurrentUserAllHosts)")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+F" -ScriptBlock {
+    Set-PSReadlineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -ScriptBlock {
+    Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
