@@ -71,6 +71,12 @@ PROCESS
                 }
 
                 @{
+                    Source      = "C:\Users\$User\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt"
+                    Destination = "C:\Users\$User\.ps_history.txt"
+                    Description = "PSReadLine history"
+                }
+
+                @{
                     Source      = "$PSScriptRoot\vscode\settings.json"
                     Destination = "C:\Users\$User\AppData\Roaming\Code\User\settings.json"
                     Description = "Visual Studio Code settings"
@@ -106,6 +112,12 @@ PROCESS
                 }
 
                 @{
+                    Source      = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
+                    Destination = "/home/$User/.ps_history.txt"
+                    Description = "PSReadLine history"
+                }
+
+                @{
                     Source      = "$PSScriptRoot/tmux/.tmux.conf"
                     Destination = "/home/$User/.tmux.conf"
                     Description = "tmux config"
@@ -115,6 +127,12 @@ PROCESS
                     Source      = "$PSScriptRoot/tmux/.tmux-default"
                     Destination = "/home/$User/.tmux-default"
                     Description = "tmux Default Session"
+                }
+
+                @{
+                    Source      = "$PSScriptRoot/vscode/settings.json"
+                    Destination = "/home/$User/.config/Code/User/settings.json"
+                    Description = "Visual Studio Code settings"
                 }
 
                 @{
