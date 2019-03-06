@@ -139,7 +139,7 @@ PROCESS
                 }
 
                 @{
-                    Source      = "/home/pcadmin/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
+                    Source      = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
                     Destination = "/home/$User/.ps_history.txt"
                     Description = "PSReadLine history"
                 }
