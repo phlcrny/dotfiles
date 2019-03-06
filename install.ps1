@@ -157,6 +157,12 @@ PROCESS
                 }
 
                 @{
+                    Source      = "$PSScriptRoot/vscode/settings.json"
+                    Destination = "/home/$User/.config/Code/User/settings.json"
+                    Description = "Visual Studio Code settings"
+                }
+
+                @{
                     Source      = "$PSScriptRoot/vscode/keybindings.json"
                     Destination = "/home/$User/.config/Code/User/keybindings.json"
                     Description = "Visual Studio Code keybindings"
