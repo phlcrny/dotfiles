@@ -57,6 +57,7 @@ PROCESS
             if ($OS.VersionString -match "Windows")
             {
                 #region Windows-based
+                Write-Debug -Message "Windows-based OS: $($OS.VersionString)"
                 @{
                     Source      = "$PSScriptRoot\WindowsPowershell\profile.ps1"
                     Destination = "C:\Users\$User\Documents\WindowsPowershell\profile.ps1"
@@ -97,6 +98,7 @@ PROCESS
             else
             {
                 #region Not Windows
+                Write-Debug -Message "Non-Windows OS: $($OS.VersionString)"
                 @{
                     Source      = "$PSScriptRoot/pwsh/profile.ps1"
                     Destination = "/home/$User/.config/powershell/profile.ps1"
