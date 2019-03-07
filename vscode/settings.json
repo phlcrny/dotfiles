@@ -47,6 +47,7 @@
     // Editor Mappings/Behaviour
     "editor.multiCursorModifier": "ctrlCmd",
     "files.defaultLanguage": "powershell",
+    "telemetry.enableTelemetry": false,
 
 // Powershell
 
