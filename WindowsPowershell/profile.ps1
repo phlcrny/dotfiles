@@ -114,6 +114,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 
 # Default Parameter Values
 $PSDefaultParameterValues = @{
+    "cd:Path"                      = $HOME
     "Export-Csv:NoTypeInformation" = $True
     "Format-Table:AutoSize"        = $(if ($Host.Name -eq "ConsoleHost")
         {
