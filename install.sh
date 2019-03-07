@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo "pwsh profile"
+ln -sf "./pwsh/profile.ps1" "$HOME/.config/powershell/profile.ps1"
+echo "PSReadline history"
+ln -sf "$HOME/.local/share/powershell/PSReadLine/ConsoleHost_history.txt" "$HOME/.ps_history.txt"
+echo "tmux config"
+ln -sf "./tmux/.tmux.conf" "$HOME/.tmux.conf"
+echo "tmux default session"
+ln -sf "./tmux/.tmux.conf" "$HOME/.tmux-default"
+echo "Visual Studio Code settings"
+ln -sf "./vscode/settings.json" "$HOME/.config/Code/User/settings.json"
+echo "Visual Studio Code keybindings"
+ln -sf "./vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
+echo "Visual Studio Code Powershell snippets"
+ln -sf "./vscode/powershell.json" "$HOME/.config/Code/User/snippets/powershell.json"
+echo "Vim config"
+ln -sf "./vim/vimrc" "$HOME/.vimrc"
