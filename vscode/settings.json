@@ -1,42 +1,56 @@
 {
-  // Terminal Appearance
-  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-  "terminal.integrated.fontFamily": "Lucida Console, Consolas",
-  "terminal.integrated.fontSize": 12,
-  "terminal.integrated.lineHeight": 1,
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.cursorStyle": "line",
-  // Editor Appearance
-  "breadcrumbs.enabled": true,
-  "editor.fontSize": 12,
-  "editor.fontFamily": "Consolas, 'Courier New', monospace",
-  "editor.minimap.showSlider": "always",
-  "editor.minimap.side": "left",
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.sortOrder": "type",
-  "scm.alwaysShowProviders": true,
-  "window.menuBarVisibility": "default",
-  "window.newWindowDimensions": "maximized",
-  "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
-  "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Dracula Soft",
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.sideBar.location": "right",
-  "workbench.statusBar.visible": true,
-  "zenMode.centerLayout": false,
-  "zenMode.hideTabs": false,
-  // Editor Mappings/Behaviour
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.multiCursorModifier": "ctrlCmd",
-  "files.associations": {
-    "*.ps1xml": "xml",
-    "*.nginx": "NGINX"
+  "[powershell]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "files.trimTrailingWhitespace": true,
   },
-  "files.defaultLanguage": "powershell",
-  "files.trimTrailingWhitespace": true,
-  // Powershell Formatting
+
+  "[python]": {
+    "editor.autoIndent": true,
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false,
+  },
+
+  //region Terminal
+
+    // Terminal Appearance
+      "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "terminal.integrated.fontFamily": "Consolas, Lucida Console",
+      "terminal.integrated.fontSize": 12,
+      "terminal.integrated.lineHeight": 1,
+      "terminal.integrated.cursorBlinking": true,
+      "terminal.integrated.cursorStyle": "line",
+
+  // Editor
+
+    // Editor Appearance
+    "breadcrumbs.enabled": true,
+    "editor.fontSize": 12,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.side": "left",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.sortOrder": "type",
+    "scm.alwaysShowProviders": true,
+    "window.menuBarVisibility": "default",
+    "window.newWindowDimensions": "maximized",
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
+    "workbench.activityBar.visible": true,
+    "workbench.colorTheme": "Dracula Soft",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": true,
+    "zenMode.centerLayout": false,
+    "zenMode.hideTabs": false,
+
+    // Editor Mappings/Behaviour
+    "editor.multiCursorModifier": "ctrlCmd",
+    "files.defaultLanguage": "powershell",
+
+// Powershell
+
+  // Formatting
   "powershell.codeFormatting.preset": "Allman",
   "powershell.codeFormatting.openBraceOnSameLine": false,
   "powershell.codeFormatting.newLineAfterOpenBrace": true,
@@ -47,24 +61,27 @@
   "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
   "powershell.codeFormatting.whitespaceAfterSeparator": true,
   "powershell.codeFormatting.whitespaceAroundOperator": true,
-  // Powershell Behaviour
+
+  // Behaviour
   "powershell.developer.editorServicesLogLevel": "Verbose",
   "powershell.enableProfileLoading": false,
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.startAutomatically": true,
-  // Python
-  "python.venvPath": "C:\\venvs\\",
-  // Git
+
+// Git
+
+  // Behaviour
   "git.autofetch": true,
   "git.showPushSuccessNotification": true,
-  // GitLens
+
+// GitLens
+
   "gitlens.advanced.telemetry.enabled": false,
-  "gitlens.gitExplorer.autoRefresh": true,
-  "gitlens.gitExplorer.view": "repository",
-  "gitlens.gitExplorer.location": "scm",
   "gitlens.views.repositories.autoRefresh": true,
   "gitlens.views.repositories.location": "scm",
-  //BracketPairColorizer
+
+//BracketPairColorizer
+
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
 }
