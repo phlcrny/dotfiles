@@ -37,7 +37,7 @@
     "window.newWindowDimensions": "maximized",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
     "workbench.activityBar.visible": true,
-    "workbench.colorTheme": "Dracula Soft",
+    "workbench.colorTheme": "Dracula",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.sideBar.location": "right",
     "workbench.statusBar.visible": true,
