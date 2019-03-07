@@ -71,7 +71,6 @@
 
 // Git
 
-  // Behaviour
   "git.autofetch": true,
   "git.showPushSuccessNotification": true,
 
