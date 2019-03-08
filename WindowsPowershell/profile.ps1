@@ -123,6 +123,14 @@ $PSDefaultParameterValues = @{
     "Get-EventLog:LogName"         = "System"
     "Get-EventLog:After"           = {(Get-Date).AddHours(-6)}
     "Get-Help:Full"                = $True
+    "Get-Process:IncludeUsername"  = $(if ($UserIsAdmin -eq $True)
+        {
+            $True
+        })
+    "ps:IncludeUsername"           = $(if ($UserIsAdmin -eq $True)
+        {
+            $True
+        })
 }
 
 # Display
