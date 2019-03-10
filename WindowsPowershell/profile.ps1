@@ -104,6 +104,9 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
             Invoke-Item (Split-Path -Path $Profile.CurrentUserAllHosts)
         }
     }
+    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the cursor." -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(" | clip")
+    }
     Set-PSReadlineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
