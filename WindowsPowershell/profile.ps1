@@ -49,6 +49,12 @@ $NewAliases = @(
         Description = "Short-hand for the Hosts file."
     }
 
+    @{
+        Name        = "Import"
+        Value       = "Import-Module"
+        Description = "Short-hand for Import-Module"
+    }
+
     $(
         if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
         {
