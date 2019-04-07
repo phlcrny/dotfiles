@@ -90,14 +90,15 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     $HasPSReadline = $True
     Set-PSReadlineOption -BellStyle "None"
     Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
-    Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
-    Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
+    Set-PSReadlineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
+    Set-PSReadlineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
     Set-PSReadlineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
         Invoke-Item -Path $HOME
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
-        . $Profile.CurrentUserAllHosts
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
         $_ProfileObject = Get-Item $Profile.CurrentUserAllHosts
@@ -117,7 +118,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
-        Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip
+        Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip.exe
     }
 }
 
@@ -130,7 +131,7 @@ $PSDefaultParameterValues = @{
             $True
         })
     "Get-EventLog:LogName"         = "System"
-    "Get-EventLog:After"           = {(Get-Date).AddHours(-6)}
+    "Get-EventLog:After"           = { (Get-Date).AddHours(-6) }
     "Get-Help:Full"                = $True
     "Get-Process:IncludeUsername"  = $(if ($UserIsAdmin -eq $True)
         {
