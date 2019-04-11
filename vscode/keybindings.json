@@ -55,5 +55,9 @@
         "key": "tab",
         "command": "-insertSnippet",
         "when": "editorTextFocus && hasSnippetCompletions && !editorTabMovesFocus && !inSnippetMode"
+    },
+    {
+        "key": "ctrl+shift+oem_5",
+        "command": "PowerShell.RestartSession"
     }
 ]
