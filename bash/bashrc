@@ -1,0 +1,24 @@
+# Do something for colours
+force_color_prompt=yes
+
+# Something else for colours - maybe unneeded.
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# Don't put duplicate lines or lines start with space in history.
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# shopt settings
+shopt -s histappend # Append to the history not overwrite.
+shopt -s checkwinsize # Check and adjust window size on each command.
+
+# Prompt
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[0;34m\]\u\[\e[0m\] on \h in \w\a $ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u\ on \h in \w\a $ '
+fi
+unset color_prompt force_color_prompt
