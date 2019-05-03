@@ -114,6 +114,11 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the cursor." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(" | clip")
     }
+    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+D" -Description "Adds an exit keybinding" -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Abort()
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Exit")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
     Set-PSReadlineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
