@@ -111,7 +111,8 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
             Invoke-Item (Split-Path -Path $Profile.CurrentUserAllHosts)
         }
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the cursor." -ScriptBlock {
+    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the end of the line/input." -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::EndOfLine()
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(" | clip")
     }
     Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+D" -Description "Adds an exit keybinding" -ScriptBlock {
