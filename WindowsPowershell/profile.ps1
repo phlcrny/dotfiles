@@ -257,4 +257,4 @@ else
     Clear-Host
 }
 # Clean-up stray variables before going out into the wild.
-Remove-Variable "AdminStatus", "Alias", "Admin", "AliasSplat", "CurrentUserID", "HasPSReadLine", "NewAliases", "Titlebar", "WindowsPrincipal", "UserIsAdmin" -ErrorAction "SilentlyContinue"
+Remove-Variable "Alias", "Admin", "AliasSplat", "CurrentUserID", "HasPSReadLine", "NewAliases", "Titlebar", "WindowsPrincipal", "UserIsAdmin" -ErrorAction "SilentlyContinue"
