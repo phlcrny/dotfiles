@@ -125,7 +125,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
         Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip.exe
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+W" -Description "Wraps the current word in double-quotes." -ScriptBlock {
+    Set-PSReadlineKeyHandler -Chord "Ctrl+Q" -Description "Wraps the current word in double-quotes." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::BackwardWord()
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert('"')
         [Microsoft.PowerShell.PSConsoleReadLine]::ForwardWord()
