@@ -1,0 +1,45 @@
+# For non-interactive
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Do something for colours
+force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+# Something else for colours - maybe unneeded.
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# Don't put duplicate lines or lines start with space in history.
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# shopt settings
+shopt -s histappend # Append to the history not overwrite.
+shopt -s checkwinsize # Check and adjust window size on each command.
+
+# Prompt
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+if [ "$color_prompt" = yes ]; then
+    export PS1='${debian_chroot:+($debian_chroot)}\[\e[0;34m\]\u\e[0m\] on \[\e[0;32m\]$(hostname)\e[0m\] in \[\e[1;35m\]\w\a\e[0m\] $ '
+else
+    export PS1='${debian_chroot:+($debian_chroot)}\u on $(hostname) in \w\a $ '
+fi
+unset color_prompt force_color_prompt
