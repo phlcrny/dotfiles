@@ -58,7 +58,8 @@ function prompt
     $(" in " | Write-Host -NoNewline) +
     $($_CurrentLocation | Write-Host -ForegroundColor "Magenta" -NoNewline) +
     $(
-        if (($_SimulatedPrompt.Length -ge 80) -or ($_SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
+        if (($_SimulatedPrompt.Length -ge 80) -or
+            ($_SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
         {
             " " + $(Write-Host "") + $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline)
         }
@@ -98,8 +99,8 @@ $_NewAliases = @(
 
 forEach ($_Alias in $_NewAliases)
 {
-    if ((-not (Test-Path -Path "alias:\$($_Alias.Name)" -ErrorAction "SilentlyContinue")) -and
-        (-not (Get-Command -Name $_Alias.Name -ErrorAction "SilentlyContinue")))
+    if (-not ((Test-Path -Path "alias:\$($_Alias.Name)" -ErrorAction "SilentlyContinue") -and
+            (Get-Command -Name $_Alias.Name -ErrorAction "SilentlyContinue")))
     {
         $_AliasSplat = @{
             Name        = $_Alias.Name
