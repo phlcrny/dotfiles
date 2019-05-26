@@ -20,5 +20,5 @@
             "..."
         ],
         "description": "Example: My typical Ansible playbook skeleton."
-    },
+    }
 }
