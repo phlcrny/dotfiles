@@ -6,7 +6,7 @@
 			"- name: \"Playbook Name\"",
 			"  hosts: all",
 			"  gather_facts: true",
-			"  become_user: root",
+			"  # become_user: root",
 			"  become: yes",
 			"",
 			"  tasks:",
