@@ -2,6 +2,8 @@
 
 Various dotfiles for configuring and personalising programs on Windows and Linux.
 
+Now featuring low-quality shell scripting!
+
 ## Install
 
 ### Powershell
@@ -18,6 +20,13 @@ Various dotfiles for configuring and personalising programs on Windows and Linux
 
 # Install everything but Vim
 . .\install.ps1 -User "Me" -Exclude "vim"
+```
+
+### Bash
+
+``` Bash
+# Installs sym-links for the current user, assuming that the files are in ~/dotfiles - this is even worse than the Powershell!
+.\install.sh
 ```
 
 ## Uninstall
