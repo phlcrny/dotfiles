@@ -1,6 +1,6 @@
 # Windows habits.
 alias cls='clear'
-alias dir='ls'
+alias dir='ls -al'
 alias md='mkdir'
 
 # Git brevity
