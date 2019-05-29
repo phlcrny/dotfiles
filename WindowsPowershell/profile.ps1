@@ -55,6 +55,12 @@ $NewAliases = @(
         Description = "Short-hand for Import-Module"
     }
 
+    @{
+        Name        = "Touch"
+        Value       = "New-Item"
+        Description = "Cross-platform laziness"
+    }
+
     $(
         if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
         {
@@ -153,6 +159,7 @@ $PSDefaultParameterValues = @{
         {
             $True
         })
+    "New-Item:ItemType"            = "File"
 }
 
 # Display
