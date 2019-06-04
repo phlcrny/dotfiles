@@ -43,3 +43,7 @@ else
     export PS1='${debian_chroot:+($debian_chroot)}\u on $(hostname) in \w\a $ '
 fi
 unset color_prompt force_color_prompt
+
+if [ -f ~/.bash_aliases ]; then
+. ~/.bash_aliases
+fi
