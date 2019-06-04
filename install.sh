@@ -6,9 +6,13 @@
 # Adjust the path as required if this isn't right for you.
 
 # bash
+echo "bash profile"
 ln -sf ~dotfiles/bash/bash_profile ~/.bash_profile
+echo "Generic bash profile"
 ln -sf ~dotfiles/bash/bash_profile ~/.profile
+echo "bashrc"
 ln -sf ~dotfiles/bash/bashrc ~/.bashrc
+echo "bash aliases"
 ln -sf ~dotfiles/bash/bash_aliases ~/.bash_aliases
 
 # tmux
