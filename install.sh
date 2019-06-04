@@ -26,7 +26,7 @@ echo "vim config"
 ln -sf "~/dotfiles/vim/vimrc" "~/.vimrc"
 
 # pwsh
-if [-x "$(command -v pwsh)"]; then
+if [ -x "$(command -v pwsh)" ]; then
     mkdir -p "~/.config/powershell"
     echo "pwsh profile"
     ln -sf "~/dotfiles/pwsh/profile.ps1" "~/.config/powershell/profile.ps1"
@@ -35,7 +35,7 @@ if [-x "$(command -v pwsh)"]; then
 fi
 
 # vscode
-if [-x "$(command -v code)"]; then
+if [ -x "$(command -v code)" ]; then
     mkdir -p "~/.config/vscode"
     echo "Visual Studio Code settings"
     ln -sf "~/dotfiles/vscode/settings.json" "~/.config/Code/User/settings.json"
