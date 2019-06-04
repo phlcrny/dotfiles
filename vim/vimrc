@@ -3,4 +3,4 @@ set noswapfile
 set number
 set ruler
 set showcmd
-highlight LineNr term=underline ctermfg=Blue # Amend line number colouring
+highlight LineNr term=underline ctermfg=Blue
