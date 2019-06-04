@@ -7,13 +7,13 @@
 
 # bash
 echo "bash profile"
-ln -sf ~dotfiles/bash/bash_profile ~/.bash_profile
+ln -sf ~/dotfiles/bash/bash_profile ~/.bash_profile
 echo "Generic bash profile"
-ln -sf ~dotfiles/bash/bash_profile ~/.profile
+ln -sf ~/dotfiles/bash/bash_profile ~/.profile
 echo "bashrc"
-ln -sf ~dotfiles/bash/bashrc ~/.bashrc
+ln -sf ~/dotfiles/bash/bashrc ~/.bashrc
 echo "bash aliases"
-ln -sf ~dotfiles/bash/bash_aliases ~/.bash_aliases
+ln -sf ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 
 # tmux
 echo "tmux config"
