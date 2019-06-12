@@ -92,7 +92,6 @@ forEach ($Alias in $NewAliases)
 # PSReadline
 if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
-
     $HasPSReadline = $True
     $_ReadlineOptions = @{
         BellStyle           = "None"
@@ -249,10 +248,18 @@ function prompt
     $(
         if (($SimulatedPrompt.Length -ge 80) -or ($SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
         {
+            if ($HasPSReadline)
+            {
+                Set-PSReadlineOption -ExtraPromptLineCount 1
+            }
             " " + $(Write-Host "") + $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline)
         }
         else
         {
+            if ($HasPSReadline)
+            {
+                Set-PSReadlineOption -ExtraPromptLineCount 0
+            }
             $(" $" | Write-Host -ForegroundColor "Cyan" -NoNewline)
         }
     ) + " "
