@@ -24,7 +24,7 @@ case "$TERM" in
 esac
 
 # Don't put duplicate lines or lines start with space in history.
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoredups
 HISTSIZE=1000
 HISTFILESIZE=2000
 
