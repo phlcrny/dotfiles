@@ -121,6 +121,12 @@ PROCESS
                     }
 
                     @{
+                        Source      = "$PSScriptRoot\vscode\ansible.json"
+                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\ansible.json"
+                        Description = "Visual Studio Code Ansible snippets"
+                    }
+
+                    @{
                         Source      = "$PSScriptRoot\vscode\powershell.json"
                         Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\powershell.json"
                         Description = "Visual Studio Code Powershell snippets"
@@ -171,6 +177,12 @@ PROCESS
                         Source      = "$PSScriptRoot/vscode/keybindings.json"
                         Destination = "/home/$User/.config/Code/User/keybindings.json"
                         Description = "Visual Studio Code keybindings"
+                    }
+
+                    @{
+                        Source      = "$PSScriptRoot\vscode\ansible.json"
+                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\ansible.json"
+                        Description = "Visual Studio Code Ansible snippets"
                     }
 
                     @{
