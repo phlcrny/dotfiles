@@ -92,13 +92,23 @@ forEach ($Alias in $NewAliases)
 # PSReadline
 if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
-    # Set zsh-style tab-complete:
+
     $HasPSReadline = $True
-    Set-PSReadlineOption -BellStyle "None"
+    $_ReadlineOptions = @{
+        BellStyle           = "None"
+        HistoryNoDuplicates = $True
+        HistorySavePath     = "$HOME\.ps_history.txt"
+    }
+    Set-PSReadlineOption @_ReadlineOptions
     Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
+    # Set zsh-style tab-complete
     Set-PSReadlineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadlineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
+    # Amend default search behaviour
     Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    # Delete the whole or remainder of the line.
+
+    # Custom bindings
     Set-PSReadlineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
         Invoke-Item -Path $HOME
     }
