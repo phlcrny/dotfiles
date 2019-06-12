@@ -2,6 +2,7 @@
   "[powershell]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
+    "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
     "files.trimTrailingWhitespace": true,
   },
 
