@@ -3,10 +3,6 @@ alias cls='clear'
 alias dir='ls -al'
 alias md='mkdir'
 
-# Git brevity
-alias git br='git branch -av'
-alias git re='git remote -v'
-
 # Colours!
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
