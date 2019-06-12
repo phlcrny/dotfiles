@@ -109,12 +109,6 @@ PROCESS
                     }
 
                     @{
-                        Source      = "C:\Users\$User\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt"
-                        Destination = "C:\Users\$User\.ps_history.txt"
-                        Description = "PSReadLine history"
-                    }
-
-                    @{
                         Source      = "$PSScriptRoot\vscode\settings.json"
                         Destination = "C:\Users\$User\AppData\Roaming\Code\User\settings.json"
                         Description = "Visual Studio Code settings"
