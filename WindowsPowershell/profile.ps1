@@ -92,11 +92,40 @@ forEach ($Alias in $NewAliases)
 # PSReadline
 if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 {
+    $_HistoryHandlerScriptBlock = {
+        param(
+            [string] $Line
+        )
+
+        $SkipExclusion = "skip_pshistory"
+        $Exclusions = @(
+            "powershell_ise"
+        )
+
+        if (($Line.ToLower() -notmatch $SkipExclusion) -or ($Line.Length -ge 4))
+        {
+            if ($Line.ToLower() -notin $Exclusions)
+            {
+                $True
+            }
+            else
+            {
+                $False
+            }
+        }
+        else
+        {
+            $False
+        }
+    }
     $HasPSReadline = $True
     $_ReadlineOptions = @{
-        BellStyle           = "None"
-        HistoryNoDuplicates = $True
-        HistorySavePath     = "$HOME\.ps_history.txt"
+        AddToHistoryHandler           = $_HistoryHandlerScriptBlock
+        BellStyle                     = "None"
+        HistoryNoDuplicates           = $True
+        HistorySavePath               = "$HOME\.ps_history.txt"
+        HistorySearchCursorMovesToEnd = $True
+        ShowTooltips                  = $False
     }
     Set-PSReadlineOption @_ReadlineOptions
     Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
@@ -163,10 +192,18 @@ $PSDefaultParameterValues = @{
     "Get-Process:IncludeUsername"  = $(if ($UserIsAdmin -eq $True)
         {
             $True
+        }
+        else
+        {
+            $False
         })
     "ps:IncludeUsername"           = $(if ($UserIsAdmin -eq $True)
         {
             $True
+        }
+        else
+        {
+            $False
         })
     "New-Item:ItemType"            = "File"
 }
