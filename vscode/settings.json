@@ -73,6 +73,7 @@
 // Git
 
   "git.autofetch": true,
+  "git.autofetchPeriod": 30,
   "git.showPushSuccessNotification": true,
 
 // GitLens
