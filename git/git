@@ -1,3 +1,3 @@
 [alias]
-br = branch -av
+br = branch -avv
 re = remote -v
