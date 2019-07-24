@@ -1,3 +1,4 @@
 [alias]
 br = branch -avv
 re = remote -v
+what = log -n 5 --stat
