@@ -164,6 +164,10 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Exit")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
+    Set-PSReadlineKeyHandler -Chord "Ctrl+E" -Description "Attempts to open the current folder in Visual Studio Code." -ScriptBlock {
+        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("code .")
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+    }
     Set-PSReadlineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
