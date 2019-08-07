@@ -1,4 +1,5 @@
 [alias]
 br = branch -avv
+fee = fetch --prune --all
 re = remote -v
 what = log -n 5 --stat
