@@ -1,6 +1,10 @@
 [alias]
-br = branch -avv
-change = checkout
-fee = fetch --prune --all
-re = remote -v
-what = log -n 5 --stat
+    br = branch -avv
+    change = checkout
+    fee = fetch --prune --all
+    re = remote -v
+    what = log -n 5 --stat
+
+[user]
+    name = philccarney
+    email = philccarney@users.noreply.github.com
