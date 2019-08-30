@@ -1,8 +1,8 @@
 {
-    "Example-CmdletFull": {
+    "Phil-CmdletFull": {
         "prefix": "Phil-CmdletFull",
         "body": [
-            "function ${name:Verb-Noun}",
+            "function ${name:Test-Cmdlet}",
             "{",
             "\t<#",
             "\t.SYNOPSIS",
@@ -17,7 +17,7 @@
             "\t\tTBC - Output from this cmdlet (if any)",
             "\t.LINK",
             "\t\tTBC - Link(s) relevant to this cmdlet",
-            "\t",
+            "",
             "\t\t<#PSScriptInfo>",
             "\t\t.VERSION",
             "\t\t\t0.1.0.0",
@@ -46,6 +46,7 @@
             "\t\t.RELEASENOTES",
             "\t\t\tTBC",
             "\t#>",
+            "",
             "\t[CmdletBinding(DefaultParameterSetName = \"DefaultParameters\", ConfirmImpact = \"Medium\",  SupportsShouldProcess = \\$True, PositionalBinding = \\$False, HelpUri = \"http://www.microsoft.com/\")]",
             "\t[Alias()]",
             "\t[OutputType([String])]",
@@ -89,12 +90,12 @@
             "\t}",
             "}"
         ],
-        "description": "Example: script cmdlet snippet formatted for my preferences/habits but with all the trimmings."
+        "description": "A cmdlet snippet with all the trimmings."
     },
-    "Example-CmdletShort": {
+    "Phil-CmdletShort": {
         "prefix": "Phil-CmdletShort",
         "body": [
-            "function ${name:Verb-Noun}",
+            "function ${name:Test-Cmdlet}",
             "{",
             "\t[CmdletBinding(ConfirmImpact = \"Medium\",  SupportsShouldProcess = \\$True)]",
             "\tparam",
@@ -137,10 +138,10 @@
             "\t}",
             "}"
         ],
-        "description": "Example: script cmdlet snippet formatted for my preferences/habits but with all the trimmings."
+        "description": "A cmdlet snippet formatted for my preferences/habits but without all the trimmings."
     },
-    "Example-TryCatch": {
-        "prefix": "Phil-TryCatch",
+    "Phil-TryCatchCmdlet": {
+        "prefix": "Phil-TryCatchCmdlet",
         "body": [
             "try",
             "{",
@@ -151,23 +152,39 @@
             "\t\\$PSCmdlet.ThrowTerminatingError(\\$_)",
             "}"
         ],
-        "description": "Example: Try-catch snippet formatted for my preferences/habits."
+        "description": "A try-catch snippet for Cmdlets."
     },
-    "Example-SMAWorkflow": {
+    "Phil-TryCatchSimple": {
+        "prefix": "Phil-TryCatchSimple",
+        "body": [
+            "try",
+            "{",
+            "\t# Do things.",
+            "}",
+            "catch",
+            "{",
+            "\t\\$DetailedError = \"\\$(\\$_.Exception)`n\\$(\\$_.FullyQualifiedErrorId)`n\\$(\\$_.ScriptStackTrace)\"",
+            "\t\\$Issues += \"  An error occurred:`n`n\\$DetailedError`n\"",
+            "\tWrite-Error -Message \\$DetailedError",
+            "}"
+        ],
+        "description": "A try-catch snippet for when $PSCmdlet isn't available."
+    },
+    "Phil-SMAWorkflow": {
         "prefix": "Phil-SmaWorkflow",
         "body": [
-            "workflow ${name:Verb-Noun}",
+            "workflow ${name:Test-Workflow}",
             "{",
-            "<#",
-            "\tAuthor:       TBC",
-            "\tCreated:      TBC",
-            "\tModified:     TBC",
-            "\tModified By:  TBC",
-            "\tRunbook type: TBC",
-            "\tLink:         TBC",
+            "\t<#",
+            "\t\tAuthor:       TBC",
+            "\t\tCreated:      TBC",
+            "\t\tModified By:  TBC",
+            "\t\tModified:     TBC",
+            "\t\tRunbook type: TBC",
+            "\t\tLink:         TBC",
             "",
-            "  Function TBC",
-            "#>",
+            "\t\tFunction Summary - TBC",
+            "\t#>",
             "",
             "\tparam",
             "\t(",
@@ -178,9 +195,9 @@
             "",
             "\t\\$InlineOutput = InlineScript",
             "\t{",
-            "\t\t\\$Issues = @()",
             "\t\t\\$ErrorActionPreference = [System.Management.Automation.ActionPreference] \\$Using:ErrorActionPreference",
             "\t\t\\$VerbosePreference = [System.Management.Automation.ActionPreference] \\$Using:VerbosePreference",
+            "\t\t\\$Issues = $Null",
             "",
             "\t\ttry",
             "\t\t{",
@@ -188,22 +205,21 @@
             "\t\t}",
             "\t\tcatch",
             "\t\t{",
-            "\t\t\t\\$LatestDisgrace = \\$_",
-            "\t\t\tWrite-Error -Message \\$LatestDisgrace -ErrorAction \"Continue\"",
-            "\t\t\t\\$Issues =+ \\$LatestDisgrace",
-            "\t\t\t# Basic but functional error-handling",
+            "\t\t\t\\$DetailedError = \"\\$(\\$_.Exception)`n\\$(\\$_.FullyQualifiedErrorId)`n\\$(\\$_.ScriptStackTrace)\"",
+            "\t\t\t\\$Issues += \"  An error occurred:`n`n\\$DetailedError`n\"",
+            "\t\t\tWrite-Error -Message \\$DetailedError",
             "\t\t}",
             "",
             "\t\t[PSCustomObject]@{",
-            "\t\t\tStdOut = \\$Null",
-            "\t\t\tStdErr = \\$Issues",
+            "\t\t\tOutput = \\$Null",
+            "\t\t\tErrors = \\$Issues",
             "\t\t}",
             "",
             "\t}",
             "",
-            "\tif (\\$Null -ne \\$InlineOutput.StdErr)",
+            "\tif (\\$Null -ne \\$InlineOutput.Errors)",
             "\t{",
-            "\t\t # Do some error reporting",
+            "\t\t# Do some error reporting",
             "\t}",
             "\telse",
             "\t{",
@@ -211,9 +227,9 @@
             "\t}",
             "}"
         ],
-        "description": "Example: SMA workflow snippet."
+        "description": "An SMA workflow snippet."
     },
-    "Example-ShouldProcessShort": {
+    "Phil-ShouldProcessShort": {
         "prefix": "Phil-ShouldProcessShort",
         "body": [
             "if (\\$PSCmdlet.ShouldProcess(\"Target\", \"Operation\"))",
@@ -228,9 +244,9 @@
             "\t}",
             "}"
         ],
-        "description": "Example: a two-variable Should Process segment."
+        "description": "A two-variable ShouldProcess segment."
     },
-    "Example-ShouldProcessFull": {
+    "Phil-ShouldProcessFull": {
         "prefix": "Phil-ShouldProcessFull",
         "body": [
             "if (\\$PSCmdlet.ShouldProcess(\"Performing the operation '$(\\$MyInvocation.MyCommand.Name)' on target '\\$Target' for '\\$Source'\",",
@@ -247,6 +263,53 @@
             "\t}",
             "}"
         ],
-        "description": "Example: a longer three-variable Should Process segment."
+        "description": "A longer three-variable ShouldProcess segment."
+    },
+    "Phil-Dsc": {
+        "prefix": "Phil-Dsc",
+        "body": [
+            "\\$Data = @{",
+            "",
+            "\tAllNodes = @(",
+            "",
+            "\t\t@{",
+            "\t\t\tNodeName = \"*\"",
+            "\t\t}",
+            "",
+            "\t\t@{",
+            "\t\t\tNodeName = \"Example01\"",
+            "\t\t}",
+            "",
+            "\t\t@{",
+            "\t\t\tNodeName = \"Example02\"",
+            "\t\t}",
+            "\t)",
+            "}",
+            "",
+            "configuration ${name:Test-Configuration}",
+            "{",
+            "",
+            "\tImport-DscResource -ModuleName \"PSDesiredStateConfiguration\"",
+            "",
+            "\tnode \\$AllNodes.NodeName",
+            "\t{",
+            "\t\tFile \\$Module.Name",
+            "\t\t{",
+            "\t\t\tEnsure = \"Present\"",
+            "\t\t\tType = \"Directory\"",
+            "\t\t\tRecurse = \\$True",
+            "\t\t\tSourcePath = \"\\Path\\To\\Source\"",
+            "\t\t\tDestinationPath = \"\\Path\\To\\Destination\"",
+            "\t\t\tChecksum = \"SHA-256\"",
+            "\t\t}",
+            "\t}",
+            "}",
+            "",
+            "# Generate the MOFs",
+            "${name:Test-Configuration} -Output \"\\$PSScriptRoot/MOFs\"",
+            "# Uncomment below to apply the changes as soon as the MOFs are created.",
+            "# Start-DscConfiguration -Path \"\\$PSScriptRoot/MOFs\" -Force -Wait -Verbose"
+        ],
+        "description": "My short DSC example"
     }
 }
