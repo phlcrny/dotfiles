@@ -79,6 +79,7 @@
 // GitLens
 
   "gitlens.advanced.telemetry.enabled": false,
+  "gitlens.codeLens.enabled": false,
   "gitlens.views.repositories.autoRefresh": true,
   "gitlens.views.repositories.location": "scm",
 
