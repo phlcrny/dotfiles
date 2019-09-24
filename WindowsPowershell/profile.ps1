@@ -230,6 +230,7 @@ $AdminStatus = switch ($UserIsAdmin)
 [string] $CurrentUser = "$([Environment]::UserDomainName)\$([Environment]::UserName)"
 [string] $Titlebar = "$CurrentUser ($AdminStatus) - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
 $Host.UI.RawUI.WindowTitle = $Titlebar
+$Host.PrivateData.VerboseForegroundColor = "Cyan"
 $SmallScreenPrompt = $False
 
 # Prompt
