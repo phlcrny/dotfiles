@@ -74,6 +74,7 @@
 
   "git.autofetch": true,
   "git.autofetchPeriod": 10,
+  "git.openDiffOnClick": false,
   "git.showPushSuccessNotification": true,
 
 // GitLens
@@ -88,4 +89,5 @@
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
+  "powershell.powerShellExePath": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 }
