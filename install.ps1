@@ -222,13 +222,6 @@ PROCESS
                                 New-Item -Path $DestinationFolder -ItemType "Directory" | Out-Null
                             }
 
-                            # If Force is used, we'll delete any pre-existing files or symlinks.
-                            if ((Test-Path $SymLink.Destination) -and ($Force))
-                            {
-                                Write-Verbose -Message "Removing existing file ($($SymLink.Destination))"
-                                Remove-Item -Path $SymLink.Destination -Force
-                            }
-
                             $Splat = @{
                                 Path        = $SymLink.Destination
                                 Value       = $SymLink.Source
@@ -236,7 +229,15 @@ PROCESS
                                 ErrorAction = "Stop"
                             }
 
-                            New-Item @Splat | Out-Null
+                            # If Force is used, we'll delete any pre-existing files or symlinks.
+                            if ((Test-Path $SymLink.Destination) -and ($Force))
+                            {
+                                $Splat.Add("Force", $True)
+                                Write-Verbose -Message "Removing existing file ($($SymLink.Destination))"
+                                Remove-Item -Path $SymLink.Destination -Force
+                            }
+
+                            [void] (New-Item @Splat)
                         }
                         catch
                         {
