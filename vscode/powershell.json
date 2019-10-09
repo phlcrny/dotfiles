@@ -197,7 +197,7 @@
             "\t{",
             "\t\t\\$ErrorActionPreference = [System.Management.Automation.ActionPreference] \\$Using:ErrorActionPreference",
             "\t\t\\$VerbosePreference = [System.Management.Automation.ActionPreference] \\$Using:VerbosePreference",
-            "\t\t\\$Issues = $Null",
+            "\t\t\\$Issues = \\$Null",
             "",
             "\t\ttry",
             "\t\t{",
