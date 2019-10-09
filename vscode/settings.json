@@ -47,6 +47,11 @@
 
     // Editor Mappings/Behaviour
     "editor.multiCursorModifier": "ctrlCmd",
+    "files.associations": {
+      "*.psrc": "powershell",
+      "*.pssc": "powershell",
+      "*.ps1xml": "powershell"
+    },
     "files.defaultLanguage": "powershell",
     "telemetry.enableTelemetry": false,
 
