@@ -311,5 +311,12 @@
             "# Start-DscConfiguration -Path \"\\$PSScriptRoot/MOFs\" -Force -Wait -Verbose"
         ],
         "description": "My short DSC example"
+    },
+    "Phil-MessagingBlock": {
+        "prefix": "Phil-MessagingBlock",
+        "body": [
+            "-Message \"[$($MyInvocation.MyCommand.Name)] 'A message goes here.\""
+        ],
+        "description": "A more informative default messaging block"
     }
 }
