@@ -26,6 +26,7 @@
 
     // Editor Appearance
     "breadcrumbs.enabled": true,
+    "debug.openDebug": "neverOpen",
     "editor.fontSize": 12,
     "editor.fontFamily": "Consolas, 'Lucida Console', 'Courier New', monospace",
     "editor.minimap.showSlider": "always",
@@ -72,6 +73,7 @@
   // Behaviour
   "powershell.developer.editorServicesLogLevel": "Verbose",
   "powershell.enableProfileLoading": false,
+  "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.startAutomatically": true,
 
@@ -94,5 +96,4 @@
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
-  "powershell.powerShellExePath": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 }
