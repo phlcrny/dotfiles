@@ -64,7 +64,7 @@
   "powershell.codeFormatting.newLineAfterOpenBrace": true,
   "powershell.codeFormatting.newLineAfterCloseBrace": true,
   "powershell.codeFormatting.alignPropertyValuePairs": true,
-  "powershell.codeFormatting.ignoreOneLineBlock": false,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
   "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
   "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
   "powershell.codeFormatting.whitespaceAfterSeparator": true,
