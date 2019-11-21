@@ -16,8 +16,8 @@
 
     // Terminal Appearance
       "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "terminal.integrated.fontFamily": "Consolas, 'Lucida Console'",
-      "terminal.integrated.fontSize": 13,
+      "terminal.integrated.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+      "terminal.integrated.fontSize": 14,
       "terminal.integrated.lineHeight": 1,
       "terminal.integrated.cursorBlinking": true,
       "terminal.integrated.cursorStyle": "line",
@@ -27,8 +27,8 @@
     // Editor Appearance
     "breadcrumbs.enabled": true,
     "debug.openDebug": "neverOpen",
-    "editor.fontSize": 12,
-    "editor.fontFamily": "Consolas, 'Lucida Console', 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
     "editor.minimap.showSlider": "always",
     "editor.minimap.side": "left",
     "editor.tokenColorCustomizations": {
@@ -52,6 +52,7 @@
     "zenMode.hideTabs": false,
 
     // Editor Mappings/Behaviour
+    "editor.formatOnType": true,
     "editor.multiCursorModifier": "ctrlCmd",
     "files.associations": {
       "*.psrc": "powershell",
