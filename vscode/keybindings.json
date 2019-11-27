@@ -59,5 +59,9 @@
     {
         "key": "ctrl+shift+oem_5",
         "command": "PowerShell.RestartSession"
+    },
+    {
+        "key": "ctrl+k space",
+        "command": "git.sync"
     }
 ]
