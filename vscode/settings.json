@@ -12,7 +12,7 @@
     "editor.formatOnPaste": false,
   },
 
-  //region Terminal
+  // Terminal
 
     // Terminal Appearance
       "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -27,7 +27,7 @@
     // Editor Appearance
     "breadcrumbs.enabled": true,
     "debug.openDebug": "neverOpen",
-    "editor.fontSize": 14,
+    "editor.fontSize": 13,
     "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
     "editor.minimap.showSlider": "always",
     "editor.minimap.side": "left",
@@ -66,11 +66,13 @@
 
   // Formatting
   "powershell.codeFormatting.preset": "Allman",
-  "powershell.codeFormatting.openBraceOnSameLine": false,
+  "powershell.codeFormatting.alignPropertyValuePairs": true,
+  "powershell.codeFormatting.autoCorrectAliases": true,
+  "powershell.codeFormatting.ignoreOneLineBlock": true,
   "powershell.codeFormatting.newLineAfterOpenBrace": true,
   "powershell.codeFormatting.newLineAfterCloseBrace": true,
-  "powershell.codeFormatting.alignPropertyValuePairs": true,
-  "powershell.codeFormatting.ignoreOneLineBlock": true,
+  "powershell.codeFormatting.openBraceOnSameLine": false,
+  "powershell.codeFormatting.useCorrectCasing": true,
   "powershell.codeFormatting.whitespaceBeforeOpenBrace": true,
   "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
   "powershell.codeFormatting.whitespaceAfterSeparator": true,
@@ -97,9 +99,13 @@
   "gitlens.views.repositories.autoRefresh": true,
   "gitlens.views.repositories.location": "scm",
 
-//BracketPairColorizer
+// BracketPairColorizer
 
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
+
+// Rainbow CSV
+  "rainbow_csv.csv_lint_detect_trailing_spaces": true,
+  "rainbow_csv.enable_context_menu_tail": true,
 }
