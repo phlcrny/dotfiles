@@ -7,7 +7,7 @@
       115
     ],
     "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
-    "files.trimTrailingWhitespace": true,
+    "files.trimTrailingWhitespace": true
   },
 
   "[python]": {
@@ -115,5 +115,5 @@
 
 // Rainbow CSV
   "rainbow_csv.csv_lint_detect_trailing_spaces": true,
-  "rainbow_csv.enable_context_menu_tail": true,
+  "rainbow_csv.enable_context_menu_tail": true
 }
