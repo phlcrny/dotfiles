@@ -2,6 +2,10 @@
   "[powershell]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
+    "editor.rulers": [
+      100,
+      115
+    ],
     "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
     "files.trimTrailingWhitespace": true,
   },
@@ -10,6 +14,10 @@
     "editor.autoIndent": true,
     "editor.formatOnSave": false,
     "editor.formatOnPaste": false,
+    "editor.rulers":[
+      80,
+      100
+    ]
   },
 
   // Terminal
