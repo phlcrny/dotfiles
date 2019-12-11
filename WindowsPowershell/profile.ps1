@@ -191,6 +191,7 @@ $PSDefaultParameterValues = @{
     "Get-EventLog:After"           = { (Get-Date).AddHours(-6) }
     "Get-Help:Full"                = $True
     "Get-Process:IncludeUsername"  = { if ($UserIsAdmin) { $True } else { $False } }
+    "Get-WinEvent:FilterHashTable" = @{LogName = "System"; StartTime = (Get-Date).AddHours(-6)}
     "ps:IncludeUsername"           = { if ($UserIsAdmin) { $True } else { $False } }
     "New-Item:ItemType"            = "File"
 }
