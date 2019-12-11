@@ -186,29 +186,12 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 $PSDefaultParameterValues = @{
     "cd:Path"                      = $HOME
     "Export-Csv:NoTypeInformation" = $True
-    "Format-Table:AutoSize"        = $(if ($Host.Name -eq "ConsoleHost")
-        {
-            $True
-        })
+    "Format-Table:AutoSize"        = { if ($Host.Name -eq "ConsoleHost") { $True } }
     "Get-EventLog:LogName"         = "System"
     "Get-EventLog:After"           = { (Get-Date).AddHours(-6) }
     "Get-Help:Full"                = $True
-    "Get-Process:IncludeUsername"  = $(if ($UserIsAdmin -eq $True)
-        {
-            $True
-        }
-        else
-        {
-            $False
-        })
-    "ps:IncludeUsername"           = $(if ($UserIsAdmin -eq $True)
-        {
-            $True
-        }
-        else
-        {
-            $False
-        })
+    "Get-Process:IncludeUsername"  = { if ($UserIsAdmin) { $True } else { $False } }
+    "ps:IncludeUsername"           = { if ($UserIsAdmin) { $True } else { $False } }
     "New-Item:ItemType"            = "File"
 }
 
