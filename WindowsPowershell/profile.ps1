@@ -127,24 +127,24 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         HistorySearchCursorMovesToEnd = $True
         ShowTooltips                  = $False
     }
-    Set-PSReadlineOption @_ReadlineOptions
-    Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
+    Set-PSReadLineOption @_ReadlineOptions
+    Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
     # Set zsh-style tab-complete
-    Set-PSReadlineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
-    Set-PSReadlineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
+    Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
+    Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     # Amend default search behaviour
-    Set-PSReadlineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
+    Set-PSReadLineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
     # Delete the whole or remainder of the line.
 
     # Custom bindings
-    Set-PSReadlineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
         Invoke-Item -Path $HOME
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
         $_ProfileObject = Get-Item $Profile.CurrentUserAllHosts
         if ($_ProfileObject.LinkType -like "SymbolicLink")
         {
@@ -155,26 +155,26 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
             Invoke-Item (Split-Path -Path $Profile.CurrentUserAllHosts)
         }
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the end of the line/input." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the end of the line/input." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::EndOfLine()
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(" | clip")
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+Shift+D" -Description "Adds an exit keybinding" -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+D" -Description "Adds an exit keybinding" -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Abort()
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Exit")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+E" -Description "Attempts to open the current folder in Visual Studio Code." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+E" -Description "Attempts to open the current folder in Visual Studio Code." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("code .")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
         Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip.exe
     }
-    Set-PSReadlineKeyHandler -Chord "Ctrl+Q" -Description "Wraps the current word in double-quotes." -ScriptBlock {
+    Set-PSReadLineKeyHandler -Chord "Ctrl+Q" -Description "Wraps the current word in double-quotes." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::BackwardWord()
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert('"')
         [Microsoft.PowerShell.PSConsoleReadLine]::ForwardWord()
@@ -191,8 +191,7 @@ $PSDefaultParameterValues = @{
     "Get-EventLog:After"           = { (Get-Date).AddHours(-6) }
     "Get-Help:Full"                = $True
     "Get-Process:IncludeUsername"  = { if ($UserIsAdmin) { $True } else { $False } }
-    "Get-WinEvent:FilterHashTable" = @{LogName = "System"; StartTime = (Get-Date).AddHours(-6)}
-    "ps:IncludeUsername"           = { if ($UserIsAdmin) { $True } else { $False } }
+    "Get-WinEvent:FilterHashTable" = @{LogName = "System"; StartTime = (Get-Date).AddHours(-6) }
     "New-Item:ItemType"            = "File"
 }
 
@@ -276,7 +275,7 @@ function prompt
         {
             if ($HasPSReadline)
             {
-                Set-PSReadlineOption -ExtraPromptLineCount 1
+                Set-PSReadLineOption -ExtraPromptLineCount 1
             }
             " " + $(Write-Host "") + $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline)
         }
@@ -284,7 +283,7 @@ function prompt
         {
             if ($HasPSReadline)
             {
-                Set-PSReadlineOption -ExtraPromptLineCount 0
+                Set-PSReadLineOption -ExtraPromptLineCount 0
             }
             $(" $" | Write-Host -ForegroundColor "Cyan" -NoNewline)
         }
