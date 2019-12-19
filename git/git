@@ -2,6 +2,7 @@
     br = branch -avv
     change = checkout
     fee = fetch --prune --all
+    oops = reset HEAD~1
     re = remote -v
     what = log -n 5 --stat
 
