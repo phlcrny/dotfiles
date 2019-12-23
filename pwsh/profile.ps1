@@ -95,6 +95,12 @@ $_NewAliases = @(
         Value       = "Get-Help"
         Description = "Alias to replace an old custom function."
     }
+
+    @{
+        Name        = "Hosts"
+        Value       = $Hosts
+        Description = "Short-hand for the Hosts file."
+    }
 )
 
 forEach ($_Alias in $_NewAliases)
@@ -113,8 +119,8 @@ forEach ($_Alias in $_NewAliases)
 }
 
 # PSReadline
-Set-PSReadlineOption -BellStyle "None"
-Set-PSReadlineKeyHandler -Key "Tab" -Function "MenuComplete"
+Set-PSReadLineOption -BellStyle "None"
+Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
 Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
 Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
 
