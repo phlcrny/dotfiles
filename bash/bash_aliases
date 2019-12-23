@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Windows habits.
 alias cls='clear'
 alias dir='ls -al'
