@@ -113,6 +113,32 @@ forEach ($_Alias in $_NewAliases)
 }
 
 # PSReadline
+$_HistoryHandlerScriptBlock = {
+    param(
+        [string] $Line
+    )
+
+    $SkipExclusion = "skip_pshistory"
+    $Exclusions = @(
+        "powershell_ise"
+    )
+
+    if (($Line.ToLower() -notmatch $SkipExclusion) -or ($Line.Length -ge 4))
+    {
+        if ($Line.ToLower() -notin $Exclusions)
+        {
+            $True
+        }
+        else
+        {
+            $False
+        }
+    }
+    else
+    {
+        $False
+    }
+}
 $_ReadlineOptions = @{
     AddToHistoryHandler           = $_HistoryHandlerScriptBlock
     BellStyle                     = "None"
