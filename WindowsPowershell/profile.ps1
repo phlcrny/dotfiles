@@ -184,7 +184,6 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
 
 # Default Parameter Values
 $PSDefaultParameterValues = @{
-    "cd:Path"                      = $HOME
     "Export-Csv:NoTypeInformation" = $True
     "Format-Table:AutoSize"        = { if ($Host.Name -eq "ConsoleHost") { $True } }
     "Get-EventLog:LogName"         = "System"
@@ -194,6 +193,7 @@ $PSDefaultParameterValues = @{
     "Get-WinEvent:FilterHashTable" = @{ LogName = "System"; StartTime = (Get-Date).AddHours(-6) }
     "Invoke-Item:Path"             = $PWD.Path
     "New-Item:ItemType"            = "File"
+    "Set-Location:Path"            = $HOME
 }
 
 # Display
