@@ -1,0 +1,12 @@
+{
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "bash_aliases": "shellscript",
+        "bash_profile": "shellscript",
+        "bashrc": "shellscript",
+        "git": "ini",
+        ".tmux.conf": "shellscript",
+        "vimrc": "viml"
+    },
+    "files.trimTrailingWhitespace": true,
+}
