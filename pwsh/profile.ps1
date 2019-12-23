@@ -119,10 +119,27 @@ forEach ($_Alias in $_NewAliases)
 }
 
 # PSReadline
-Set-PSReadLineOption -BellStyle "None"
+$_ReadlineOptions = @{
+    AddToHistoryHandler           = $_HistoryHandlerScriptBlock
+    BellStyle                     = "None"
+    HistoryNoDuplicates           = $True
+    HistorySavePath               = "$HOME\.ps_history.txt"
+    HistorySearchCursorMovesToEnd = $True
+    ShowTooltips                  = $False
+}
+Set-PSReadLineOption @_ReadlineOptions
 Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
 Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
 Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
+
+# Default Parameter Values
+$PSDefaultParameterValues = @{
+    "Format-Table:AutoSize" = $True
+    "Get-Help:Full"         = $True
+    "Invoke-Item:Path"      = $PWD.Path
+    "New-Item:ItemType"     = "File"
+    "Set-Location:Path"     = $HOME
+}
 
 if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
 {
