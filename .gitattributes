@@ -1,0 +1,13 @@
+# Default behaviour
+* text=auto
+
+# Git
+git text eol=lf
+
+# Bash
+bash_aliases eol=lf
+bash_profile eol=lf
+bashrc eol=lf
+
+# tmux
+.tmux.conf eol=lf
