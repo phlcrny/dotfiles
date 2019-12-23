@@ -95,12 +95,6 @@ $_NewAliases = @(
         Value       = "Get-Help"
         Description = "Alias to replace an old custom function."
     }
-
-    @{
-        Name        = "Hosts"
-        Value       = $Hosts
-        Description = "Short-hand for the Hosts file."
-    }
 )
 
 forEach ($_Alias in $_NewAliases)
