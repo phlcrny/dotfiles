@@ -5,6 +5,12 @@ alias cls='clear'
 alias dir='ls -al'
 alias md='mkdir'
 
+# Ansible
+alias ans='ansible'
+alias ans-c='ansible-config'
+alias ans-i='ansible-inventory'
+alias ans-p='ansible-playbook'
+
 # Colours!
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
