@@ -1,12 +1,11 @@
 {
-	"Example-Playbook": {
-        "prefix": "Phil-Playbook",
-        "body": [
+	"Phil-PlaybookBase": {
+		"prefix": "Phil-Playbook",
+		"body": [
 			"---",
 			"- name: \"Playbook Name\"",
 			"  hosts: all",
 			"  gather_facts: true",
-			"  # become_user: root",
 			"  become: yes",
 			"",
 			"  tasks:",
@@ -17,8 +16,18 @@
 			"      owner: root",
 			"    tags:",
 			"    - file",
-            "..."
-        ],
-        "description": "Example: My typical Ansible playbook skeleton."
-    }
+			"..."
+		],
+		"description": "My typical Ansible playbook skeleton."
+	},
+	"If-DebianOS": {
+		"prefix": "Phil-DebianOS",
+		"body": "when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'",
+		"description": "A conditional to restrict a task to Debian/Ubuntu hosts."
+	},
+	"If-RedHatOS": {
+		"prefix": "Phil-RedHatOS",
+		"body": "when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'",
+		"description": "A conditional to restrict a task to CentOS/Red Hat hosts."
+	}
 }
