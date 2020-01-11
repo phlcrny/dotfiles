@@ -50,8 +50,9 @@ if [ "$color_prompt" = yes ]; then
     PS1+='\[\033[00m\]' # Set white
     PS1+='in '          # decoration
     PS1+='\[\e[1;35m\]' # Set pink/magenta
-    PS1+='\w\a $ '      # Current directory and a bell
+    PS1+='\w\a '        # Current directory and a bell
     PS1+='\[\033[00m\]' # Set white
+    PS1+='$ '           # Dollar sign for input
     export PS1
 else
     PS1='${debian_chroot:+($debian_chroot)}'
