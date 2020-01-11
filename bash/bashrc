@@ -40,9 +40,27 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    export PS1='${debian_chroot:+($debian_chroot)}\[\e[0;34m\]\u\e[0m\] on \[\e[0;32m\]$(hostname)\e[0m\] in \[\e[1;35m\]\w\a\e[0m\] $ '
+    PS1='${debian_chroot:+($debian_chroot)}'
+    PS1+='\[\e[0;34m\]' # Set blue
+    PS1+='\u '          # Current user
+    PS1+='\[\033[00m\]' # Set white
+    PS1+='on '          # decoration
+    PS1+='\[\e[0;32m\]' # Set green
+    PS1+='\H '          # Current host
+    PS1+='\[\033[00m\]' # Set white
+    PS1+='in '          # decoration
+    PS1+='\[\e[1;35m\]' # Set pink/magenta
+    PS1+='\w\a $ '      # Current directory and a bell
+    PS1+='\[\033[00m\]' # Set white
+    export PS1
 else
-    export PS1='${debian_chroot:+($debian_chroot)}\u on $(hostname) in \w\a $ '
+    PS1='${debian_chroot:+($debian_chroot)}'
+    PS1+='\u '
+    PS1+='on '
+    PS1+='$(hostname) '
+    PS1+='in '
+    PS1+='\w\a $ '
+    export PS1
 fi
 unset color_prompt force_color_prompt
 
