@@ -1,6 +1,35 @@
+"""""" Preferences
+
+" Enable syntax highlighting
+syntax enable
+" Disable error bells
 set noerrorbells
+" Disable the temporary swap files
 set noswapfile
+" Add numbers to the side; make the number gutter 5 chars wide
 set number
+set numberwidth=5
+" Add the ruler for line/column details
 set ruler
+" Shows the command executed (or not, but it's harmless).
 set showcmd
-highlight LineNr term=underline ctermfg=Blue
+" Highlights the current line
+set cul
+" Search case-insensitive
+set ignorecase
+" Always show the statusline
+set laststatus=2
+" Replace tabs with spaces
+set expandtab
+" Replace each tab with 4 spaces
+set tabstop=4
+" Replace each tab with 2 spaces for yaml
+autocmd FileType yaml setlocal tabstop=2
+
+
+"""""" Appearance
+
+" Sets the line numbers to be Blue with a black background
+highlight LineNr term=underline ctermfg=Blue ctermbg=Black
+" Sets the status line to Blue with white text
+highlight StatusLine ctermfg=Blue ctermbg=White
