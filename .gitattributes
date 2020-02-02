@@ -11,3 +11,6 @@ bashrc eol=lf
 
 # tmux
 .tmux.conf eol=lf
+
+# vim
+vimrc eol=lf
