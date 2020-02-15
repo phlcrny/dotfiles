@@ -178,7 +178,6 @@
             "colorScheme": "Dracula",
             "fontFace": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
             "fontSize": 11,
-            "cursorColor": "#FFFFFF",
             "cursorShape": "bar",
             "startingDirectory": "%USERPROFILE%",
             "closeOnExit": "graceful",
