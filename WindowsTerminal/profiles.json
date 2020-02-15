@@ -179,35 +179,29 @@
             "fontFace": "Consolas",
             "fontSize": 11,
             "cursorColor": "#FFFFFF",
-            "cursorShape": "bar"
+            "cursorShape": "bar",
+            "startingDirectory": "%USERPROFILE%",
+            "closeOnExit": "graceful",
+            "historySize": 9001,
+            "padding": "0",
+            "snapOnInput": true
         },
         "list": [
             {
                 "name": "PowerShell Core",
                 "commandline": "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
-                "startingDirectory": "%USERPROFILE%",
-                "padding": "0, 0, 0, 0",
-                "historySize": 9001,
                 "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
-                "snapOnInput": true,
-                "closeOnExit": true,
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}"
             },
             {
                 "name": "Windows PowerShell",
                 "commandline": "powershell.exe",
-                "startingDirectory": "%USERPROFILE%",
-                "padding": "0, 0, 0, 0",
-                "historySize": 9001,
                 "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-                "snapOnInput": true,
-                "closeOnExit": true,
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
             },
             {
                 "name": "Ubuntu",
                 "commandline": "wsl.exe -d Ubuntu-18.04",
-                "padding": "0, 0, 0, 0",
                 "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
                 "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}"
             },
@@ -220,12 +214,7 @@
             {
                 "name": "Command Prompt",
                 "commandline": "cmd.exe",
-                "startingDirectory": "%USERPROFILE%",
-                "padding": "0, 0, 0, 0",
-                "historySize": 9001,
                 "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
-                "snapOnInput": true,
-                "closeOnExit": true,
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}"
             },
             {
