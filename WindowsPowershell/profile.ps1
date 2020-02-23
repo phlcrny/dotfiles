@@ -62,6 +62,17 @@ $NewAliases = @(
     }
 
     $(
+        if (Get-Module -Name "Plaster" -ListAvailable)
+        {
+            @{
+                Name        = "Plaster"
+                Value       = "Invoke-Plaster"
+                Description = "The full command length puts me off."
+            }
+        }
+    )
+
+    $(
         if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
         {
             @{
@@ -194,6 +205,7 @@ $PSDefaultParameterValues = @{
     "Invoke-Item:Path"             = $PWD.Path
     "New-Item:ItemType"            = "File"
     "Set-Location:Path"            = $HOME
+    "Invoke-Plaster:NoLogo"        = $True
 }
 
 # Display
