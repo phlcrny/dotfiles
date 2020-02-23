@@ -202,10 +202,9 @@ $PSDefaultParameterValues = @{
     "Get-Help:Full"                = $True
     "Get-Process:IncludeUsername"  = { if ($UserIsAdmin) { $True } else { $False } }
     "Get-WinEvent:FilterHashTable" = @{ LogName = "System"; StartTime = (Get-Date).AddHours(-6) }
-    "Invoke-Item:Path"             = $PWD.Path
+    "Invoke-Plaster:NoLogo"        = $True
     "New-Item:ItemType"            = "File"
     "Set-Location:Path"            = $HOME
-    "Invoke-Plaster:NoLogo"        = $True
 }
 
 # Display
