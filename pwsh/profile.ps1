@@ -156,7 +156,6 @@ Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
 $PSDefaultParameterValues = @{
     "Format-Table:AutoSize" = $True
     "Get-Help:Full"         = $True
-    "Invoke-Item:Path"      = $PWD.Path
     "New-Item:ItemType"     = "File"
     "Set-Location:Path"     = $HOME
 }
