@@ -95,6 +95,17 @@ $_NewAliases = @(
         Value       = "Get-Help"
         Description = "Alias to replace an old custom function."
     }
+
+    $(
+        if (Get-Module -Name "Plaster" -ListAvailable)
+        {
+            @{
+                Name        = "Plaster"
+                Value       = "Invoke-Plaster"
+                Description = "The full command length puts me off."
+            }
+        }
+    )
 )
 
 forEach ($_Alias in $_NewAliases)
@@ -156,6 +167,7 @@ Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
 $PSDefaultParameterValues = @{
     "Format-Table:AutoSize" = $True
     "Get-Help:Full"         = $True
+    "Invoke-Plaster:NoLogo" = $True
     "New-Item:ItemType"     = "File"
     "Set-Location:Path"     = $HOME
 }
