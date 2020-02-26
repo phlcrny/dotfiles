@@ -144,17 +144,8 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     # Amend default search behaviour
-    Set-PSReadLineKeyHandler -Chord "Ctrl+K" -Function "DeleteToEnd"
-    # Delete the whole or remainder of the line.
 
     # Custom bindings
-    Set-PSReadLineKeyHandler -Chord "Ctrl+H" -Description "Uses the default action on the built-in `$HOME variable. It should open in Explorer." -ScriptBlock {
-        Invoke-Item -Path $HOME
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+P" -Description "Reloads your Powershell profile." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(". $($Profile.CurrentUserAllHosts)")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-    }
     Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
         $_ProfileObject = Get-Item $Profile.CurrentUserAllHosts
         if ($_ProfileObject.LinkType -like "SymbolicLink")
@@ -174,16 +165,6 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         [Microsoft.PowerShell.PSConsoleReadLine]::Abort()
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Exit")
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+E" -Description "Attempts to open the current folder in Visual Studio Code." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("code .")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+F" -Description "Inserts Get-ChildItem with a standard search keybinding." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Get-ChildItem ")
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+W,Ctrl+D" -Description "Copies your current working directory to the clipboard." -ScriptBlock {
-        Get-Item -Path '.' | Select-Object -ExpandProperty 'FullName' | clip.exe
     }
     Set-PSReadLineKeyHandler -Chord "Ctrl+Q" -Description "Wraps the current word in double-quotes." -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::BackwardWord()
