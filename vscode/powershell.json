@@ -286,7 +286,6 @@
             "\t\t\tOutput = \\$Null",
             "\t\t\tErrors = \\$Issues",
             "\t\t}",
-            "",
             "\t}",
             "",
             "\tif (\\$Null -ne \\$InlineOutput.Errors)",
