@@ -3,8 +3,9 @@
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
     "editor.rulers": [
-      100,
-      115
+      100, /* Brevity */
+      115, /* 1360 x 768 screen */
+      165 /* 1920 x 1080 screen */
     ],
     "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
     "files.trimTrailingWhitespace": true
@@ -30,7 +31,7 @@
   // Editor Appearance
   "breadcrumbs.enabled": true,
   "debug.openDebug": "neverOpen",
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
   "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
   "editor.minimap.showSlider": "always",
   "editor.minimap.side": "left",
