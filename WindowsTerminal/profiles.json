@@ -187,8 +187,8 @@
         },
         "list": [
             {
-                "name": "PowerShell Core",
-                "commandline": "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
+                "name": "PowerShell",
+                "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
                 "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}"
             },
