@@ -9,69 +9,61 @@
     "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
     "files.trimTrailingWhitespace": true
   },
-
   "[python]": {
     "editor.autoIndent": true,
     "editor.formatOnSave": false,
     "editor.formatOnPaste": false,
-    "editor.rulers":[
+    "editor.rulers": [
       80,
       100
     ]
   },
-
   // Terminal
-
-    // Terminal Appearance
-      "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "terminal.integrated.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
-      "terminal.integrated.fontSize": 14,
-      "terminal.integrated.lineHeight": 1,
-      "terminal.integrated.cursorBlinking": true,
-      "terminal.integrated.cursorStyle": "line",
-
+  // Terminal Appearance
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.integrated.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
   // Editor
-
-    // Editor Appearance
-    "breadcrumbs.enabled": true,
-    "debug.openDebug": "neverOpen",
-    "editor.fontSize": 13,
-    "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
-    "editor.minimap.showSlider": "always",
-    "editor.minimap.side": "left",
-    "editor.tokenColorCustomizations": {
-      "[Dracula]": {
-        "variables": "#ffd09a"
-      }
-    },
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "explorer.sortOrder": "type",
-    "scm.alwaysShowProviders": true,
-    "window.menuBarVisibility": "default",
-    "window.newWindowDimensions": "maximized",
-    "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
-    "workbench.activityBar.visible": true,
-    "workbench.colorTheme": "Dracula",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.sideBar.location": "right",
-    "workbench.statusBar.visible": true,
-    "zenMode.centerLayout": false,
-    "zenMode.hideTabs": false,
-
-    // Editor Mappings/Behaviour
-    "editor.formatOnType": true,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "files.associations": {
-      "*.psrc": "powershell",
-      "*.pssc": "powershell",
-      "*.ps1xml": "powershell"
-    },
-    "files.defaultLanguage": "powershell",
-    "telemetry.enableTelemetry": false,
-
-// Powershell
-
+  // Editor Appearance
+  "breadcrumbs.enabled": true,
+  "debug.openDebug": "neverOpen",
+  "editor.fontSize": 13,
+  "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.side": "left",
+  "editor.tokenColorCustomizations": {
+    "[Dracula]": {
+      "variables": "#ffd09a"
+    }
+  },
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.sortOrder": "type",
+  "scm.alwaysShowProviders": true,
+  "window.menuBarVisibility": "default",
+  "window.newWindowDimensions": "maximized",
+  "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "right",
+  "workbench.statusBar.visible": true,
+  "zenMode.centerLayout": false,
+  "zenMode.hideTabs": false,
+  // Editor Mappings/Behaviour
+  "editor.formatOnType": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "files.associations": {
+    "*.psrc": "powershell",
+    "*.pssc": "powershell",
+    "*.ps1xml": "powershell"
+  },
+  "files.defaultLanguage": "powershell",
+  "telemetry.enableTelemetry": false,
+  // Powershell
   // Formatting
   "powershell.codeFormatting.preset": "Allman",
   "powershell.codeFormatting.alignPropertyValuePairs": true,
@@ -85,35 +77,28 @@
   "powershell.codeFormatting.whitespaceBeforeOpenParen": true,
   "powershell.codeFormatting.whitespaceAfterSeparator": true,
   "powershell.codeFormatting.whitespaceAroundOperator": true,
-
   // Behaviour
   "powershell.developer.editorServicesLogLevel": "Verbose",
   "powershell.enableProfileLoading": false,
   "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.startAutomatically": true,
-
-// Git
-
+  // Git
   "git.autofetch": true,
   "git.autofetchPeriod": 10,
+  "git.fetchOnPull": true,
   "git.openDiffOnClick": false,
   "git.showPushSuccessNotification": true,
-
-// GitLens
-
+  // GitLens
   "gitlens.advanced.telemetry.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.views.repositories.autoRefresh": true,
   "gitlens.views.repositories.location": "scm",
-
-// BracketPairColorizer
-
+  // BracketPairColorizer
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
   "bracketPairColorizer.showBracketsInRuler": true,
-
-// Rainbow CSV
+  // Rainbow CSV
   "rainbow_csv.csv_lint_detect_trailing_spaces": true,
-  "rainbow_csv.enable_context_menu_tail": true
+  "rainbow_csv.enable_context_menu_tail": true,
 }
