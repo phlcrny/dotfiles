@@ -178,11 +178,5 @@ if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
     . (Join-Path -Path $PSScriptRoot -ChildPath "work_extras.ps1")
 }
 
-# Clear-host at start-up
-if ($IsWindows)
-{
-    [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
-}
-
 # Variable clean-up.
 Remove-Variable "_Alias", "_AliasSplat", "_CurrentUser", "_NewAliases" -ErrorAction "SilentlyContinue"
