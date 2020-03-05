@@ -172,10 +172,10 @@ $PSDefaultParameterValues = @{
     "Set-Location:Path"     = $HOME
 }
 
-if (Test-Path "$PSScriptRoot\work_extras.ps1" -ErrorAction "SilentlyContinue")
+if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorAction "SilentlyContinue")
 {
-    # Adds work-specific items, not for public consumption.
-    . (Join-Path -Path $PSScriptRoot -ChildPath "work_extras.ps1")
+    # Adds items not for public consumption - work-specific etc
+    . (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1")
 }
 
 # Variable clean-up.
