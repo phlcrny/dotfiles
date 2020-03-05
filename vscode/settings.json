@@ -91,7 +91,6 @@
   "powershell.enableProfileLoading": false,
   "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
-  "powershell.powerShellExePath": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   "powershell.startAutomatically": true,
 
 // Git
