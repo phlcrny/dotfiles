@@ -14,60 +14,51 @@ $Hosts = "C:\Windows\System32\drivers\etc\hosts"
 $NewAliases = @(
 
     @{
-        Name        = "~"
-        Value       = $HOME
-        Description = "Take me Home."
+        Name  = "~"
+        Value = $HOME
     }
 
     @{
-        Name        = "devicemanager"
-        Value       = "hdwwiz.cpl"
-        Description = "Alias for the Device Manager Control Panel applet."
+        Name  = "devicemanager"
+        Value = "hdwwiz.cpl"
     }
 
     @{
-        Name        = "gd"
-        Value       = "Get-Date"
-        Description = "Short-hand for the Get-Date cmdlet."
+        Name  = "gd"
+        Value = "Get-Date"
     }
 
     @{
-        Name        = "gfh"
-        Value       = "Get-Help"
-        Description = "Alias to replace an old custom function."
+        Name  = "gfh"
+        Value = "Get-Help"
     }
 
     @{
-        Name        = "grep"
-        Value       = "Select-String"
-        Description = "Aliases grep to Select-String cmdlet."
+        Name  = "grep"
+        Value = "Select-String"
     }
 
     @{
-        Name        = "Hosts"
-        Value       = $Hosts
-        Description = "Short-hand for the Hosts file."
+        Name  = "Hosts"
+        Value = $Hosts
     }
 
     @{
-        Name        = "Import"
-        Value       = "Import-Module"
-        Description = "Short-hand for Import-Module"
+        Name  = "Import"
+        Value = "Import-Module"
     }
 
     @{
-        Name        = "Touch"
-        Value       = "New-Item"
-        Description = "Cross-platform laziness"
+        Name  = "Touch"
+        Value = "New-Item"
     }
 
     $(
         if (Get-Module -Name "Plaster" -ListAvailable)
         {
             @{
-                Name        = "Plaster"
-                Value       = "Invoke-Plaster"
-                Description = "The full command length puts me off."
+                Name  = "Plaster"
+                Value = "Invoke-Plaster"
             }
         }
     )
@@ -76,9 +67,8 @@ $NewAliases = @(
         if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
         {
             @{
-                Name        = "vim"
-                Value       = "C:\Program Files\Git\usr\bin\vim.exe"
-                Description = "Alias for the vim executable."
+                Name  = "vim"
+                Value = "C:\Program Files\Git\usr\bin\vim.exe"
             }
         }
     )
@@ -89,9 +79,8 @@ forEach ($Alias in $NewAliases)
     if (-not (Test-Path -Path "alias:\$($Alias.Name)" -ErrorAction "SilentlyContinue"))
     {
         $AliasSplat = @{
-            Name        = $Alias.Name
-            Value       = $Alias.Value
-            Description = $Alias.Description
+            Name  = $Alias.Name
+            Value = $Alias.Value
         }
 
         New-Alias @AliasSplat

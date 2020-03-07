@@ -78,31 +78,27 @@ $_NewAliases = @(
     if ($Null -ne (Get-Command "hdwwiz.cpl" -ErrorAction "SilentlyContinue"))
     {
         @{
-            Name        = "devicemanager"
-            Value       = "hdwwiz.cpl"
-            Description = "Alias for the Device Manager Control Panel applet."
+            Name  = "devicemanager"
+            Value = "hdwwiz.cpl"
         }
     }
 
     @{
-        Name        = "gd"
-        Value       = "Get-Date"
-        Description = "Short-hand for the Get-Date cmdlet."
+        Name  = "gd"
+        Value = "Get-Date"
     }
 
     @{
-        Name        = "gfh"
-        Value       = "Get-Help"
-        Description = "Alias to replace an old custom function."
+        Name  = "gfh"
+        Value = "Get-Help"
     }
 
     $(
         if (Get-Module -Name "Plaster" -ListAvailable)
         {
             @{
-                Name        = "Plaster"
-                Value       = "Invoke-Plaster"
-                Description = "The full command length puts me off."
+                Name  = "Plaster"
+                Value = "Invoke-Plaster"
             }
         }
     )
@@ -114,9 +110,8 @@ forEach ($_Alias in $_NewAliases)
             (Get-Command -Name $_Alias.Name -ErrorAction "SilentlyContinue")))
     {
         $_AliasSplat = @{
-            Name        = $_Alias.Name
-            Value       = $_Alias.Value
-            Description = $_Alias.Description
+            Name  = $_Alias.Name
+            Value = $_Alias.Value
         }
 
         New-Alias @_AliasSplat
