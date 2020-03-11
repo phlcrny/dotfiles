@@ -102,6 +102,16 @@ $_NewAliases = @(
             }
         }
     )
+
+    $(
+        if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
+        {
+            @{
+                Name  = "vim"
+                Value = "C:\Program Files\Git\usr\bin\vim.exe"
+            }
+        }
+    )
 )
 
 forEach ($_Alias in $_NewAliases)
