@@ -17,6 +17,7 @@
             "\t\tTBC - Output from this cmdlet (if any)",
             "\t.LINK",
             "\t\tTBC - Link(s) relevant to this cmdlet",
+            "\t#>",
             "",
             "\t[CmdletBinding(DefaultParameterSetName = \"DefaultParameters\", ConfirmImpact = \"Medium\",  SupportsShouldProcess = \\$True, PositionalBinding = \\$False, HelpUri = \"http://www.microsoft.com/\")]",
             "\t[Alias()]",
