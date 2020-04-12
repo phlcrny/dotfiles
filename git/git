@@ -9,5 +9,5 @@
     what = log -n 5 --stat
 
 [user]
-    name = philccarney
-    email = philccarney@users.noreply.github.com
+	name = Phil Carney
+	email = philipccarney@gmail.com
