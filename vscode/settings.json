@@ -1,6 +1,6 @@
 {
   "[powershell]": {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.formatOnPaste": true,
     "editor.rulers": [
       100, /* Brevity */
