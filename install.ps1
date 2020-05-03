@@ -160,6 +160,13 @@ PROCESS
                     }
 
                     @{
+                        Source      = "$PSScriptRoot/vscode/ansible.json"
+                        UnixDestination = "/home/$User/.config/Code/User/snippets/yaml.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/yaml.json"
+                        Description = "Visual Studio Code YAML/Ansible snippets"
+                    }
+
+                    @{
                         Source      = "$PSScriptRoot/vscode/powershell.json"
                         UnixDestination = "/home/$User/.config/Code/User/snippets/powershell.json"
                         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/powershell.json"
@@ -273,6 +280,7 @@ PROCESS
 
                             if ($InstallSymlinks)
                             {
+                                Write-Verbose -Message "Installing symlink for '$($File.Source)'"
                                 if ($PSCmdlet.ShouldProcess($Destination, "Creating symlink for '$($File.Source)'"))
                                 {
                                     try
@@ -296,7 +304,6 @@ PROCESS
                                 [void] (Copy-Item @Splat)
                             }
                     }
-                }
                 else
                 {
                     if (($Exclude) -and ($File.Description -match $Exclude))
@@ -312,6 +319,7 @@ PROCESS
                         Write-Verbose -Message "Unexpected condition. Skipping install."
                     }
                 }
+            }
         }
     }
 
