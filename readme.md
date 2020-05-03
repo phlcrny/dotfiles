@@ -6,8 +6,6 @@ Now featuring low-quality shell scripting!
 
 ## Install
 
-### Powershell
-
 ``` Powershell
 # Normal install
 . .\install.ps1 -User "Me", "You"
@@ -20,9 +18,10 @@ Now featuring low-quality shell scripting!
 
 # Install everything but Vim
 . .\install.ps1 -User "Me" -Exclude "vim"
-```
 
-### Bash
+# Install only the VS Code extensions for the current user
+. .\install.ps1 -InstallVSCodeExtensions -SkipSymlinks
+```
 
 ``` Bash
 # Installs sym-links for the current user, assuming that the files are in ~/dotfiles - this is even worse than the Powershell!
@@ -30,8 +29,6 @@ Now featuring low-quality shell scripting!
 ```
 
 ## Uninstall
-
-### Powershell
 
 ``` Powershell
 # Powershell (Windows or Core)
