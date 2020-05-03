@@ -288,7 +288,7 @@ PROCESS
         {
             if ($PSCmdlet.ShouldProcess([Environment]::UserName, "Installing '$Extension' extension"))
             {
-                code --install-extension $Extension --Force
+                code --install-extension $Extension
             }
         }
     }
