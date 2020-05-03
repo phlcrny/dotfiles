@@ -4,9 +4,9 @@
         "bash_aliases": "shellscript",
         "bash_profile": "shellscript",
         "bashrc": "shellscript",
-        "git": "ini",
+        "gitconfig": "ini",
         ".tmux.conf": "shellscript",
         "vimrc": "viml"
     },
-    "files.trimTrailingWhitespace": true,
+    "files.trimTrailingWhitespace": true
 }

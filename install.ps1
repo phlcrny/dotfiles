@@ -1,57 +1,70 @@
 <#
 .SYNOPSIS
-    Installs the dotfiles with symbolic links to the relevant locations.
+    Installs dotfiles and configuration options.
 .DESCRIPTION
-    Uses the 'New-Item' cmdlet to create symbolic links between individual dotfiles and their expected 'real' locations.
+    Installs dotfiles using symbolic links to the repository or file copies from the repository.
 .PARAMETER User
     The user or users who will have the dotfiles installed in their directories. This defaults to the current user.
+.PARAMETER InstallSymlinks
+    Installs dotfiles using symlinks - requires admin access on Windows
+.PARAMETER InstallCopies
+    Installs dotfiles using file copies.
+.PARAMETER InstallVSCodeExtensions
+    Installs VS Code extensions for the current user
+.PARAMETER Include
+    Includes only dotfiles whose descriptions match this regular expression pattern.
 .PARAMETER Exclude
-    Any symlinks whose descriptions match this string will not be installed. Uses regular expression.
+    Excludes dotfiles whose descriptions match this regular expression pattern.
+.PARAMETER Backup
+    Backs up any existing dotfiles in-place before installing from the repository.
+.PARAMETER Force
+    Overwrites any existing symlinks/files, if Backup is also specified, this runs after the backup.
 .EXAMPLE
-    . .\install.ps1 -User "Me", "You"
+    . ./install.ps1 -InstallSymlinks -User "Me", "You"
 
-    Installs the dotfiles for users 'Me' and 'You'.
+    Installs the dotfiles for users 'Me' and 'You' using Symlinks
 .EXAMPLE
-    . .\install.ps1 -User "Me" -Exclude "vim"
+    . ./install.ps1 -InstallCopies -User "Me", "You"
 
-    Installs all available dotfiles for 'Me' except those named 'vim'.
-.EXAMPLE
-    . .\install.ps1 -User "Me" -Include "vim"
-
-    Only installs dotfiles that match 'vim' for 'Me'.
+    Installs the dotfiles for users 'Me' and 'You' using file copies
 .INPUTS
-    Strings (optional)
+    Strings (optional) and Switches (optional)
 .OUTPUTS
     N/A
 .NOTES
-    Version 1.1.0
-
-    #requires -RunAsAdministrator
-    It shouldn't require admin rights, but New-Item seems to be awkward about sym-links.
+    Version 2.0.0
 
     Note: This install script is not tested with macOS.
 .LINK
     https://github.com/philccarney/dotfiles
 #>
 [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess = $True, DefaultParameterSetName = "Default")] # Bit rusty with parameter sets, but this seems to work.
+[Alias()]
+[OutputType()]
 param
 (
-    [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user.")]
+    [Parameter(Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user.")]
     [string[]] $User,
 
-    [Parameter(Mandatory = $False, HelpMessage = "Only symlinks whose descriptions match this string will be installed. Uses regular expression.", ParameterSetName = "Inclusion")]
-    [string] $Include,
+    [Parameter(HelpMessage = "Installs dotfiles by creating symlinks from the repository", ParameterSetName = "Symlinks")]
+    [switch] $InstallSymlinks,
 
-    [Parameter(Mandatory = $False, HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.", ParameterSetName = "Exclusion")]
-    [string] $Exclude,
+    [Parameter(HelpMessage = "Installs dotfiles by copying files from the repository", ParameterSetName = "Copies")]
+    [switch] $InstallCopies,
 
-    [Parameter(Mandatory = $False, HelpMessage = "Skips the installation of any symlinks", ParameterSetName = "vscodeExtensions")]
-    [switch] $SkipSymlinks,
-
-    [Parameter(Mandatory = $False, HelpMessage = "Installs the vscode extensions for the current user.", ParameterSetName = "vscodeExtensions")]
+    [Parameter(HelpMessage = "Installs the vscode extensions for the current user.")]
     [switch] $InstallVSCodeExtensions,
 
-    [Parameter(Mandatory = $False, HelpMessage = "Allows any existing symlinks/files to be overwritten.")]
+    [Parameter(HelpMessage = "Only symlinks whose descriptions match this string will be installed. Uses regular expression.")]
+    [string] $Include,
+
+    [Parameter(HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
+    [string] $Exclude,
+
+    [Parameter(HelpMessage = "Backs up any existing symlinks/files to be overwritten.")]
+    [switch] $Backup,
+
+    [Parameter(HelpMessage = "Overwrites any existing symlinks/files.")]
     [switch] $Force
 )
 
@@ -80,177 +93,226 @@ BEGIN
 PROCESS
 {
     Write-Debug -Message "PROCESS Block"
-    if (-not ($SkipSymlinks))
+    if (($InstallSymlinks) -or ($InstallCopies))
     {
         forEach ($User in $Users)
         {
             $User = $User.ToLower()
             # Just to ensure we don't have a case-mismatch. Mainly for Linux.
-            $SymLinks = @(
-
-                if ($OS.VersionString -match "Windows")
-                {
-                    #region Windows-based
-                    Write-Debug -Message "Windows-based OS: $($OS.VersionString)"
-                    @{
-                        Source      = "$PSScriptRoot\WindowsPowershell\profile.ps1"
-                        Destination = "C:\Users\$User\Documents\WindowsPowershell\profile.ps1"
+            $Files = @(
+                @{
+                        Source      = "$PSScriptRoot/WindowsPowershell/profile.ps1"
+                        WindowsDestination = "C:/Users/$User/Documents/WindowsPowershell/profile.ps1"
                         Description = "Windows Powershell profile"
                     }
 
                     @{
-                        Source      = "$PSScriptRoot\pwsh\profile.ps1"
-                        Destination = "C:\Users\$User\Documents\Powershell\profile.ps1"
-                        Description = "Powershell Core profile"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot\vscode\settings.json"
-                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\settings.json"
-                        Description = "Visual Studio Code settings"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot\vscode\keybindings.json"
-                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\keybindings.json"
-                        Description = "Visual Studio Code keybindings"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot\vscode\ansible.json"
-                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\ansible.json"
-                        Description = "Visual Studio Code Ansible snippets"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot\vscode\powershell.json"
-                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\powershell.json"
-                        Description = "Visual Studio Code Powershell snippets"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot\vim\vimrc"
-                        Destination = "C:\Users\$User\_vimrc"
-                        Description = "Vim config"
-                    }
-                    #endregion Windows-based
-                }
-                else
-                {
-                    #region Not Windows
-                    Write-Debug -Message "Non-Windows OS: $($OS.VersionString)"
-                    @{
                         Source      = "$PSScriptRoot/pwsh/profile.ps1"
-                        Destination = "/home/$User/.config/powershell/profile.ps1"
+                        WindowsDestination = "C:/Users/$User/Documents/Powershell/profile.ps1"
+                        UnixDestination = "/home/$User/.config/powershell/profile.ps1"
                         Description = "Powershell Core profile"
                     }
 
                     @{
                         Source      = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
-                        Destination = "/home/$User/.ps_history.txt"
-                        Description = "PSReadLine history"
+                        UnixDestination = "/home/$User/.ps_history.txt"
+                        Description = "PSReadLine (Unix) history"
+                    }
+
+                    @{
+                        Source      = "C:/Users/$User/AppData/Roaming/Microsoft/Windows/PowerShell/PSReadline/ConsoleHost_history.txt"
+                        WindowsDestination = "/home/$User/.ps_history.txt"
+                        Description = "PSReadLine (Windows) history"
+                    }
+
+                    @{
+                        Source = "$PSScriptRoot/git/gitconfig"
+                        UnixDestination = "/home/$User/.gitconfig"
+                        WindowsDestination = "C:/Users/$User/.gitconfig"
+                        Description = "Git User Config"
                     }
 
                     @{
                         Source      = "$PSScriptRoot/tmux/.tmux.conf"
-                        Destination = "/home/$User/.tmux.conf"
+                        UnixDestination = "/home/$User/.tmux.conf"
                         Description = "tmux config"
                     }
 
                     @{
-                        Source      = "$PSScriptRoot/tmux/.tmux-default"
-                        Destination = "/home/$User/.tmux-default"
-                        Description = "tmux Default Session"
-                    }
-
-                    @{
                         Source      = "$PSScriptRoot/vscode/settings.json"
-                        Destination = "/home/$User/.config/Code/User/settings.json"
+                        UnixDestination = "/home/$User/.config/Code/User/settings.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/settings.json"
                         Description = "Visual Studio Code settings"
                     }
 
                     @{
                         Source      = "$PSScriptRoot/vscode/keybindings.json"
-                        Destination = "/home/$User/.config/Code/User/keybindings.json"
+                        UnixDestination = "/home/$User/.config/Code/User/keybindings.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/keybindings.json"
                         Description = "Visual Studio Code keybindings"
                     }
 
                     @{
-                        Source      = "$PSScriptRoot\vscode\ansible.json"
-                        Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\ansible.json"
+                        Source      = "$PSScriptRoot/vscode/ansible.json"
+                        UnixDestination = "/home/$User/.config/Code/User/snippets/ansible.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/ansible.json"
                         Description = "Visual Studio Code Ansible snippets"
                     }
 
                     @{
+                        Source      = "$PSScriptRoot/vscode/ansible.json"
+                        UnixDestination = "/home/$User/.config/Code/User/snippets/yaml.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/yaml.json"
+                        Description = "Visual Studio Code YAML/Ansible snippets"
+                    }
+
+                    @{
                         Source      = "$PSScriptRoot/vscode/powershell.json"
-                        Destination = "/home/$User/.config/Code/User/snippets/powershell.json"
+                        UnixDestination = "/home/$User/.config/Code/User/snippets/powershell.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/powershell.json"
                         Description = "Visual Studio Code Powershell snippets"
                     }
 
                     @{
                         Source      = "$PSScriptRoot/vim/vimrc"
-                        Destination = "/home/$User/.vimrc"
+                        UnixDestination = "/home/$User/.vimrc"
+                        WindowsDestination = "C:/Users/$User/_vimrc"
                         Description = "Vim config"
                     }
-                    #endregion
-                }
+
+                    @{
+                        Source = "$PSScriptRoot/WindowsTerminal/profiles.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/RoamingState/profiles.json"
+                        Description = "Windows Terminal settings"
+                    }
             )
 
-
-            forEach ($SymLink in $SymLinks)
+            forEach ($File in $Files)
             {
                 # We'll only try and create the link under certain conditions:
-                if ((($Exclude) -and ($SymLink.Description -notmatch $Exclude)) -or # If the Exclude parameter is used, and the link doesn't match $Exclude
-                    (($Include) -and ($SymLink.Description -match $Include)) -or # If the Include parameter is used, and the link matches $Include
-                    (-not ($Exclude -or $Include))) # Or, if we're not using Exclude or Include
+                # If the Exclude parameter is used, and the link doesn't match $Exclude
+                # If the Include parameter is used, and the link matches $Include
+                # Or, if we're not adding restrictions at all (i.e. Exclude or Include are not specified)
+                if ((-not ($Exclude -or $Include)) -or
+                    (($Include) -and ($File.Description -match $Include)) -or
+                    (($Exclude) -and ($File.Description -notmatch $Exclude)))
                 {
-                    if ($PSCmdlet.ShouldProcess("$User", "Installing $($SymLink.Description)"))
-                    {
-                        try
-                        {
-                            Write-Verbose -Message "Creating symlink for '$($SymLink.Source)' to '$($SymLink.Destination)'"
-                            $DestinationFolder = Split-Path -Path $SymLink.Destination
-
-                            # Ensure that any parent directories are created.
-                            if (-not (Test-Path -Path $DestinationFolder))
-                            {
-                                Write-Verbose -Message "Creating directory: '$DestinationFolder'"
-                                New-Item -Path $DestinationFolder -ItemType "Directory" | Out-Null
-                            }
-
+                    Write-Verbose -Message "Processing $($File.Description)"
+                            # Begin install scaffolding, this is expanded based on parameter choices
                             $Splat = @{
-                                Path        = $SymLink.Destination
-                                Value       = $SymLink.Source
-                                ItemType    = "SymbolicLink"
                                 ErrorAction = "Stop"
                             }
 
-                            # If Force is used, we'll delete any pre-existing files or symlinks.
-                            if ((Test-Path $SymLink.Destination) -and ($Force))
+                            # This should allow us to use the script against Windows and non-Windows without maintaining
+                            # two different lists and/or two different install mechanisms
+                            if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
                             {
-                                $Splat.Add("Force", $True)
-                                Write-Verbose -Message "Removing existing file ($($SymLink.Destination))"
-                                Remove-Item -Path $SymLink.Destination -Force
+                                $Destination = $File.WindowsDestination
+                            }
+                            elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
+                            {
+                                $Destination = $File.UnixDestination
+                            }
+                            else
+                            {
+                                # Skip entirely if the item doesn't have a viable destination for the current OS
+                                Continue
                             }
 
-                            [void] (New-Item @Splat)
-                        }
-                        catch
-                        {
-                            Write-Warning -Message "There was an issue processing '$($SymLink.Description)'"
-                            $PSCmdlet.ThrowTerminatingError($_)
-                        }
+                            # Ensure that any parent directories are created.
+                            $DestinationFolder = Split-Path -Path $Destination
+                            if (-not (Test-Path -Path $DestinationFolder))
+                            {
+                                if ($PSCmdlet.ShouldProcess($DestinationFolder, "Creating target directory"))
+                                {
+                                    try
+                                    {
+                                        [void] (New-Item -Path $DestinationFolder -ItemType "Directory")
+                                    }
+                                    catch
+                                    {
+                                        $PSCmdlet.ThrowTerminatingError($_)
+                                    }
+                                }
+                            }
+
+                            if (Test-Path $Destination)
+                            {
+                                if ($Backup)
+                                {
+                                    try
+                                    {
+                                        Write-Verbose -Message "Determining backup file name"
+                                        $Target = Get-Item -Path $Destination
+                                        $NewName = ($Target.BaseName + "$(Get-Date -UFormat "-%H%M-%d%m%Y")" + $Target.Extension)
+                                    }
+                                    catch
+                                    {
+                                        $PSCmdlet.ThrowTerminatingError($_)
+                                    }
+
+                                    if ($PSCmdlet.ShouldProcess($NewName, "Backing up $($File.Description)"))
+                                    {
+                                        try
+                                        {
+                                            $BackupSplat = @{
+                                                Path = $File.FullName
+                                                Destination = (Join-Path -Path $Target.Directory.FullName -ChildPath $NewName)
+                                                Force = $True
+                                            }
+
+                                            Copy-Item @BackupSplat
+                                        }
+                                        catch
+                                        {
+                                            $PSCmdlet.ThrowTerminatingError($_)
+                                        }
+                                    }
+                                }
+
+                                if ($Force)
+                                {
+                                    $Splat.Add("Force", $True)
+                                    Write-Verbose -Message "Removing existing file ($Destination)"
+                                    Remove-Item -Path $Destination -Force
+                                }
+                            }
+
+                            if ($InstallSymlinks)
+                            {
+                                Write-Verbose -Message "Installing symlink for '$($File.Source)'"
+                                if ($PSCmdlet.ShouldProcess($Destination, "Creating symlink for '$($File.Source)'"))
+                                {
+                                    try
+                                    {
+                                        $Splat.Add("Path", $Destination)
+                                        $Splat.Add("Value", $File.Source)
+                                        $Splat.Add("ItemType", "SymbolicLink")
+                                        [void] (New-Item @Splat)
+                                    }
+                                    catch
+                                    {
+                                        $PSCmdlet.ThrowTerminatingError($_)
+                                    }
+                                }
+
+                            }
+                            elseif ($InstallCopies)
+                            {
+                                $Splat.Add("Destination", $Destination)
+                                $Splat.Add("Path", $File.Source)
+                                [void] (Copy-Item @Splat)
+                            }
                     }
-                }
                 else
                 {
-                    if (($Exclude) -and ($SymLink.Description -match $Exclude))
+                    if (($Exclude) -and ($File.Description -match $Exclude))
                     {
-                        Write-Verbose -Message "'$($SymLink.Description)' matches '$Exclude' exclusion regex - Skipping install."
+                        Write-Verbose -Message "'$($File.Description)' matches '$Exclude' exclusion regex - Skipping install."
                     }
-                    elseif (($Include) -and ($SymLink.Description -notmatch $Include))
+                    elseif (($Include) -and ($File.Description -notmatch $Include))
                     {
-                        Write-Verbose -Message "'$($SymLink.Description)' does not match '$Include' inclusion regex - Skipping install."
+                        Write-Verbose -Message "'$($File.Description)' does not match '$Include' inclusion regex - Skipping install."
                     }
                     else
                     {
@@ -260,19 +322,15 @@ PROCESS
             }
         }
     }
-    else
-    {
-        Write-Verbose -Message "Skipping installation of all sym-links."
-    }
 
     if (($InstallVSCodeExtensions) -and
-        (Get-Command "code" -ErrorAction "SilentlyContinue" | Where-Object CommandType -match "^App" | Where-Object Source -match "VS Code"))
+        (Get-Command "code" -ErrorAction "SilentlyContinue" | Where-Object Source -match "VS Code"))
     {
-        Write-Verbose -Message "Installing Visual Studio Code extensions for the current user."
+        Write-Verbose -Message "Installing Visual Studio Code extensions for '$([System.Environment]::UserName)'"
         try
         {
             $GetExtensionsSplat = @{
-                Path        = "$PSScriptRoot\vscode\extensions"
+                Path        = "$PSScriptRoot/vscode/extensions"
                 ErrorAction = "Stop"
             }
 
