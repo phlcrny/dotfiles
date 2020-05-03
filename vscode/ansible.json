@@ -89,7 +89,7 @@
 			"        month: '*'",
 			"      tags:",
 			"        - ansible-pull",
-			"...",
+			"..."
 		],
 		"description": "An Ansible playbook skeleton"
 	},
