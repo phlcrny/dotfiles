@@ -5,6 +5,7 @@
     logline = log --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit
     oops = reset HEAD~1
     re = remote -v
+    settings = config --list --show-origin
     subpull = submodule update --remote --init
     what = log -n 5 --stat
 
