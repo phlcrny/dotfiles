@@ -72,10 +72,6 @@ BEGIN
     {
         [string[]] $Users = [System.Environment]::UserName
     }
-    if ($PSBoundParameters.ContainsKey("Exclude"))
-    {
-        [string] $Exclude = $Exclude
-    }
 
     Write-Debug -Message "Determining 'OS' version."
     $OS = [Environment]::OSVersion
