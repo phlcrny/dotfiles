@@ -8,6 +8,5 @@
     subpull = submodule update --remote --init
     what = log -n 5 --stat
 
-[user]
-	name = Phil Carney
-	email = philipccarney@gmail.com
+[include]
+    path = .git-identity
