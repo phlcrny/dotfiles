@@ -276,9 +276,11 @@ PROCESS
         try
         {
             $GetExtensionsSplat = @{
-                Path        = "$PSScriptRoot\vscode\extensions.txt"
+                Path        = "$PSScriptRoot\vscode\extensions"
                 ErrorAction = "Stop"
             }
+
+            $Extensions = Get-Content @GetExtensionsSplat
         }
         catch
         {
@@ -286,7 +288,6 @@ PROCESS
             $PSCmdlet.ThrowTerminatingError($_)
         }
 
-        $Extensions = Get-Content @GetExtensionsSplat
         forEach ($Extension in $Extensions)
         {
             if ($PSCmdlet.ShouldProcess([Environment]::UserName, "Installing '$Extension' extension"))
