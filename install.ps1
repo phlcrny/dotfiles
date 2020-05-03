@@ -190,6 +190,7 @@ PROCESS
                     (($Include) -and ($File.Description -match $Include)) -or
                     (($Exclude) -and ($File.Description -notmatch $Exclude)))
                 {
+                    Write-Verbose -Message "Processing $($File.Description)"
                             # Begin install scaffolding, this is expanded based on parameter choices
                             $Splat = @{
                                 ErrorAction = "Stop"
