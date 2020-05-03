@@ -132,6 +132,17 @@ PROCESS
                         Description = "Git User Config"
                     }
 
+                $( if (Test-Path "$PSScriptRoot/git/.git-identity" -ErrorAction "SilentlyContinue")
+                    {
+                        @{
+                            Source             = "$PSScriptRoot/git/.git-identity"
+                            UnixDestination    = "/home/$User/.git-identity"
+                            WindowsDestination = "C:/Users/$User/.git-identity"
+                            Description        = "Git user identity"
+                        }
+                    }
+                )
+
                     @{
                         Source      = "$PSScriptRoot/tmux/.tmux.conf"
                         UnixDestination = "/home/$User/.tmux.conf"
@@ -182,7 +193,7 @@ PROCESS
 
                     @{
                         Source = "$PSScriptRoot/WindowsTerminal/profiles.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/RoamingState/profiles.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/RoamingState/profile.json"
                         Description = "Windows Terminal settings"
                     }
             )
