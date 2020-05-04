@@ -121,7 +121,7 @@ PROCESS
 
                     @{
                         Source      = "C:/Users/$User/AppData/Roaming/Microsoft/Windows/PowerShell/PSReadline/ConsoleHost_history.txt"
-                        WindowsDestination = "/home/$User/.ps_history.txt"
+                        WindowsDestination = "C:/Users/$User/.ps_history.txt"
                         Description = "PSReadLine (Windows) history"
                     }
 
