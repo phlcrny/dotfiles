@@ -87,6 +87,9 @@
   "git.autofetchPeriod": 10,
   "git.fetchOnPull": true,
   "git.openDiffOnClick": false,
+  "git.scanRepositories": [
+    "C:\\Dev"
+  ],
   "git.showPushSuccessNotification": true,
   // GitLens
   "gitlens.advanced.telemetry.enabled": false,
