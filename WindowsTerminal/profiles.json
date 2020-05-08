@@ -23,13 +23,13 @@
         },
         "list": [
             {
-                "name": "PowerShell",
+                "name": "pwsh",
                 "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
                 "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}"
             },
             {
-                "name": "Windows PowerShell",
+                "name": "Windows Powershell",
                 "commandline": "powershell.exe",
                 "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}"
