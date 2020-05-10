@@ -14,7 +14,7 @@
 .OUTPUTS
     N/A
 .NOTES
-    Version 0.1.0
+    Version 1.0.0
 .LINK
     https://github.com/philccarney/dotfiles
 #>
@@ -52,130 +52,30 @@ PROCESS
     Write-Debug -Message "PROCESS Block"
     forEach ($User in $Users)
     {
-        $SymLinks = @(
-
-            if ($OS.VersionString -match "Windows")
-            {
-                #region Windows-based
-                Write-Debug -Message "Windows-based OS: $($OS.VersionString)"
-                @{
-                    Source      = "$PSScriptRoot\WindowsPowershell\profile.ps1"
-                    Destination = "C:\Users\$User\Documents\WindowsPowershell\profile.ps1"
-                    Description = "Windows Powershell profile"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot\pwsh\profile.ps1"
-                    Destination = "C:\Users\$User\Documents\Powershell\profile.ps1"
-                    Description = "Powershell Core profile"
-                }
-
-                @{
-                    Source      = "C:\Users\$User\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt"
-                    Destination = "C:\Users\$User\.ps_history.txt"
-                    Description = "PSReadLine history"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot\vscode\settings.json"
-                    Destination = "C:\Users\$User\AppData\Roaming\Code\User\settings.json"
-                    Description = "Visual Studio Code settings"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot\vscode\keybindings.json"
-                    Destination = "C:\Users\$User\AppData\Roaming\Code\User\keybindings.json"
-                    Description = "Visual Studio Code keybindings"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot\vscode\powershell.json"
-                    Destination = "C:\Users\$User\AppData\Roaming\Code\User\snippets\powershell.json"
-                    Description = "Visual Studio Code Powershell snippets"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot\vim\vimrc"
-                    Destination = "C:\Users\$User\_vimrc"
-                    Description = "Vim config"
-                }
-                #endregion Windows-based
-            }
-            else
-            {
-                #region Not Windows
-                Write-Debug -Message "Non-Windows OS: $($OS.VersionString)"
-                @{
-                    Source      = "$PSScriptRoot/pwsh/profile.ps1"
-                    Destination = "/home/$User/.config/powershell/profile.ps1"
-                    Description = "Powershell Core profile"
-                }
-
-                @{
-                    Source      = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
-                    Destination = "/home/$User/.ps_history.txt"
-                    Description = "PSReadLine history"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot/tmux/.tmux.conf"
-                    Destination = "/home/$User/.tmux.conf"
-                    Description = "tmux config"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot/tmux/.tmux-default"
-                    Destination = "/home/$User/.tmux-default"
-                    Description = "tmux Default Session"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot/vscode/settings.json"
-                    Destination = "/home/$User/.config/Code/User/settings.json"
-                    Description = "Visual Studio Code settings"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot/vscode/keybindings.json"
-                    Destination = "/home/$User/.config/Code/User/keybindings.json"
-                    Description = "Visual Studio Code keybindings"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot/vscode/powershell.json"
-                    Destination = "/home/$User/.config/Code/User/snippets/powershell.json"
-                    Description = "Visual Studio Code Powershell snippets"
-                }
-
-                @{
-                    Source      = "$PSScriptRoot/vim/vimrc"
-                    Destination = "/home/$User/.vimrc"
-                    Description = "Vim config"
-                }
-                #endregion
-            }
-        )
-
-        forEach ($SymLink in $SymLinks)
+        # Just to ensure we don't have a case-mismatch. Mainly for Linux.
+        $User = $User.ToLower()
+        # For ease of maintenance for install and uninstall, the files are loaded from an external file.
+        $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath "files.ps1"))
+        forEach ($File in $Files)
         {
-            if ($PSCmdlet.ShouldProcess("$User", "Uninstalling $($SymLink.Description)"))
+            if ($PSCmdlet.ShouldProcess("$User", "Uninstalling $($File.Description)"))
             {
-                if (Test-Path -Path $SymLink.Destination)
+                if (Test-Path -Path $File.Destination)
                 {
                     try
                     {
-                        Write-Verbose -Message "Removing sym-link for '$($SymLink.Source)' from '$($SymLink.Destination)'"
-                        Remove-Item -Path $SymLink.Destination -Force # Testing some permission issues.
+                        Write-Verbose -Message "Removing sym-link for '$($File.Source)' from '$($File.Destination)'"
+                        Remove-Item -Path $File.Destination -Force # Testing some permission issues.
                     }
                     catch
                     {
-                        Write-Warning -Message "There was an issue processing '$($SymLink.Description)'"
+                        Write-Warning -Message "There was an issue processing '$($File.Description)'"
                         $PSCmdlet.ThrowTerminatingError($_)
                     }
                 }
                 else
                 {
-                    Write-Verbose -Message "Unable to locate '$($SymLink.Description)'. Moving on."
+                    Write-Verbose -Message "Unable to locate '$($File.Description)'. Moving on."
                 }
             }
         }
