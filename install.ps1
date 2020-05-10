@@ -193,7 +193,7 @@ PROCESS
 
                     @{
                         Source = "$PSScriptRoot/WindowsTerminal/profiles.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/RoamingState/profile.json"
+                        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
                         Description = "Windows Terminal settings"
                     }
             )
