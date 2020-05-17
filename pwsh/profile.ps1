@@ -144,7 +144,8 @@ $_HistoryHandlerScriptBlock = {
         "powershell_ise"
     )
 
-    if (($Line.ToLower() -notmatch $SkipExclusion) -or ($Line.Length -ge 4))
+    if (($Line.ToLower() -notmatch $SkipExclusion) -and
+        ($Line.Length -ge 4))
     {
         if ($Line.ToLower() -notin $Exclusions)
         {
