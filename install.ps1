@@ -47,9 +47,11 @@ param
     [string[]] $User,
 
     [Parameter(HelpMessage = "Installs dotfiles by creating symlinks from the repository", ParameterSetName = "Symlinks")]
+    [alias("Symlinks")]
     [switch] $InstallSymlinks,
 
     [Parameter(HelpMessage = "Installs dotfiles by copying files from the repository", ParameterSetName = "Copies")]
+    [alias("Copies")]
     [switch] $InstallCopies,
 
     [Parameter(HelpMessage = "Installs the vscode extensions for the current user.")]
@@ -84,6 +86,13 @@ BEGIN
     else
     {
         [string[]] $Users = [System.Environment]::UserName
+    }
+
+    if (-not (($PSBoundParameters.ContainsKey("InstallSymlinks")) -or
+        ($PSBoundParameters.ContainsKey("InstallCopies"))))
+    {
+        Write-Warning -Message "Remember to specify '-InstallCopies' or '-InstallSymlinks' to install dotfiles"
+        # I keep forgetting this myself. Not ideal for usability.
     }
 
     Write-Debug -Message "Determining 'OS' version."
@@ -218,7 +227,7 @@ PROCESS
                         $Splat.Add("Path", $File.Source)
                         [void] (Copy-Item @Splat)
                     }
-                }
+            }
                 else
                 {
                     if (($Exclude) -and ($File.Description -match $Exclude))
