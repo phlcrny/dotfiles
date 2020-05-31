@@ -60,6 +60,7 @@ PROCESS
     {
         # Just to ensure we don't have a case-mismatch. Mainly for Linux.
         $User = $User.ToLower()
+        Write-Verbose -Message "Processing '$User'"
         # For ease of maintenance for install and uninstall, the files are loaded from an external file.
         $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath "files.ps1"))
         forEach ($File in $Files)
@@ -72,14 +73,30 @@ PROCESS
                 (($Include) -and ($File.Description -match $Include)) -or
                 (($Exclude) -and ($File.Description -notmatch $Exclude)))
             {
-                if ($PSCmdlet.ShouldProcess("$User", "Uninstalling $($File.Description)"))
+                Write-Verbose -Message "Processing $($File.Description)"
+
+                if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
                 {
-                    if (Test-Path -Path $File.Destination)
+                    $Destination = $File.WindowsDestination
+                }
+                elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
+                {
+                    $Destination = $File.UnixDestination
+                }
+                else
+                {
+                    # Skip entirely if the item doesn't have a viable destination for the current OS
+                    Continue
+                }
+
+                if ($PSCmdlet.ShouldProcess($Destination, "Uninstalling '$($File.Description)' for '$User'"))
+                {
+                    if (Test-Path -Path $Destination)
                     {
                         try
                         {
-                            Write-Verbose -Message "Removing sym-link/file for '$($File.Source)' from '$($File.Destination)'"
-                            Remove-Item -Path $File.Destination -Force
+                            Write-Verbose -Message "Removing sym-link/file for '$($File.Source)' from '$Destination"
+                            Remove-Item -Path $Destination -Force
                         }
                         catch
                         {
