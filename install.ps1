@@ -99,6 +99,7 @@ PROCESS
         {
             # Just to ensure we don't have a case-mismatch. Mainly for Linux.
             $User = $User.ToLower()
+            Write-Verbose -Message "Processing '$User'"
             # For ease of maintenance for install and uninstall, the files are loaded from an external file.
             $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath "files.ps1"))
             forEach ($File in $Files)
@@ -112,112 +113,112 @@ PROCESS
                     (($Exclude) -and ($File.Description -notmatch $Exclude)))
                 {
                     Write-Verbose -Message "Processing $($File.Description)"
-                            # Begin install scaffolding, this is expanded based on parameter choices
-                            $Splat = @{
-                                ErrorAction = "Stop"
-                            }
-
-                            # This should allow us to use the script against Windows and non-Windows without maintaining
-                            # two different lists and/or two different install mechanisms
-                            if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
-                            {
-                                $Destination = $File.WindowsDestination
-                            }
-                            elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
-                            {
-                                $Destination = $File.UnixDestination
-                            }
-                            else
-                            {
-                                # Skip entirely if the item doesn't have a viable destination for the current OS
-                                Continue
-                            }
-
-                            # Ensure that any parent directories are created.
-                            $DestinationFolder = Split-Path -Path $Destination
-                            if (-not (Test-Path -Path $DestinationFolder))
-                            {
-                                if ($PSCmdlet.ShouldProcess($DestinationFolder, "Creating target directory"))
-                                {
-                                    try
-                                    {
-                                        [void] (New-Item -Path $DestinationFolder -ItemType "Directory")
-                                    }
-                                    catch
-                                    {
-                                        $PSCmdlet.ThrowTerminatingError($_)
-                                    }
-                                }
-                            }
-
-                            if (Test-Path $Destination)
-                            {
-                                if ($Backup)
-                                {
-                                    try
-                                    {
-                                        Write-Verbose -Message "Determining backup file name"
-                                        $Target = Get-Item -Path $Destination
-                                        $NewName = ($Target.BaseName + "$(Get-Date -UFormat "-%H%M-%d%m%Y")" + $Target.Extension)
-                                    }
-                                    catch
-                                    {
-                                        $PSCmdlet.ThrowTerminatingError($_)
-                                    }
-
-                                    if ($PSCmdlet.ShouldProcess($NewName, "Backing up $($File.Description)"))
-                                    {
-                                        try
-                                        {
-                                            $BackupSplat = @{
-                                                Path = $File.FullName
-                                                Destination = (Join-Path -Path $Target.Directory.FullName -ChildPath $NewName)
-                                                Force = $True
-                                            }
-
-                                            Copy-Item @BackupSplat
-                                        }
-                                        catch
-                                        {
-                                            $PSCmdlet.ThrowTerminatingError($_)
-                                        }
-                                    }
-                                }
-
-                                if ($Force)
-                                {
-                                    $Splat.Add("Force", $True)
-                                    Write-Verbose -Message "Removing existing file ($Destination)"
-                                    Remove-Item -Path $Destination -Force
-                                }
-                            }
-
-                            if ($InstallSymlinks)
-                            {
-                                Write-Verbose -Message "Installing symlink for '$($File.Source)'"
-                                if ($PSCmdlet.ShouldProcess($Destination, "Creating symlink for '$($File.Source)'"))
-                                {
-                                    try
-                                    {
-                                        $Splat.Add("Path", $Destination)
-                                        $Splat.Add("Value", $File.Source)
-                                        $Splat.Add("ItemType", "SymbolicLink")
-                                        [void] (New-Item @Splat)
-                                    }
-                                    catch
-                                    {
-                                        $PSCmdlet.ThrowTerminatingError($_)
-                                    }
-                                }
-
-                            }
-                            elseif ($InstallCopies)
-                            {
-                                $Splat.Add("Destination", $Destination)
-                                $Splat.Add("Path", $File.Source)
-                                [void] (Copy-Item @Splat)
-                            }
+                    # Begin install scaffolding, this is expanded based on parameter choices
+                    $Splat = @{
+                        ErrorAction = "Stop"
                     }
+
+                    # This should allow us to use the script against Windows and non-Windows without maintaining
+                    # two different lists and/or two different install mechanisms
+                    if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
+                    {
+                        $Destination = $File.WindowsDestination
+                    }
+                    elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
+                    {
+                        $Destination = $File.UnixDestination
+                    }
+                    else
+                    {
+                        # Skip entirely if the item doesn't have a viable destination for the current OS
+                        Continue
+                    }
+
+                    # Ensure that any parent directories are created.
+                    $DestinationFolder = Split-Path -Path $Destination
+                    if (-not (Test-Path -Path $DestinationFolder))
+                    {
+                        if ($PSCmdlet.ShouldProcess($DestinationFolder, "Creating target directory"))
+                        {
+                            try
+                            {
+                                [void] (New-Item -Path $DestinationFolder -ItemType "Directory")
+                            }
+                            catch
+                            {
+                                $PSCmdlet.ThrowTerminatingError($_)
+                            }
+                        }
+                    }
+
+                    if (Test-Path $Destination)
+                    {
+                        if ($Backup)
+                        {
+                            try
+                            {
+                                Write-Verbose -Message "Determining backup file name"
+                                $Target = Get-Item -Path $Destination
+                                $NewName = ($Target.BaseName + "$(Get-Date -UFormat "-%H%M-%d%m%Y")" + $Target.Extension)
+                            }
+                            catch
+                            {
+                                $PSCmdlet.ThrowTerminatingError($_)
+                            }
+
+                            if ($PSCmdlet.ShouldProcess($NewName, "Backing up $($File.Description)"))
+                            {
+                                try
+                                {
+                                    $BackupSplat = @{
+                                        Path        = $File.FullName
+                                        Destination = (Join-Path -Path $Target.Directory.FullName -ChildPath $NewName)
+                                        Force       = $True
+                                    }
+
+                                    Copy-Item @BackupSplat
+                                }
+                                catch
+                                {
+                                    $PSCmdlet.ThrowTerminatingError($_)
+                                }
+                            }
+                        }
+
+                        if ($Force)
+                        {
+                            $Splat.Add("Force", $True)
+                            Write-Verbose -Message "Removing existing file ($Destination)"
+                            Remove-Item -Path $Destination -Force
+                        }
+                    }
+
+                    if ($InstallSymlinks)
+                    {
+                        Write-Verbose -Message "Installing symlink for '$($File.Source)'"
+                        if ($PSCmdlet.ShouldProcess($Destination, "Creating symlink for '$($File.Source)'"))
+                        {
+                            try
+                            {
+                                $Splat.Add("Path", $Destination)
+                                $Splat.Add("Value", $File.Source)
+                                $Splat.Add("ItemType", "SymbolicLink")
+                                [void] (New-Item @Splat)
+                            }
+                            catch
+                            {
+                                $PSCmdlet.ThrowTerminatingError($_)
+                            }
+                        }
+
+                    }
+                    elseif ($InstallCopies)
+                    {
+                        $Splat.Add("Destination", $Destination)
+                        $Splat.Add("Path", $File.Source)
+                        [void] (Copy-Item @Splat)
+                    }
+                }
                 else
                 {
                     if (($Exclude) -and ($File.Description -match $Exclude))
