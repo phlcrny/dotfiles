@@ -22,7 +22,13 @@
 param
 (
     [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for")]
-    [string[]] $User
+    [string[]] $User,
+
+    [Parameter(HelpMessage = "Only symlinks whose descriptions match this string will be uninstalled. Uses regular expression.")]
+    [string] $Include,
+
+    [Parameter(HelpMessage = "Any symlinks whose descriptions match this string will not be uninstalled. Uses regular expression.")]
+    [string] $Exclude
 )
 
 BEGIN
@@ -58,24 +64,33 @@ PROCESS
         $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath "files.ps1"))
         forEach ($File in $Files)
         {
-            if ($PSCmdlet.ShouldProcess("$User", "Uninstalling $($File.Description)"))
+            # We'll only try and install under certain conditions:
+            # If the Exclude parameter is used, and the file doesn't match $Exclude
+            # If the Include parameter is used, and the file matches $Include
+            # Or, if we're not adding restrictions at all (i.e. Exclude or Include are not specified)
+            if ((-not ($Exclude -or $Include)) -or
+                (($Include) -and ($File.Description -match $Include)) -or
+                (($Exclude) -and ($File.Description -notmatch $Exclude)))
             {
-                if (Test-Path -Path $File.Destination)
+                if ($PSCmdlet.ShouldProcess("$User", "Uninstalling $($File.Description)"))
                 {
-                    try
+                    if (Test-Path -Path $File.Destination)
                     {
-                        Write-Verbose -Message "Removing sym-link for '$($File.Source)' from '$($File.Destination)'"
-                        Remove-Item -Path $File.Destination -Force # Testing some permission issues.
+                        try
+                        {
+                            Write-Verbose -Message "Removing sym-link/file for '$($File.Source)' from '$($File.Destination)'"
+                            Remove-Item -Path $File.Destination -Force
+                        }
+                        catch
+                        {
+                            Write-Warning -Message "There was an issue processing '$($File.Description)'"
+                            $PSCmdlet.ThrowTerminatingError($_)
+                        }
                     }
-                    catch
+                    else
                     {
-                        Write-Warning -Message "There was an issue processing '$($File.Description)'"
-                        $PSCmdlet.ThrowTerminatingError($_)
+                        Write-Verbose -Message "Unable to locate '$($File.Description)'. Moving on."
                     }
-                }
-                else
-                {
-                    Write-Verbose -Message "Unable to locate '$($File.Description)'. Moving on."
                 }
             }
         }
