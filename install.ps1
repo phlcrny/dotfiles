@@ -32,7 +32,7 @@
 .OUTPUTS
     N/A
 .NOTES
-    Version 2.0.0
+    Version 2.1.0
 
     Note: This install script is not tested with macOS.
 .LINK
@@ -47,9 +47,11 @@ param
     [string[]] $User,
 
     [Parameter(HelpMessage = "Installs dotfiles by creating symlinks from the repository", ParameterSetName = "Symlinks")]
+    [alias("Symlinks")]
     [switch] $InstallSymlinks,
 
     [Parameter(HelpMessage = "Installs dotfiles by copying files from the repository", ParameterSetName = "Copies")]
+    [alias("Copies")]
     [switch] $InstallCopies,
 
     [Parameter(HelpMessage = "Installs the vscode extensions for the current user.")]
@@ -86,6 +88,13 @@ BEGIN
         [string[]] $Users = [System.Environment]::UserName
     }
 
+    if (-not (($PSBoundParameters.ContainsKey("InstallSymlinks")) -or
+        ($PSBoundParameters.ContainsKey("InstallCopies"))))
+    {
+        Write-Warning -Message "Remember to specify '-InstallCopies' or '-InstallSymlinks' to install dotfiles"
+        # I keep forgetting this myself. Not ideal for usability.
+    }
+
     Write-Debug -Message "Determining 'OS' version."
     $OS = [Environment]::OSVersion
 }
@@ -97,224 +106,128 @@ PROCESS
     {
         forEach ($User in $Users)
         {
-            $User = $User.ToLower()
             # Just to ensure we don't have a case-mismatch. Mainly for Linux.
-            $Files = @(
-                @{
-                        Source      = "$PSScriptRoot/WindowsPowershell/profile.ps1"
-                        WindowsDestination = "C:/Users/$User/Documents/WindowsPowershell/profile.ps1"
-                        Description = "Windows Powershell profile"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/pwsh/profile.ps1"
-                        WindowsDestination = "C:/Users/$User/Documents/Powershell/profile.ps1"
-                        UnixDestination = "/home/$User/.config/powershell/profile.ps1"
-                        Description = "Powershell Core profile"
-                    }
-
-                    @{
-                        Source      = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
-                        UnixDestination = "/home/$User/.ps_history.txt"
-                        Description = "PSReadLine (Unix) history"
-                    }
-
-                    @{
-                        Source      = "C:/Users/$User/AppData/Roaming/Microsoft/Windows/PowerShell/PSReadline/ConsoleHost_history.txt"
-                        WindowsDestination = "C:/Users/$User/.ps_history.txt"
-                        Description = "PSReadLine (Windows) history"
-                    }
-
-                    @{
-                        Source = "$PSScriptRoot/git/gitconfig"
-                        UnixDestination = "/home/$User/.gitconfig"
-                        WindowsDestination = "C:/Users/$User/.gitconfig"
-                        Description = "Git User Config"
-                    }
-
-                $( if (Test-Path "$PSScriptRoot/git/.git-identity" -ErrorAction "SilentlyContinue")
-                    {
-                        @{
-                            Source             = "$PSScriptRoot/git/.git-identity"
-                            UnixDestination    = "/home/$User/.git-identity"
-                            WindowsDestination = "C:/Users/$User/.git-identity"
-                            Description        = "Git user identity"
-                        }
-                    }
-                )
-
-                    @{
-                        Source      = "$PSScriptRoot/tmux/.tmux.conf"
-                        UnixDestination = "/home/$User/.tmux.conf"
-                        Description = "tmux config"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/vscode/settings.json"
-                        UnixDestination = "/home/$User/.config/Code/User/settings.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/settings.json"
-                        Description = "Visual Studio Code settings"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/vscode/keybindings.json"
-                        UnixDestination = "/home/$User/.config/Code/User/keybindings.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/keybindings.json"
-                        Description = "Visual Studio Code keybindings"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/vscode/ansible.json"
-                        UnixDestination = "/home/$User/.config/Code/User/snippets/ansible.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/ansible.json"
-                        Description = "Visual Studio Code Ansible snippets"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/vscode/ansible.json"
-                        UnixDestination = "/home/$User/.config/Code/User/snippets/yaml.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/yaml.json"
-                        Description = "Visual Studio Code YAML/Ansible snippets"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/vscode/powershell.json"
-                        UnixDestination = "/home/$User/.config/Code/User/snippets/powershell.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/powershell.json"
-                        Description = "Visual Studio Code Powershell snippets"
-                    }
-
-                    @{
-                        Source      = "$PSScriptRoot/vim/vimrc"
-                        UnixDestination = "/home/$User/.vimrc"
-                        WindowsDestination = "C:/Users/$User/_vimrc"
-                        Description = "Vim config"
-                    }
-
-                    @{
-                        Source = "$PSScriptRoot/WindowsTerminal/profiles.json"
-                        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-                        Description = "Windows Terminal settings"
-                    }
-            )
-
+            $User = $User.ToLower()
+            Write-Verbose -Message "Processing '$User'"
+            # For ease of maintenance for install and uninstall, the files are loaded from an external file.
+            $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath "files.ps1"))
             forEach ($File in $Files)
             {
-                # We'll only try and create the link under certain conditions:
-                # If the Exclude parameter is used, and the link doesn't match $Exclude
-                # If the Include parameter is used, and the link matches $Include
+                # We'll only try and install under certain conditions:
+                # If the Exclude parameter is used, and the file doesn't match $Exclude
+                # If the Include parameter is used, and the file matches $Include
                 # Or, if we're not adding restrictions at all (i.e. Exclude or Include are not specified)
                 if ((-not ($Exclude -or $Include)) -or
                     (($Include) -and ($File.Description -match $Include)) -or
                     (($Exclude) -and ($File.Description -notmatch $Exclude)))
                 {
                     Write-Verbose -Message "Processing $($File.Description)"
-                            # Begin install scaffolding, this is expanded based on parameter choices
-                            $Splat = @{
-                                ErrorAction = "Stop"
-                            }
-
-                            # This should allow us to use the script against Windows and non-Windows without maintaining
-                            # two different lists and/or two different install mechanisms
-                            if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
-                            {
-                                $Destination = $File.WindowsDestination
-                            }
-                            elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
-                            {
-                                $Destination = $File.UnixDestination
-                            }
-                            else
-                            {
-                                # Skip entirely if the item doesn't have a viable destination for the current OS
-                                Continue
-                            }
-
-                            # Ensure that any parent directories are created.
-                            $DestinationFolder = Split-Path -Path $Destination
-                            if (-not (Test-Path -Path $DestinationFolder))
-                            {
-                                if ($PSCmdlet.ShouldProcess($DestinationFolder, "Creating target directory"))
-                                {
-                                    try
-                                    {
-                                        [void] (New-Item -Path $DestinationFolder -ItemType "Directory")
-                                    }
-                                    catch
-                                    {
-                                        $PSCmdlet.ThrowTerminatingError($_)
-                                    }
-                                }
-                            }
-
-                            if (Test-Path $Destination)
-                            {
-                                if ($Backup)
-                                {
-                                    try
-                                    {
-                                        Write-Verbose -Message "Determining backup file name"
-                                        $Target = Get-Item -Path $Destination
-                                        $NewName = ($Target.BaseName + "$(Get-Date -UFormat "-%H%M-%d%m%Y")" + $Target.Extension)
-                                    }
-                                    catch
-                                    {
-                                        $PSCmdlet.ThrowTerminatingError($_)
-                                    }
-
-                                    if ($PSCmdlet.ShouldProcess($NewName, "Backing up $($File.Description)"))
-                                    {
-                                        try
-                                        {
-                                            $BackupSplat = @{
-                                                Path = $File.FullName
-                                                Destination = (Join-Path -Path $Target.Directory.FullName -ChildPath $NewName)
-                                                Force = $True
-                                            }
-
-                                            Copy-Item @BackupSplat
-                                        }
-                                        catch
-                                        {
-                                            $PSCmdlet.ThrowTerminatingError($_)
-                                        }
-                                    }
-                                }
-
-                                if ($Force)
-                                {
-                                    $Splat.Add("Force", $True)
-                                    Write-Verbose -Message "Removing existing file ($Destination)"
-                                    Remove-Item -Path $Destination -Force
-                                }
-                            }
-
-                            if ($InstallSymlinks)
-                            {
-                                Write-Verbose -Message "Installing symlink for '$($File.Source)'"
-                                if ($PSCmdlet.ShouldProcess($Destination, "Creating symlink for '$($File.Source)'"))
-                                {
-                                    try
-                                    {
-                                        $Splat.Add("Path", $Destination)
-                                        $Splat.Add("Value", $File.Source)
-                                        $Splat.Add("ItemType", "SymbolicLink")
-                                        [void] (New-Item @Splat)
-                                    }
-                                    catch
-                                    {
-                                        $PSCmdlet.ThrowTerminatingError($_)
-                                    }
-                                }
-
-                            }
-                            elseif ($InstallCopies)
-                            {
-                                $Splat.Add("Destination", $Destination)
-                                $Splat.Add("Path", $File.Source)
-                                [void] (Copy-Item @Splat)
-                            }
+                    # Begin install scaffolding, this is expanded based on parameter choices
+                    $Splat = @{
+                        ErrorAction = "Stop"
                     }
+
+                    # This should allow us to use the script against Windows and non-Windows without maintaining
+                    # two different lists and/or two different install mechanisms
+                    if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
+                    {
+                        $Destination = $File.WindowsDestination
+                    }
+                    elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
+                    {
+                        $Destination = $File.UnixDestination
+                    }
+                    else
+                    {
+                        # Skip entirely if the item doesn't have a viable destination for the current OS
+                        Continue
+                    }
+
+                    # Ensure that any parent directories are created.
+                    $DestinationFolder = Split-Path -Path $Destination
+                    if (-not (Test-Path -Path $DestinationFolder))
+                    {
+                        if ($PSCmdlet.ShouldProcess($DestinationFolder, "Creating target directory"))
+                        {
+                            try
+                            {
+                                [void] (New-Item -Path $DestinationFolder -ItemType "Directory")
+                            }
+                            catch
+                            {
+                                $PSCmdlet.ThrowTerminatingError($_)
+                            }
+                        }
+                    }
+
+                    if (Test-Path $Destination)
+                    {
+                        if ($Backup)
+                        {
+                            try
+                            {
+                                Write-Verbose -Message "Determining backup file name"
+                                $Target = Get-Item -Path $Destination
+                                $NewName = ($Target.BaseName + "$(Get-Date -UFormat "-%H%M-%d%m%Y")" + $Target.Extension)
+                            }
+                            catch
+                            {
+                                $PSCmdlet.ThrowTerminatingError($_)
+                            }
+
+                            if ($PSCmdlet.ShouldProcess($NewName, "Backing up $($File.Description)"))
+                            {
+                                try
+                                {
+                                    $BackupSplat = @{
+                                        Path        = $File.FullName
+                                        Destination = (Join-Path -Path $Target.Directory.FullName -ChildPath $NewName)
+                                        Force       = $True
+                                    }
+
+                                    Copy-Item @BackupSplat
+                                }
+                                catch
+                                {
+                                    $PSCmdlet.ThrowTerminatingError($_)
+                                }
+                            }
+                        }
+
+                        if ($Force)
+                        {
+                            $Splat.Add("Force", $True)
+                            Write-Verbose -Message "Removing existing file ($Destination)"
+                            Remove-Item -Path $Destination -Force
+                        }
+                    }
+
+                    if ($InstallSymlinks)
+                    {
+                        Write-Verbose -Message "Installing symlink for '$($File.Source)'"
+                        if ($PSCmdlet.ShouldProcess($Destination, "Creating symlink for '$($File.Source)'"))
+                        {
+                            try
+                            {
+                                $Splat.Add("Path", $Destination)
+                                $Splat.Add("Value", $File.Source)
+                                $Splat.Add("ItemType", "SymbolicLink")
+                                [void] (New-Item @Splat)
+                            }
+                            catch
+                            {
+                                $PSCmdlet.ThrowTerminatingError($_)
+                            }
+                        }
+
+                    }
+                    elseif ($InstallCopies)
+                    {
+                        $Splat.Add("Destination", $Destination)
+                        $Splat.Add("Path", $File.Source)
+                        [void] (Copy-Item @Splat)
+                    }
+            }
                 else
                 {
                     if (($Exclude) -and ($File.Description -match $Exclude))
