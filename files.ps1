@@ -91,7 +91,7 @@
     }
 
     [PSCustomObject]@{
-        Source             = "$PSScriptRoot/WindowsTerminal/profiles.json"
+        Source             = "$PSScriptRoot/WindowsTerminal/settings.json"
         WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
         Description        = "Windows Terminal settings"
     }
