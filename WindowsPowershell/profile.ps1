@@ -58,25 +58,15 @@ $NewAliases = @(
         Value = "New-Item"
     }
 
-    $(
-        if (Get-Module -Name "Plaster" -ListAvailable)
-        {
-            @{
-                Name  = "Plaster"
-                Value = "Invoke-Plaster"
-            }
-        }
-    )
+    @{
+        Name  = "Plaster"
+        Value = "Invoke-Plaster"
+    }
 
-    $(
-        if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
-        {
-            @{
-                Name  = "vim"
-                Value = "C:\Program Files\Git\usr\bin\vim.exe"
-            }
-        }
-    )
+    @{
+        Name  = "vim"
+        Value = "C:\Program Files\Git\usr\bin\vim.exe"
+    }
 )
 
 forEach ($Alias in $NewAliases)
