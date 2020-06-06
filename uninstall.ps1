@@ -22,7 +22,7 @@
 param
 (
     [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for")]
-    [string[]] $User,
+    [string[]] $User = [System.Environment]::UserName,
 
     [Parameter(HelpMessage = "Only symlinks whose descriptions match this string will be uninstalled. Uses regular expression.")]
     [string] $Include,

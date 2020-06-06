@@ -44,7 +44,7 @@
 param
 (
     [Parameter(Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user.")]
-    [string[]] $User,
+    [string[]] $User = [System.Environment]::UserName,
 
     [Parameter(HelpMessage = "Installs dotfiles by creating symlinks from the repository", ParameterSetName = "Symlinks")]
     [alias("Symlinks")]
