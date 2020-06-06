@@ -28,7 +28,7 @@
         Source             = "$PSScriptRoot/git/gitconfig"
         UnixDestination    = "/home/$User/.gitconfig"
         WindowsDestination = "C:/Users/$User/.gitconfig"
-        Description        = "Git User Config"
+        Description        = "Git user config"
     }
 
     $( if (Test-Path "$PSScriptRoot/git/.git-identity" -ErrorAction "SilentlyContinue")
