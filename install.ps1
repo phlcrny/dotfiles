@@ -31,10 +31,6 @@
     Strings (optional) and Switches (optional)
 .OUTPUTS
     N/A
-.NOTES
-    Version 2.1.0
-
-    Note: This install script is not tested with macOS.
 .LINK
     https://github.com/philccarney/dotfiles
 #>

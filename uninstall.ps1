@@ -5,6 +5,10 @@
     Uses the 'Remove-Item' cmdlet to delete symbolic links created between individual dotfiles and their expected 'real' locations.
 .PARAMETER User
     The user or users who will have the dotfiles uninstalled from their directories. This defaults to the current user.
+.PARAMETER Include
+    Includes only dotfiles whose descriptions match this regular expression pattern.
+.PARAMETER Exclude
+    Excludes dotfiles whose descriptions match this regular expression pattern.
 .EXAMPLE
     . .\uninstall.ps1 -User "Me", "You"
 
@@ -13,8 +17,6 @@
     Strings (optional)
 .OUTPUTS
     N/A
-.NOTES
-    Version 1.0.0
 .LINK
     https://github.com/philccarney/dotfiles
 #>
