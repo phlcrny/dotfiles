@@ -59,7 +59,8 @@
             },
             {
                 "name": "Vim",
-                "commandline": "C:\\Program Files\\Git\\usr\\bin\\vim.exe"
+                "commandline": "C:\\Program Files\\Git\\usr\\bin\\vim.exe",
+                "guid": "{dcb2d94c-1c23-4018-b8d3-099ea888cdf3}"
             },
             {
                 "name": "Debian",
