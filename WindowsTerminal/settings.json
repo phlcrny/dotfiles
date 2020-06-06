@@ -245,6 +245,28 @@
             "keys": "ctrl+alt+8"
         },
         {
+            "command": {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "split": "horizontal"
+            },
+            "keys": "alt+shift+-"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "split": "vertical"
+            },
+            "keys": "alt+shift+plus"
+        },
+        {
             "command": "closePane",
             "keys": "ctrl+shift+w"
         },
