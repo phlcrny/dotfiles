@@ -74,63 +74,70 @@
         },
         {
             "command": "newTab",
-            "keys": [
-                "ctrl+t"
-            ]
+            "keys": "ctrl+shift+t"
         },
         {
-            "command": "newTabProfile0",
-            "keys": [
-                "ctrl+shift+1"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 1
+            },
+            "keys": "ctrl+shift+1"
         },
         {
-            "command": "newTabProfile1",
-            "keys": [
-                "ctrl+shift+2"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 2
+            },
+            "keys": "ctrl+shift+2"
         },
         {
-            "command": "newTabProfile2",
-            "keys": [
-                "ctrl+shift+3"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 3
+            },
+            "keys": "ctrl+shift+3"
         },
         {
-            "command": "newTabProfile3",
-            "keys": [
-                "ctrl+shift+4"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 4
+            },
+            "keys": "ctrl+shift+4"
         },
         {
-            "command": "newTabProfile4",
-            "keys": [
-                "ctrl+shift+5"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 5
+            },
+            "keys": "ctrl+shift+5"
         },
         {
-            "command": "newTabProfile5",
-            "keys": [
-                "ctrl+shift+6"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 6
+            },
+            "keys": "ctrl+shift+6"
         },
         {
-            "command": "newTabProfile6",
-            "keys": [
-                "ctrl+shift+7"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 7
+            },
+            "keys": "ctrl+shift+7"
         },
         {
-            "command": "newTabProfile7",
-            "keys": [
-                "ctrl+shift+8"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 8
+            },
+            "keys": "ctrl+shift+8"
         },
         {
-            "command": "newTabProfile8",
-            "keys": [
-                "ctrl+shift+9"
-            ]
+            "command": {
+                "action": "newTab",
+                "index": 9
+            },
+            "keys": "ctrl+shift+9"
         },
         {
             "command": "nextTab",
