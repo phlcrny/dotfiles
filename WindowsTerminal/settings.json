@@ -23,7 +23,7 @@
             "padding": "1, 0",
             "snapOnInput": true,
             "useAcrylic": true,
-            "acrylicOpacity": 0.6
+            "acrylicOpacity": 0.1
         },
         "list": [
             {
@@ -48,6 +48,7 @@
             {
                 "name": "Command Prompt",
                 "commandline": "cmd.exe",
+                "hidden": true,
                 "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}"
             },
