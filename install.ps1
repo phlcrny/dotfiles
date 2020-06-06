@@ -200,6 +200,14 @@ PROCESS
                             Write-Verbose -Message "Removing existing file ($Destination)"
                             Remove-Item -Path $Destination -Force
                         }
+                        else
+                        {
+                            if (Test-Path -Path $Destination)
+                            {
+                                Write-Warning -Message "$($File.Description) already exists. Skipping."
+                                Continue
+                            }
+                        }
                     }
 
                     if ($InstallSymlinks)
