@@ -243,6 +243,38 @@
                 "index": 8
             },
             "keys": "ctrl+alt+8"
+        },
+        {
+            "command": "closePane",
+            "keys": "ctrl+shift+w"
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "down"
+            },
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "left"
+            },
+            "keys": "ctrl+shift+left"
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "right"
+            },
+            "keys": "ctrl+shift+right"
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "up"
+            },
+            "keys": "ctrl+shift+up"
         }
     ],
     "schemes": [
