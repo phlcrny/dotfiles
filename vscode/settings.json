@@ -91,6 +91,8 @@
     "C:\\Dev"
   ],
   "git.showPushSuccessNotification": true,
+  // GitHub
+  "github.gitAuthentication": false,
   // GitLens
   "gitlens.advanced.telemetry.enabled": false,
   "gitlens.codeLens.enabled": false,
@@ -112,5 +114,5 @@
   "remote.SSH.showLoginTerminal": true,
   "remote.SSH.remotePlatform": {
     "*": "linux"
-  }
+  },
 }
