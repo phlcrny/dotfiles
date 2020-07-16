@@ -4,13 +4,19 @@
 [string] $_CurrentUser = "$([Environment]::UserDomainName)\$([Environment]::UserName)"
 [string] $_Titlebar = "$_CurrentUser - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
 $Host.UI.RawUI.WindowTitle = $_Titlebar
-$_SmallScreenPrompt = $False
+
+if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
+{
+    [void] (Import-Module -Name "Posh-Git")
+    $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $True
+    $GitPromptSettings.EnableWindowTitle = $False
+    $_PoshGit = $True
+}
 
 function prompt
 {
     [string] $_PromptHost = [Environment]::MachineName
     [string] $_PromptUser = [Environment]::UserName
-
     function Format-CurrentPath ($Path)
     {
         switch -regex ($Path)
@@ -20,28 +26,23 @@ function prompt
                 $Path -replace "^C:\\Users\\$_PromptUser", "~"
                 Continue
             }
-
             "^C:\\"
             {
                 $Path -replace "^C:\\", "\"
                 Continue
             }
-
             "^Microsoft.PowerShell.Core\\FileSystem\:\:"
             {
                 $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
                 Continue
             }
-
             default
             {
                 $Path
             }
         }
     }
-
     $_CurrentLocation = Format-CurrentPath -Path $ExecutionContext.SessionState.Path.CurrentLocation
-    $_SimulatedPrompt = "$_PromptUser on $_PromptHost at $_CurrentLocation"
     $(
         if (Test-Path -Path "Variable:\PSDebugContext")
         {
@@ -56,20 +57,12 @@ function prompt
     $(" on " | Write-Host -NoNewline) +
     $($_PromptHost | Write-Host -NoNewline -ForegroundColor "Green") +
     $(" in " | Write-Host -NoNewline) +
-    $($_CurrentLocation | Write-Host -ForegroundColor "Magenta" -NoNewline) +
-    $(
-        if (($_SimulatedPrompt.Length -ge 80) -or
-            ($_SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
-        {
-            " " + $(Write-Host "") + $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline)
-        }
-        else
-        {
-            $(" $" | Write-Host -ForegroundColor "Cyan" -NoNewline)
-        }
-    ) + " "
+    $($_CurrentLocation | Write-Host -NoNewline -ForegroundColor "Magenta") +
+    $( if ((Write-VcsStatus) -and ($_PoshGit)) { Write-VcsStatus } else { "" | Write-Host } ) +
+    #"`n" * ($NestedPromptLevel + 1) +
+    $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline) + " "
+    # "$ "
 }
-
 # Aliases and preferences
 
 # Aliases
@@ -84,7 +77,7 @@ $_NewAliases = @(
     }
 
     @{
-        Name = "ssps"
+        Name  = "ssps"
         Value = "Enter-PSSession"
     }
 
@@ -144,8 +137,7 @@ $_HistoryHandlerScriptBlock = {
         "powershell_ise"
     )
 
-    if (($Line.ToLower() -notmatch $SkipExclusion) -and
-        ($Line.Length -ge 4))
+    if (($Line.ToLower() -notmatch $SkipExclusion) -and ($Line.Length -ge 4))
     {
         if ($Line.ToLower() -notin $Exclusions)
         {
