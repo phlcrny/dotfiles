@@ -119,7 +119,6 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         AddToHistoryHandler           = $_HistoryHandlerScriptBlock
         BellStyle                     = "None"
         HistoryNoDuplicates           = $True
-        HistorySavePath               = "$HOME\.ps_history.txt"
         HistorySearchCursorMovesToEnd = $True
         ShowTooltips                  = $False
     }

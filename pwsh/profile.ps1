@@ -165,7 +165,6 @@ $_ReadlineOptions = @{
     AddToHistoryHandler           = $_HistoryHandlerScriptBlock
     BellStyle                     = "None"
     HistoryNoDuplicates           = $True
-    HistorySavePath               = "$HOME\.ps_history.txt"
     HistorySearchCursorMovesToEnd = $True
     ShowTooltips                  = $False
 }
