@@ -17,32 +17,31 @@ function prompt
 {
     [string] $_PromptHost = [Environment]::MachineName
     [string] $_PromptUser = [Environment]::UserName
-    function Format-CurrentPath ($Path)
+
+    $Path = $ExecutionContext.SessionState.Path.CurrentLocation
+    $_CurrentLocation = switch -regex ($Path)
     {
-        switch -regex ($Path)
+        "^C:\\Users\\$_PromptUser"
         {
-            "^C:\\Users\\$_PromptUser"
-            {
-                $Path -replace "^C:\\Users\\$_PromptUser", "~"
-                Continue
-            }
-            "^C:\\"
-            {
-                $Path -replace "^C:\\", "\"
-                Continue
-            }
-            "^Microsoft.PowerShell.Core\\FileSystem\:\:"
-            {
-                $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
-                Continue
-            }
-            default
-            {
-                $Path
-            }
+            $Path -replace "^C:\\Users\\$_PromptUser", "~"
+            Continue
+        }
+        "^C:\\"
+        {
+            $Path -replace "^C:\\", "\"
+            Continue
+        }
+        "^Microsoft.PowerShell.Core\\FileSystem\:\:"
+        {
+            $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
+            Continue
+        }
+        default
+        {
+            $Path
         }
     }
-    $_CurrentLocation = Format-CurrentPath -Path $ExecutionContext.SessionState.Path.CurrentLocation
+
     $(
         if (Test-Path -Path "Variable:\PSDebugContext")
         {
@@ -59,9 +58,7 @@ function prompt
     $(" in " | Write-Host -NoNewline) +
     $($_CurrentLocation | Write-Host -NoNewline -ForegroundColor "Magenta") +
     $( if ((Write-VcsStatus) -and ($_PoshGit)) { Write-VcsStatus } else { "" | Write-Host } ) +
-    #"`n" * ($NestedPromptLevel + 1) +
     $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline) + " "
-    # "$ "
 }
 # Aliases and preferences
 
