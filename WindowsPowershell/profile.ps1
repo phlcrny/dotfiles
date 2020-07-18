@@ -118,6 +118,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     $_ReadlineOptions = @{
         AddToHistoryHandler           = $_HistoryHandlerScriptBlock
         BellStyle                     = "None"
+        ExtraPromptLineCount          = 1
         HistoryNoDuplicates           = $True
         HistorySearchCursorMovesToEnd = $True
         ShowTooltips                  = $False
@@ -191,47 +192,45 @@ $AdminStatus = switch ($UserIsAdmin)
 [string] $Titlebar = "$CurrentUser ($AdminStatus) - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
 $Host.UI.RawUI.WindowTitle = $Titlebar
 $Host.PrivateData.VerboseForegroundColor = "Cyan"
-$SmallScreenPrompt = $False
+
+if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
+{
+    [void] (Import-Module -Name "Posh-Git")
+    $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $True
+    $GitPromptSettings.EnableWindowTitle = $False
+    $_PoshGit = $True
+}
 
 # Prompt
 function prompt
 {
-    [string] $Titlebar = "$CurrentUser ($AdminStatus) - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
-    [string] $PromptHost = [Environment]::MachineName
-    [string] $PromptUser = [Environment]::UserName
-    $Host.UI.RawUI.WindowTitle = $Titlebar
+    [string] $_PromptHost = [Environment]::MachineName
+    [string] $_PromptUser = [Environment]::UserName
 
-    function Format-CurrentPath ($Path)
+    $Path = $ExecutionContext.SessionState.Path.CurrentLocation
+    $_CurrentLocation = switch -regex ($Path)
     {
-        switch -regex ($Path)
+        "^C:\\Users\\$_PromptUser"
         {
-            "^C:\\Users\\$PromptUser"
-            {
-                $Path -replace "^C:\\Users\\$PromptUser", "~"
-                Continue
-            }
-
-            "^C:\\"
-            {
-                $Path -replace "^C:\\", "\"
-                Continue
-            }
-
-            "^Microsoft.PowerShell.Core\\FileSystem\:\:"
-            {
-                $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
-                Continue
-            }
-
-            default
-            {
-                $Path
-            }
+            $Path -replace "^C:\\Users\\$_PromptUser", "~"
+            Continue
+        }
+        "^C:\\"
+        {
+            $Path -replace "^C:\\", "\"
+            Continue
+        }
+        "^Microsoft.PowerShell.Core\\FileSystem\:\:"
+        {
+            $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
+            Continue
+        }
+        default
+        {
+            $Path
         }
     }
 
-    $CurrentLocation = Format-CurrentPath -Path $ExecutionContext.SessionState.Path.CurrentLocation
-    $SimulatedPrompt = "$PromptUser on $PromptHost at $CurrentLocation"
     $(
         if (Test-Path -Path "Variable:\PSDebugContext")
         {
@@ -242,29 +241,13 @@ function prompt
             ''
         }
     ) +
-    $($PromptUser | Write-Host -NoNewline -ForegroundColor "Cyan") +
+    $($_PromptUser | Write-Host -NoNewline -ForegroundColor "Cyan") +
     $(" on " | Write-Host -NoNewline) +
-    $($PromptHost | Write-Host -NoNewline -ForegroundColor "Green") +
+    $($_PromptHost | Write-Host -NoNewline -ForegroundColor "Green") +
     $(" in " | Write-Host -NoNewline) +
-    $($CurrentLocation | Write-Host -ForegroundColor "Magenta" -NoNewline) +
-    $(
-        if (($SimulatedPrompt.Length -ge 80) -or ($SmallScreenPrompt)) # I don't want to have my commands wrap on to another line just because of a long path.
-        {
-            if ($HasPSReadline)
-            {
-                Set-PSReadLineOption -ExtraPromptLineCount 1
-            }
-            " " + $(Write-Host "") + $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline)
-        }
-        else
-        {
-            if ($HasPSReadline)
-            {
-                Set-PSReadLineOption -ExtraPromptLineCount 0
-            }
-            $(" $" | Write-Host -ForegroundColor "Cyan" -NoNewline)
-        }
-    ) + " "
+    $($_CurrentLocation | Write-Host -NoNewline -ForegroundColor "Magenta") +
+    $( if ((Write-VcsStatus) -and ($_PoshGit)) { Write-VcsStatus } else { "" | Write-Host } ) +
+    $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline) + " "
 }
 
 if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorAction "SilentlyContinue")
