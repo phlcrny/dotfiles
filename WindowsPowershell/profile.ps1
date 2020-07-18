@@ -129,34 +129,6 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
     Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
     # Amend default search behaviour
-
-    # Custom bindings
-    Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+P" -Description "Opens the folder where your profile is saved." -ScriptBlock {
-        $_ProfileObject = Get-Item $Profile.CurrentUserAllHosts
-        if ($_ProfileObject.LinkType -like "SymbolicLink")
-        {
-            Invoke-Item (Split-Path -Path $_ProfileObject.Target)
-        }
-        else
-        {
-            Invoke-Item (Split-Path -Path $Profile.CurrentUserAllHosts)
-        }
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+C" -Description "Inserts ' | clip' at the end of the line/input." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::EndOfLine()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert(" | clip")
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+Shift+D" -Description "Adds an exit keybinding" -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::Abort()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("Exit")
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
-    }
-    Set-PSReadLineKeyHandler -Chord "Ctrl+Q" -Description "Wraps the current word in double-quotes." -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::BackwardWord()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert('"')
-        [Microsoft.PowerShell.PSConsoleReadLine]::ForwardWord()
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert('"')
-    }
 }
 
 # Default Parameter Values
