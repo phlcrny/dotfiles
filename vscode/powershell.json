@@ -11,6 +11,8 @@
             "\t\tTBC - Long description",
             "\t.EXAMPLE",
             "\t\tTBC - Example of how to use this cmdlet",
+            "\t.PARAMETER List",
+            "\t\tTBC - Parameter explanation",
             "\t.INPUTS",
             "\t\tTBC - Inputs to this cmdlet (if any)",
             "\t.OUTPUTS",
