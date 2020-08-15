@@ -13,7 +13,7 @@
     "showTerminalTitleInTitlebar": true,
     "profiles": {
         "defaults": {
-            "colorScheme": "Dracula",
+            "colorScheme": "Dracula(ish)",
             "fontFace": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
             "fontSize": 11,
             "cursorShape": "bar",
@@ -23,7 +23,7 @@
             "padding": "1, 0",
             "snapOnInput": true,
             "useAcrylic": true,
-            "acrylicOpacity": 0.8
+            "acrylicOpacity": 0.3
         },
         "list": [
             {
@@ -301,8 +301,8 @@
     ],
     "schemes": [
         {
-            "name": "Dracula",
-            "background": "#282A36",
+            "name": "Dracula(ish)",
+            "background": "#17171f",
             "black": "#21222C",
             "blue": "#BD93F9",
             "brightBlack": "#6272A4",
@@ -318,7 +318,7 @@
             "green": "#50FA7B",
             "purple": "#FF79C6",
             "red": "#FF5555",
-            "white": "#F8F8F2",
+            "white": "#f7f7f9",
             "yellow": "#F1FA8C"
         },
         {
