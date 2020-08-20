@@ -69,6 +69,7 @@
   "telemetry.enableTelemetry": false,
   // Powershell formatting
   "powershell.codeFormatting.preset": "Allman",
+  "powershell.codeFormatting.addWhitespaceAroundPipe": true,
   "powershell.codeFormatting.alignPropertyValuePairs": true,
   "powershell.codeFormatting.autoCorrectAliases": true,
   "powershell.codeFormatting.ignoreOneLineBlock": true,
