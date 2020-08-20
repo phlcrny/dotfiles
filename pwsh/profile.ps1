@@ -158,6 +158,7 @@ Set-PSReadLineOption @_ReadlineOptions
 Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
 Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
 Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
+$ENV:POWERSHELL_UPDATECHECK = "LTS"
 
 # Default Parameter Values
 $PSDefaultParameterValues = @{
