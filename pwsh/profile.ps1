@@ -1,6 +1,3 @@
-# Font:
-# Consolas, 14
-
 [string] $_CurrentUser = "$([Environment]::UserDomainName)\$([Environment]::UserName)"
 [string] $_Titlebar = "$_CurrentUser - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
 $Host.UI.RawUI.WindowTitle = $_Titlebar
