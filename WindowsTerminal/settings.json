@@ -14,8 +14,6 @@
     "profiles": {
         "defaults": {
             "colorScheme": "Dracula(ish)",
-            "fontFace": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
-            "fontSize": 11,
             "cursorShape": "bar",
             "startingDirectory": "%USERPROFILE%",
             "closeOnExit": "graceful",
@@ -23,7 +21,7 @@
             "padding": "1, 0",
             "snapOnInput": true,
             "useAcrylic": true,
-            "acrylicOpacity": 0.5
+            "acrylicOpacity": 0.65
         },
         "list": [
             {
