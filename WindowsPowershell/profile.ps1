@@ -228,14 +228,5 @@ if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorActi
     . (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1")
 }
 
-# Clear-host at start-up.
-if (($HasPSReadline) -and ($Host.Name -eq "ConsoleHost"))
-{
-    [Microsoft.PowerShell.PSConsoleReadLine]::ClearScreen()
-}
-else
-{
-    Clear-Host
-}
 # Clean-up stray variables before going out into the wild.
 Remove-Variable "Alias", "Admin", "AliasSplat", "CurrentUserID", "HasPSReadLine", "NewAliases", "Titlebar", "WindowsPrincipal", "UserIsAdmin", "_HistoryHandlerScriptBlock", "_ReadlineOptions" -ErrorAction "SilentlyContinue"
