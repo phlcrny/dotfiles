@@ -7,6 +7,7 @@
     ooops = oops
     pu = push origin HEAD
     re = remote -v
+    remove = branch -D
     settings = config --list --show-origin
     squash = merge --squash
     subpull = submodule update --remote --init
