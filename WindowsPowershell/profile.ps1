@@ -228,5 +228,10 @@ if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorActi
     . (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1")
 }
 
+if (Test-Path -Path "$ENV:ChocolateyInstall\helpers\ChocolateyTabExpansion.ps1")
+{
+    . "$ENV:ChocolateyInstall\helpers\ChocolateyTabExpansion.ps1"
+}
+
 # Clean-up stray variables before going out into the wild.
 Remove-Variable "Alias", "Admin", "AliasSplat", "CurrentUserID", "HasPSReadLine", "NewAliases", "Titlebar", "WindowsPrincipal", "UserIsAdmin", "_HistoryHandlerScriptBlock", "_ReadlineOptions" -ErrorAction "SilentlyContinue"
