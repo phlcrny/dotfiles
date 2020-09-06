@@ -175,10 +175,5 @@ if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorActi
     . (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1")
 }
 
-if (Test-Path -Path "$ENV:ChocolateyInstall\helpers\ChocolateyTabExpansion.ps1")
-{
-    . "$ENV:ChocolateyInstall\helpers\ChocolateyTabExpansion.ps1"
-}
-
 # Variable clean-up.
 Remove-Variable "_Alias", "_AliasSplat", "_CurrentUser", "_NewAliases" -ErrorAction "SilentlyContinue"
