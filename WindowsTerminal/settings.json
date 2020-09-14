@@ -11,6 +11,7 @@
     "requestedTheme": "system",
     "showTabsInTitlebar": true,
     "showTerminalTitleInTitlebar": true,
+    "multiLinePasteWarning": false,
     "profiles": {
         "defaults": {
             "colorScheme": "Dracula(ish)",
