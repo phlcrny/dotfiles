@@ -60,6 +60,7 @@
   // Editor Mappings/Behaviour
   "editor.formatOnType": true,
   "editor.multiCursorModifier": "ctrlCmd",
+  "extensions.showRecommendationsOnlyOnDemand": true,
   "files.associations": {
     "*.psrc": "powershell",
     "*.pssc": "powershell",
