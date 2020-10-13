@@ -125,5 +125,7 @@
   "remote.SSH.showLoginTerminal": true,
   "remote.SSH.remotePlatform": {
     "*": "linux"
-  }
+  },
+  // Error Lens
+  "errorLens.delay": 10
 }
