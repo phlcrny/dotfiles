@@ -1,7 +1,5 @@
 # dotfiles
 
-Various dotfiles for configuring and personalising programs on Windows and Linux.
-
 Now features low-quality Powershell for quick installation, and lower quality shell scripts for Linux!
 
 ## Getting Started
