@@ -5,7 +5,7 @@
         "bash_profile": "shellscript",
         "bashrc": "shellscript",
         "gitconfig": "ini",
-        ".tmux.conf": "shellscript",
+        "tmux.conf": "shellscript",
         "vimrc": "viml"
     },
     "files.trimTrailingWhitespace": true

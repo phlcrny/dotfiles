@@ -43,7 +43,7 @@
     )
 
     [PSCustomObject]@{
-        Source          = "$PSScriptRoot/tmux/.tmux.conf"
+        Source          = "$PSScriptRoot/tmux/tmux.conf"
         UnixDestination = "/home/$User/.tmux.conf"
         Description     = "tmux config"
     }
