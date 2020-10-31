@@ -8,15 +8,6 @@ Now features low-quality Powershell for quick installation, and lower quality sh
 # Install with symlinks for the current user
 . .\install.ps1 -InstallSymlinks
 
-# Install with symlinks for John Doe
-. .\install.ps1 -User JohnDoe -InstallSymlinks
-
-# Install with symlinks and overwrites any existing files
-. .\install.ps1 -InstallSymlinks -Force
-
-# Install with symlinks, but back up any existing files before replacing them
-. .\install.ps1 -InstallSymlinks -Force
-
 # Install with file copies
 . .\install.ps1 -InstallCopies
 
@@ -28,9 +19,6 @@ Now features low-quality Powershell for quick installation, and lower quality sh
 
 # Uninstall for the current user
 . .\uninstall.ps1
-
-# Uninstall for John Doe
-. .\uninstall.ps1 -User JohnDoe
 
 # Uninstall a subset of files
 . .\uninstall.ps1 -Include "Visual Studio Code"
