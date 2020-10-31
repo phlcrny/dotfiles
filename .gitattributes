@@ -10,7 +10,7 @@ bash_profile eol=lf
 bashrc eol=lf
 
 # tmux
-.tmux.conf eol=lf
+tmux.conf eol=lf
 
 # vim
 vimrc eol=lf
