@@ -14,17 +14,12 @@ echo "bashrc"
 ln -sf ~/dotfiles/bash/bashrc ~/.bashrc
 echo "bash aliases"
 ln -sf ~/dotfiles/bash/bash_aliases ~/.bash_aliases
-
 # tmux
 echo "tmux config"
-ln -sf "~/dotfiles/tmux/.tmux.conf" "~/.tmux.conf"
-echo "tmux default session"
-ln -sf "~/dotfiles/tmux/.tmux.conf" "~/.tmux-default"
-
+ln -sf "~/dotfiles/tmux/tmux.conf" "~/.tmux.conf"
 # vim
 echo "vim config"
 ln -sf "~/dotfiles/vim/vimrc" "~/.vimrc"
-
 # pwsh
 if [ -x "$(command -v pwsh)" ]; then
     mkdir -p "~/.config/powershell"
@@ -34,7 +29,6 @@ if [ -x "$(command -v pwsh)" ]; then
     mkdir -p "~/.local/share/powershell/PSReadLine/"
     ln -sf "~/.local/share/powershell/PSReadLine/ConsoleHost_history.txt" "~/.ps_history.txt"
 fi
-
 # vscode
 if [ -x "$(command -v code)" ]; then
     mkdir -p "~/.config/Code/User"
