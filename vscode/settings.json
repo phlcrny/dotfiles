@@ -89,7 +89,6 @@
   "powershell.codeFormatting.whitespaceBetweenParameters": true,
   // Powershell behaviour
   "powershell.developer.editorServicesLogLevel": "Verbose",
-  "powershell.enableProfileLoading": false,
   "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.startAutomatically": true,
