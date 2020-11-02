@@ -127,5 +127,8 @@
     "*": "linux"
   },
   // Error Lens
-  "errorLens.delay": 10
+  "errorLens.delay": 10,
+  "errorLens.addAnnotationTextPrefixes": true,
+  "errorLens.statusBarMessageEnabled": true,
+  "errorLens.statusBarColorsEnabled": true
 }
