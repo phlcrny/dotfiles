@@ -94,7 +94,8 @@
   "powershell.startAutomatically": true,
   // Git
   "git.autofetch": true,
-  "git.autofetchPeriod": 10,
+  "git.autofetchPeriod": 5,
+  "git.defaultCloneDirectory": "C:\\Dev",
   "git.fetchOnPull": true,
   "git.openDiffOnClick": false,
   "git.scanRepositories": [
@@ -129,5 +130,5 @@
   "errorLens.delay": 10,
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
-  "errorLens.statusBarColorsEnabled": true
+  "errorLens.statusBarColorsEnabled": true,
 }
