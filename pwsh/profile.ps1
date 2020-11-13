@@ -23,6 +23,11 @@ function prompt
             $Path -replace "^C:\\Users\\$_PromptUser", "~"
             Continue
         }
+        "^/home/$([Environment]::Username)"
+        {
+            $Path -replace "^/home/$([Environment]::Username)", "~"
+            Continue
+        }
         "^C:\\"
         {
             $Path -replace "^C:\\", "\"
