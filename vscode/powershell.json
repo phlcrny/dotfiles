@@ -2,7 +2,7 @@
     "Phil-CmdletFull": {
         "prefix": "Phil-CmdletFull",
         "body": [
-            "function ${name:Test-Cmdlet}",
+            "function ${1:Test-Cmdlet}",
             "{",
             "\t<#",
             "\t.SYNOPSIS",
@@ -64,12 +64,12 @@
             "\t}",
             "}"
         ],
-        "description": "A cmdlet snippet with all the trimmings."
+        "description": "Cmdlet snippet with all the trimmings."
     },
     "Phil-CmdletShort": {
         "prefix": "Phil-CmdletShort",
         "body": [
-            "function ${name:Test-Cmdlet}",
+            "function ${1:Test-Cmdlet}",
             "{",
             "\t[CmdletBinding(ConfirmImpact = \"Medium\",  SupportsShouldProcess = \\$True)]",
             "\tparam",
@@ -112,7 +112,7 @@
             "\t}",
             "}"
         ],
-        "description": "A cmdlet snippet formatted for my preferences/habits but without all the trimmings."
+        "description": "Abbreviated but still opinionated cmdlet snippet."
     },
     "Phil-MessagingBlock": {
         "prefix": "Phil-MessagingBlock",
