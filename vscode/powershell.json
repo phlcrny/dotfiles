@@ -190,7 +190,7 @@
     "Phil-SMAWorkflow": {
         "prefix": "Phil-SmaWorkflow",
         "body": [
-            "workflow ${name:Test-Workflow}",
+            "workflow ${1:Test-Workflow}",
             "{",
             "\t<#",
             "\t\tAuthor:       TBC",
