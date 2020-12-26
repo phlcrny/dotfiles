@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Windows habits.
+# Adapted Windows habits
 alias cls='clear'
 alias dir='ls -al'
-alias md='mkdir'
+alias md='mkdir -p'
 
 # Ansible
 alias ans='ansible'
@@ -11,14 +11,6 @@ alias ans-c='ansible-config'
 alias ans-i='ansible-inventory'
 alias ans-p='ansible-playbook'
 
-# Colours!
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# General convenience and amusement
+alias ls='ls -al'
+alias please='sudo'
