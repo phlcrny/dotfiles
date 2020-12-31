@@ -159,6 +159,11 @@ $_ReadlineOptions = @{
     HistorySearchCursorMovesToEnd = $True
     ShowTooltips                  = $False
 }
+if (Get-Module "PSReadline" | Where-Object Version -ge 2.1.0)
+{
+    $_ReadlineOptions.Add("PredictionSource", "History")
+}
+
 Set-PSReadLineOption @_ReadlineOptions
 Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
 Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
