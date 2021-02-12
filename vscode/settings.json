@@ -95,7 +95,7 @@
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.startAutomatically": true,
   // Git
-  "git.autofetch": true,
+  "git.autofetch": "all",
   "git.autofetchPeriod": 5,
   "git.defaultCloneDirectory": "C:\\Dev",
   "git.fetchOnPull": true,
