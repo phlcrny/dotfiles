@@ -51,6 +51,8 @@
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Dracula",
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.decorations.colors": true,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "right",
@@ -130,5 +132,5 @@
   "errorLens.delay": 10,
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
-  "errorLens.statusBarColorsEnabled": true,
+  "errorLens.statusBarColorsEnabled": true
 }
