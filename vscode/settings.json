@@ -107,10 +107,8 @@
   // GitHub
   "github.gitAuthentication": false,
   // GitLens
-  "gitlens.advanced.telemetry.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.views.repositories.autoRefresh": true,
-  "gitlens.views.repositories.location": "scm",
   // BracketPairColorizer
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
