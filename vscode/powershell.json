@@ -117,7 +117,7 @@
     "Phil-MessagingBlock": {
         "prefix": "Phil-MessagingBlock",
         "body": [
-            "-Message \"[$($MyInvocation.MyCommand.Name)] 'A message goes here.\""
+            "-Message \"[\\$(\\$MyInvocation.MyCommand.Name)] ${1:example text}\""
         ],
         "description": "A more informative default messaging block"
     },
