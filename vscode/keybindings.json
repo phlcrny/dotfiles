@@ -63,5 +63,10 @@
     {
         "key": "ctrl+k space",
         "command": "git.sync"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!terminalFocus"
     }
 ]
