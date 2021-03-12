@@ -83,5 +83,9 @@
         "key": "escape",
         "command": "-workbench.action.terminal.clearSelection",
         "when": "terminalFocus && terminalProcessSupported && terminalTextSelected && !terminalFindVisible"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "workbench.action.terminal.kill"
     }
 ]
