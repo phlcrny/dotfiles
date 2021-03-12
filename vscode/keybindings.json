@@ -87,5 +87,15 @@
     {
         "key": "ctrl+w",
         "command": "workbench.action.terminal.kill"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+shift+5",
+        "command": "-workbench.action.terminal.split",
+        "when": "terminalFocus && terminalProcessSupported"
     }
 ]
