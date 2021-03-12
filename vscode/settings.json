@@ -93,6 +93,7 @@
   "powershell.developer.editorServicesLogLevel": "Verbose",
   "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
+  "powershell.promptToUpdatePowerShell": false,
   "powershell.startAutomatically": true,
   // Git
   "git.autofetch": "all",
