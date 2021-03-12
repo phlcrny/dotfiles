@@ -6,7 +6,6 @@ if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
 {
     [void] (Import-Module -Name "Posh-Git")
     $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $True
-    $GitPromptSettings.EnableWindowTitle = $False
     $_PoshGit = $True
 }
 
