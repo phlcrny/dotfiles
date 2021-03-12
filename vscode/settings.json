@@ -111,6 +111,8 @@
   // GitLens
   "gitlens.codeLens.enabled": false,
   "gitlens.views.repositories.autoRefresh": true,
+  "gitlens.showWelcomeOnInstall": false,
+  "gitlens.showWhatsNewAfterUpgrades": false,
   // BracketPairColorizer
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
