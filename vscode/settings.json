@@ -97,7 +97,8 @@
   "powershell.startAutomatically": true,
   // Git
   "git.autofetch": "all",
-  "git.autofetchPeriod": 5,
+  "git.autofetchPeriod": 2,
+  "git.autoStash": true,
   "git.defaultCloneDirectory": "C:\\Dev",
   "git.fetchOnPull": true,
   "git.openDiffOnClick": false,
