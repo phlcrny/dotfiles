@@ -41,4 +41,6 @@ if [ -x "$(command -v code)" ]; then
     ln -sf ~/dotfiles/vscode/ansible.json ~/.config/Code/User/snippets/ansible.json
     echo "Installing Visual Studio Code Powershell snippets symlink"
     ln -sf ~/dotfiles/vscode/powershell.json ~/.config/Code/User/snippets/powershell.json
+    echo "Installing extensions"
+    cat ~/vscode/extensions | xargs -L 1 code --install-extension
 fi
