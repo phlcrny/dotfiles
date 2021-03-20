@@ -37,10 +37,10 @@ if [ -x "$(command -v code)" ]; then
     echo "Installing Visual Studio Code keybindings symlink"
     ln -sf ~/dotfiles/vscode/keybindings.json ~/.config/Code/User/keybindings.json
     echo "Installing Visual Studio Code Ansible snippets symlink"
-    mkdir -p ~/.config/Code/snippets
+    mkdir -p ~/.config/Code/User/snippets/
     ln -sf ~/dotfiles/vscode/ansible.json ~/.config/Code/User/snippets/ansible.json
     echo "Installing Visual Studio Code Powershell snippets symlink"
     ln -sf ~/dotfiles/vscode/powershell.json ~/.config/Code/User/snippets/powershell.json
     echo "Installing extensions"
-    cat ~/vscode/extensions | xargs -L 1 code --install-extension
+    cat ~/dotfiles/vscode/extensions | xargs -L 1 code --install-extension
 fi
