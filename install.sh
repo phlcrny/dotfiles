@@ -4,14 +4,17 @@
 #
 # This script assumes that the repository is cloned to ~/dotfiles
 # Adjust the path as required if this isn't right for you.
-
+CurrentDate=$(date +"%d-%b-%Y_%H%M%S")
 # bash
 echo "Installing bash profile symlink"
+cp ~/.bash_profile ~/.bash_profile_$CurrentDate.bak
 ln -sf ~/dotfiles/bash/bash_profile ~/.bash_profile
 echo "Installing Generic bash profile symlink"
 ln -sf ~/dotfiles/bash/bash_profile ~/.profile
+cp ~/.profile ~/.profile_$CurrentDate.bak
 echo "Installing bashrc symlink"
 ln -sf ~/dotfiles/bash/bashrc ~/.bashrc
+cp ~/.bashrc ~/.bashrc_$CurrentDate.bak
 echo "Installing bash aliases symlink"
 ln -sf ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 # git
