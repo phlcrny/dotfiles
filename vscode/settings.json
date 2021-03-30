@@ -57,7 +57,6 @@
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "right",
-  "workbench.statusBar.visible": false,
   "zenMode.centerLayout": false,
   "zenMode.hideTabs": false,
   // Editor Mappings/Behaviour
@@ -144,5 +143,6 @@
   "errorLens.delay": 10,
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
-  "errorLens.statusBarColorsEnabled": true
+  "errorLens.statusBarColorsEnabled": true,
+  "powershell.powerShellDefaultVersion": "Windows PowerShell (x64)"
 }
