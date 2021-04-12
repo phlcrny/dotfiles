@@ -43,11 +43,9 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.sortOrder": "type",
   "scm.alwaysShowActions": true,
-  "scm.alwaysShowProviders": true,
   "scm.alwaysShowRepositories": true,
   "scm.defaultViewMode": "tree",
   "scm.providerCountBadge": "visible",
-  "window.menuBarVisibility": "default",
   "window.newWindowDimensions": "maximized",
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
   "workbench.activityBar.visible": true,
@@ -143,6 +141,5 @@
   "errorLens.delay": 10,
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
-  "errorLens.statusBarColorsEnabled": true,
-  "powershell.powerShellDefaultVersion": "Windows PowerShell (x64)"
+  "errorLens.statusBarColorsEnabled": true
 }
