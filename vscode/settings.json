@@ -141,5 +141,7 @@
   "errorLens.delay": 10,
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
-  "errorLens.statusBarColorsEnabled": true
+  "errorLens.statusBarColorsEnabled": true,
+  // Inline Values
+  "debug.inlineValues": true
 }
