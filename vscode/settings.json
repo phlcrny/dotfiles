@@ -42,6 +42,7 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.sortOrder": "type",
+  "extensions.ignoreRecommendations": true,
   "scm.alwaysShowActions": true,
   "scm.alwaysShowRepositories": true,
   "scm.defaultViewMode": "tree",
@@ -99,6 +100,7 @@
   "git.autoStash": true,
   "git.defaultCloneDirectory": "C:\\Dev",
   "git.fetchOnPull": true,
+  "git.ignoreMissingGitWarning": true,
   "git.openDiffOnClick": false,
   "git.scanRepositories": [
     "C:\\Dev"
