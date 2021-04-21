@@ -72,7 +72,7 @@ fi
 unset color_prompt force_color_prompt
 
 if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
+    . ~/.bash_aliases
 fi
 
 if [ -f /etc/bash_completion ]; then
@@ -80,5 +80,5 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 if [ -f ~/.profile_extras ]; then
-. ~/.profile_extras
+    . ~/.profile_extras
 fi
