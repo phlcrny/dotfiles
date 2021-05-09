@@ -122,6 +122,13 @@
   "gitlens.views.tags.files.layout": "tree",
   "gitlens.views.remotes.files.layout": "tree",
   "gitlens.views.repositories.files.layout": "tree",
+  // Python
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
   // BracketPairColorizer
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
