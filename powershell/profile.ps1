@@ -176,7 +176,14 @@ if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
 function prompt
 {
     [string] $_PromptHost = [Environment]::MachineName
-    [string] $_PromptUser = [Environment]::UserName
+    [string] $_PromptUser = if ($ENV:PromptUsername)
+    {
+        $ENV:PromptUsername
+    }
+    else
+    {
+        [Environment]::UserName
+    }
 
     $Path = $ExecutionContext.SessionState.Path.CurrentLocation
     $_CurrentLocation = switch -regex ($Path)
