@@ -168,64 +168,12 @@ $Host.PrivateData.VerboseForegroundColor = "Cyan"
 if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
 {
     [void] (Import-Module -Name "Posh-Git")
-    $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $True
     $_PoshGit = $True
 }
 
-# Prompt
-function prompt
+if (Get-Command "starship" -ErrorAction "SilentlyContinue")
 {
-    [string] $_PromptHost = [Environment]::MachineName
-    [string] $_PromptUser = if ($ENV:PromptUsername)
-    {
-        $ENV:PromptUsername
-    }
-    else
-    {
-        [Environment]::UserName
-    }
-
-    $Path = $ExecutionContext.SessionState.Path.CurrentLocation
-    $_CurrentLocation = switch -regex ($Path)
-    {
-        "^C:\\Users\\$_PromptUser"
-        {
-            $Path -replace "^C:\\Users\\$_PromptUser", "~"
-            Continue
-        }
-        "^C:\\"
-        {
-            $Path -replace "^C:\\", "\"
-            Continue
-        }
-        "^Microsoft.PowerShell.Core\\FileSystem\:\:"
-        {
-            $Path -replace "^Microsoft.PowerShell.Core\\FileSystem\:\:"
-            Continue
-        }
-        default
-        {
-            $Path
-        }
-    }
-
-    $(
-        if (Test-Path -Path "Variable:\PSDebugContext")
-        {
-            $('[DBG]: ' | Write-Host -ForegroundColor "Green" -NoNewline)
-        }
-        else
-        {
-            ''
-        }
-    ) +
-    $($_PromptUser | Write-Host -NoNewline -ForegroundColor "Cyan") +
-    $(" on " | Write-Host -NoNewline) +
-    $($_PromptHost | Write-Host -NoNewline -ForegroundColor "Green") +
-    $(" in " | Write-Host -NoNewline) +
-    $($_CurrentLocation | Write-Host -NoNewline -ForegroundColor "Magenta") +
-    $( if ((Write-VcsStatus) -and ($_PoshGit)) { Write-VcsStatus } else { "" | Write-Host } ) +
-    $("$" | Write-Host -ForegroundColor "Cyan" -NoNewline) + " "
+    Invoke-Expression (&starship init powershell)
 }
 
 if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorAction "SilentlyContinue")

@@ -91,6 +91,13 @@
     }
 
     [PSCustomObject]@{
+        Source             = "$PSScriptRoot/starship/config.toml"
+        UnixDestination    = "/home/$User/.config/starship.toml"
+        WindowsDestination = "/home/$User/.config/starship.toml"
+        Description        = 'starship config'
+    }
+
+    [PSCustomObject]@{
         Source             = "$PSScriptRoot/terminal/settings.json"
         WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
         Description        = "Windows Terminal settings"

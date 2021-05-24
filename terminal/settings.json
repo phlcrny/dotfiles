@@ -12,6 +12,7 @@
     "profiles": {
         "defaults": {
             "colorScheme": "Dracula(ish)",
+            "fontFace": "CaskaydiaCove Nerd Font Mono",
             "cursorShape": "bar",
             "startingDirectory": "%USERPROFILE%",
             "closeOnExit": "graceful",

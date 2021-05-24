@@ -21,7 +21,7 @@
   },
   // Terminal appearance
   "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
-  "terminal.integrated.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+  "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.cursorBlinking": true,

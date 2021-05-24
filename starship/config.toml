@@ -1,0 +1,64 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$kubernetes\
+$docker_context\
+$golang\
+$nodejs\
+$python\
+$terraform\
+$vagrant\
+$line_break\
+$cmd_duration\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
+
+scan_timeout = 10   # Wait 10ms for starship to check files under the pwd.
+add_newline = false # Disable the blank line at the start of the prompt
+
+[line_break]
+disabled = false
+
+[cmd_duration]
+min_time = 100
+format = "[$duration](#1ec9d6) "
+
+[username]
+style_user = "#1ec9d6"
+style_root = "white bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format =  "on [$hostname](#009933) "
+disabled = false
+
+[directory]
+format = "in [$path]($style)[$read_only]($read_only_style) "
+style = "#cb0eb9"
+truncation_length = 8
+truncation_symbol = "…/"
+truncate_to_repo = false
+
+[git_branch]
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+[character]
+format = "$symbol"
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "

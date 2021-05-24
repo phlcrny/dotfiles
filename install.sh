@@ -51,3 +51,9 @@ if [ -x "$(command -v code)" ]; then
     echo "Installing extensions"
     cat ~/dotfiles/vscode/extensions | xargs -L 1 code --install-extension
 fi
+# starship
+if [ -x "$(command -v starship)" ]; then
+    mkdir -p ~/.config
+    echo "Installing starship config"
+    ln -sf ~/dotfiles/starship/config.toml ~/.config/starship.toml
+fi
