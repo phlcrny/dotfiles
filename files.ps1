@@ -93,7 +93,7 @@
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/starship/config.toml"
         UnixDestination    = "/home/$User/.config/starship.toml"
-        WindowsDestination = "/home/$User/.config/starship.toml"
+        WindowsDestination = "C:/Users/$User/.config/starship.toml"
         Description        = 'starship config'
     }
 
