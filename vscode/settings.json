@@ -51,6 +51,9 @@
   "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Dracula",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "workbench.editor.decorations.badges": true,
   "workbench.editor.decorations.colors": true,
   "workbench.editor.highlightModifiedTabs": true,
@@ -122,13 +125,6 @@
   "gitlens.views.tags.files.layout": "tree",
   "gitlens.views.remotes.files.layout": "tree",
   "gitlens.views.repositories.files.layout": "tree",
-  // Python
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
   // BracketPairColorizer
   "bracketPairColorizer.highlightActiveScope": true,
   "bracketPairColorizer.showBracketsInGutter": true,
