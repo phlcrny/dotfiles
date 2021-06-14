@@ -16,6 +16,8 @@ set laststatus=2                          " Always show the statusline
 set expandtab                             " Replace tabs with spaces
 set tabstop=4                             " Replace each tab with 4 spaces
 autocmd FileType yaml setlocal tabstop=2  " Replace each tab with 2 spaces for yaml
+set wildmenu                              " Enable auto-complete menu on TAB
+set wildmode=list:full                    " Auto-complete options sorting/style
 
 """""" Appearance
 
