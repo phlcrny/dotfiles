@@ -1,6 +1,9 @@
 """""" Behaviour
 
 syntax enable                             " Enable syntax highlighting
+filetype on                               " Enable file type detection
+filetype plugin on                        " Enable/load plugins for detected file type(s)
+filetype indent on                        " Enable/load indent file for detected file type(s)
 set noerrorbells                          " Disable error bells
 set noswapfile                            " Disable the temporary swap files
 set number                                " Add numbers to the side
