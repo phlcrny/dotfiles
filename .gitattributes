@@ -1,6 +1,9 @@
 # Default behaviour
 * text=auto
 
+# Scripts
+install.sh eol=lf
+
 # Git
 git text eol=lf
 
