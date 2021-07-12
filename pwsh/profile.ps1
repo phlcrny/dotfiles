@@ -125,6 +125,26 @@ $PSDefaultParameterValues = @{
     "Set-Location:Path"     = $HOME
 }
 
+# Via Mathias Jessen:
+# https://stackoverflow.com/a/68314618/11838387
+$ExecutionContext.InvokeCommand.CommandNotFoundAction = {
+    param(
+        [string] $CommandName,
+        [System.Management.Automation.CommandLookupEventArgs] $EventArgs
+    )
+
+    # Test if the "command" in question is actually a directory path
+    if (Test-Path $CommandName -PathType Container)
+    {
+        # Tell PowerShell to execute Set-Location against it instead
+        $EventArgs.CommandScriptBlock = {
+            Set-Location $CommandName
+        }.GetNewClosure()
+        # Tell PowerShell that we've provided an alternative, it can stop looking for commands (and stop throwing the error)
+        $EventArgs.StopSearch = $true
+    }
+}
+
 if (Get-Command "starship" -ErrorAction "SilentlyContinue")
 {
     Invoke-Expression (&starship init powershell)
