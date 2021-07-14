@@ -12,7 +12,5 @@
     squash = merge --squash
     subpull = submodule update --remote --init
     what = log -n 5 --stat
-[core]
-	autocrlf = true
 [include]
     path = .git-identity
