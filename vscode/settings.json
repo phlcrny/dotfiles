@@ -70,7 +70,6 @@
     "*.pssc": "powershell",
     "*.ps1xml": "powershell"
   },
-  "files.defaultLanguage": "powershell",
   "telemetry.enableTelemetry": false,
   // Powershell formatting
   "powershell.codeFormatting.preset": "Allman",
