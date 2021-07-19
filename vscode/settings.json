@@ -147,6 +147,5 @@
   "errorLens.statusBarMessageEnabled": true,
   "errorLens.statusBarColorsEnabled": true,
   // Inline Values
-  "debug.inlineValues": true,
-  "editor.quickSuggestionsDelay": 3000
+  "debug.inlineValues": true
 }
