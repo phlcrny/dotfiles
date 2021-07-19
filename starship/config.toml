@@ -60,7 +60,7 @@ truncate_to_repo = false
 disabled = false
 symbol = ' '
 style = '#1ec9d6'
-format = '[\[](white)[$branch]($style)[$symbol](#cb0eb9) '
+format = '[$branch]($style)[$symbol](#cb0eb9) '
 
 [git_status]
 disabled = false
@@ -75,7 +75,7 @@ modified = '!'
 staged = '+'
 renamed = '»'
 deleted = '✘'
-format = '([$all_status$ahead_behind]($style)[\]](white) )'
+format = '([$all_status$ahead_behind]($style) )'
 
 [character]
 disabled = false
