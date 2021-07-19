@@ -30,7 +30,7 @@
   "breadcrumbs.enabled": true,
   "debug.openDebug": "neverOpen",
   "editor.fontSize": 14,
-  "editor.fontFamily": "Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+  "editor.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
   "editor.minimap.side": "left",
