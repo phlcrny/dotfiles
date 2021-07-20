@@ -146,6 +146,7 @@
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
   "errorLens.statusBarColorsEnabled": true,
+  "errorLens.warningColor": "rgba(180,180,0,0.1)",
   // Inline Values
   "debug.inlineValues": true
 }
