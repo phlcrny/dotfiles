@@ -148,5 +148,9 @@
   "errorLens.statusBarColorsEnabled": true,
   "errorLens.warningColor": "rgba(180,180,0,0.1)",
   // Inline Values
-  "debug.inlineValues": true
+  "debug.inlineValues": true,
+  // Tab Nine
+  "tabnine.experimentalAutoImports": true,
+  // Red Hat
+  "redhat.telemetry.enabled": false
 }
