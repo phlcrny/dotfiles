@@ -20,58 +20,52 @@
     ]
   },
   // Terminal appearance
-  "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
   "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
+  //
   // Editor appearance
-  "breadcrumbs.enabled": true,
-  "debug.openDebug": "neverOpen",
+  //
+  "editor.bracketPairColorization.enabled": true,
   "editor.fontSize": 14,
   "editor.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
+  "editor.guides.bracketPairs": true,
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
-  "editor.minimap.side": "left",
+  "editor.scrollbar.verticalScrollbarSize": 20,
+  "editor.scrollbar.horizontalScrollbarSize": 20,
   "editor.tokenColorCustomizations": {
     "[Dracula]": {
       "variables": "#ffd09a"
     }
   },
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.sortOrder": "type",
-  "extensions.ignoreRecommendations": true,
-  "scm.alwaysShowActions": true,
-  "scm.alwaysShowRepositories": true,
-  "scm.defaultViewMode": "tree",
-  "scm.providerCountBadge": "visible",
-  "window.newWindowDimensions": "maximized",
-  "window.title": "${dirty}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
-  "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Dracula",
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
-  },
-  "workbench.editor.decorations.badges": true,
-  "workbench.editor.decorations.colors": true,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "right",
   "zenMode.centerLayout": false,
   "zenMode.hideTabs": false,
+  //
   // Editor Mappings/Behaviour
+  //
   "editor.formatOnType": true,
   "editor.multiCursorModifier": "ctrlCmd",
-  "editor.quickSuggestions": false,
   "files.associations": {
     "*.psrc": "powershell",
     "*.pssc": "powershell",
     "*.ps1xml": "powershell"
   },
-  "telemetry.enableTelemetry": false,
+  "scm.alwaysShowActions": true,
+  "scm.alwaysShowRepositories": true,
+  "scm.defaultViewMode": "tree",
+  "scm.providerCountBadge": "visible",
+  "telemetry.telemetryLevel": "Error",
+  "window.title": "${dirty}${remoteName}${activeEditorMedium}${separator}${rootPath}${separator}${appName}",
+  //
   // Powershell formatting
+  //
   "powershell.codeFormatting.preset": "Allman",
   "powershell.codeFormatting.addWhitespaceAroundPipe": true,
   "powershell.codeFormatting.alignPropertyValuePairs": true,
@@ -90,27 +84,33 @@
   "powershell.codeFormatting.whitespaceAroundOperator": true,
   "powershell.codeFormatting.whitespaceAroundPipe": false,
   "powershell.codeFormatting.whitespaceBetweenParameters": true,
+  //
   // Powershell behaviour
+  //
   "powershell.developer.editorServicesLogLevel": "Verbose",
   "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.promptToUpdatePowerShell": false,
   "powershell.startAutomatically": true,
-  // Git
+  //
+  // git
+  //
   "git.autofetch": "all",
-  "git.autofetchPeriod": 2,
+  "git.autofetchPeriod": 30,
   "git.autoStash": true,
-  "git.defaultCloneDirectory": "C:\\Dev",
   "git.fetchOnPull": true,
-  "git.ignoreMissingGitWarning": true,
-  "git.openDiffOnClick": false,
+  "git.pruneOnFetch": true,
   "git.scanRepositories": [
-    "C:\\Dev"
+    "C:\\Dev",
+    "~/Dev"
   ],
-  "git.showPushSuccessNotification": true,
+  //
   // GitHub
+  //
   "github.gitAuthentication": false,
+  //
   // GitLens
+  //
   "gitlens.codeLens.enabled": false,
   "gitlens.views.repositories.autoRefresh": true,
   "gitlens.showWelcomeOnInstall": false,
@@ -124,33 +124,16 @@
   "gitlens.views.tags.files.layout": "tree",
   "gitlens.views.remotes.files.layout": "tree",
   "gitlens.views.repositories.files.layout": "tree",
-  // BracketPairColorizer
-  "bracketPairColorizer.highlightActiveScope": true,
-  "bracketPairColorizer.showBracketsInGutter": true,
-  "bracketPairColorizer.showBracketsInRuler": true,
-  // Rainbow CSV
-  "rainbow_csv.csv_lint_detect_trailing_spaces": true,
-  "rainbow_csv.enable_context_menu_tail": true,
-  // Remote SSH
-  "remote.SSH.defaultExtensions": [
-    "CoenraadS.bracket-pair-colorizer",
-    "oderwat.indent-rainbow",
-    "shardulm94.trailing-spaces"
-  ],
-  "remote.SSH.showLoginTerminal": true,
-  "remote.SSH.remotePlatform": {
-    "*": "linux"
-  },
+  //
+  // tabnine
+  //
+  "tabnine.experimentalAutoImports": true,
+  //
   // Error Lens
+  //
   "errorLens.delay": 3000,
   "errorLens.addAnnotationTextPrefixes": true,
   "errorLens.statusBarMessageEnabled": true,
   "errorLens.statusBarColorsEnabled": true,
-  "errorLens.warningColor": "rgba(180,180,0,0.1)",
-  // Inline Values
-  "debug.inlineValues": true,
-  // Tab Nine
-  "tabnine.experimentalAutoImports": true,
-  // Red Hat
-  "redhat.telemetry.enabled": false
+  "errorLens.warningColor": "rgba(180,180,0,0.1)"
 }
