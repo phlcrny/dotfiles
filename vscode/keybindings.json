@@ -98,5 +98,17 @@
         "key": "ctrl+shift+5",
         "command": "-workbench.action.terminal.split",
         "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.action.findInFiles"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "terminal.focus"
+    },
+    {
+        "key": "ctrl+alt+f",
+        "command": "workbench.action.focusActiveEditorGroup"
     }
 ]
