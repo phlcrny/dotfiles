@@ -194,6 +194,10 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction = {
 if (Get-Command "starship" -ErrorAction "SilentlyContinue")
 {
     Invoke-Expression (&starship init powershell)
+    # This is lazy
+    # Rather than checking for the required fonts, I'm trusting I'll only install starship where
+    # I can/will also install the fonts
+    Import-Module -Name 'Terminal-Icons' -ErrorAction 'SilentlyContinue'
 }
 
 if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorAction "SilentlyContinue")
