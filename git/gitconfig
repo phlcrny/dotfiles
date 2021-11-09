@@ -1,4 +1,5 @@
 [alias]
+    add-executable = add --chmod=+x
     br = branch -avv
     change = checkout
     fee = fetch --prune --all
