@@ -110,5 +110,9 @@
     {
         "key": "ctrl+alt+f",
         "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "ctrl+k h",
+        "command": "gitlens.toggleFileHeatmap"
     }
 ]
