@@ -62,7 +62,7 @@
   "scm.alwaysShowRepositories": true,
   "scm.defaultViewMode": "tree",
   "scm.providerCountBadge": "visible",
-  "telemetry.telemetryLevel": "Error",
+  "telemetry.telemetryLevel": "error",
   "window.title": "${dirty}${separator}${remoteName}${separator}${activeEditorMedium}${separator}${rootPath}${separator}",
   //
   // Powershell formatting
