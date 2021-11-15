@@ -19,6 +19,14 @@
       100
     ]
   },
+  "[terraform]": {
+    "editor.autoIndent": true,
+    "editor.TabSize": 2
+  },
+  "[yaml]": {
+    "editor.autoIndent": true,
+    "editor.TabSize": 2
+  },
   // Terminal appearance
   "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
   "terminal.integrated.fontSize": 14,
