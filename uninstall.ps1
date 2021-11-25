@@ -41,16 +41,6 @@ BEGIN
     }
     Write-Debug -Message "BEGIN Block"
 
-    Write-Debug -Message "Determining 'User' parameter."
-    if ($PSBoundParameters.ContainsKey("User"))
-    {
-        [string[]] $Users = $PSBoundParameters.User
-    }
-    else
-    {
-        [string[]] $Users = [System.Environment]::UserName
-    }
-
     Write-Debug -Message "Determining 'OS' version."
     $OS = [Environment]::OSVersion
 }
