@@ -32,7 +32,7 @@
 .OUTPUTS
     N/A
 .LINK
-    https://github.com/philccarney/dotfiles
+    https://github.com/phlcrny/dotfiles
 #>
 [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess = $True, DefaultParameterSetName = "Default")] # Bit rusty with parameter sets, but this seems to work.
 [Alias()]
