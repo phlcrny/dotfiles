@@ -57,3 +57,9 @@ if [ -x "$(command -v starship)" ]; then
     echo "Installing starship config"
     ln -sf ~/dotfiles/starship/config.toml ~/.config/starship.toml
 fi
+# bat
+if [ -x "$(command -v bat)" ]; then
+    mkdir -p ~/.config/bat/
+    echo "Installing bat config"
+    ln -sf ~/dotfiles/bat/config ~/.config/bat/config
+fi

@@ -102,4 +102,11 @@
         WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
         Description        = "Windows Terminal settings"
     }
+
+    [PSCustomObject]@{
+        Source             = "$PSScriptRoot/bat/config"
+        UnixDestination    = "/home/$User/.config/bat/config"
+        WindowsDestination = "C:/Users/$User/AppData/Roaming/bat/config"
+        Description        = 'Bat config'
+    }
 )
