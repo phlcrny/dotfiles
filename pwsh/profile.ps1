@@ -72,14 +72,25 @@ $_HistoryHandlerScriptBlock = {
         [string] $Line
     )
 
-    $SkipExclusion = "skip_pshistory"
+    $SkipExclusion = '(\$env\:(\w|\d)+(key|token|password)( +)?=)|((\-\w+\S)?(assecurestring|asplaintext)( +)?(=)?)'
     $Exclusions = @(
-        "powershell_ise"
+        'powershell_ise'
+        'cls'
+        'cd'
+        'cd ..'
+        'ls'
+        'ls -l'
+        'ls -al'
+        'Get-Help'
+        'help'
+        'ii'
+        'ii .'
+        'skip_pshistory'
     )
 
-    if (($Line.ToLower() -notmatch $SkipExclusion) -and ($Line.Length -ge 4))
+    if (($Line.ToLower() -notmatch $SkipExclusion) -and ($Line.ToLower() -notin $Exclusions))
     {
-        if ($Line.ToLower() -notin $Exclusions)
+        if ($Line.Length -ge 5)
         {
             $True
         }
@@ -93,6 +104,7 @@ $_HistoryHandlerScriptBlock = {
         $False
     }
 }
+
 $_ReadlineOptions = @{
     AddToHistoryHandler           = $_HistoryHandlerScriptBlock
     BellStyle                     = "None"
@@ -100,6 +112,7 @@ $_ReadlineOptions = @{
     HistorySearchCursorMovesToEnd = $True
     ShowTooltips                  = $False
 }
+
 if (Get-Module "PSReadline" | Where-Object Version -ge 2.1.0)
 {
     $_ReadlineOptions.Add("PredictionSource", "History")
@@ -129,7 +142,7 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction = {
     )
 
     # Test if the "command" in question is actually a directory path
-    if (Test-Path $CommandName -PathType Container)
+    if (Test-Path $CommandName -PathType 'Container')
     {
         # Tell PowerShell to execute Set-Location against it instead
         $EventArgs.CommandScriptBlock = {

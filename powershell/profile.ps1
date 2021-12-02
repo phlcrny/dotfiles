@@ -23,6 +23,7 @@ $NewAliases = @(
         Value = "hdwwiz.cpl"
     }
 
+
     @{
         Name  = "gd"
         Value = "Get-Date"
@@ -87,15 +88,25 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
             [string] $Line
         )
 
-        $SkipExclusion = "skip_pshistory"
+        $SkipExclusion = '(\$env\:(\w|\d)+(key|token|password)( +)?=)|((\-\w+\S)?(assecurestring|asplaintext)( +)?(=)?)'
         $Exclusions = @(
-            "powershell_ise"
+            'powershell_ise'
+            'cls'
+            'cd'
+            'cd ..'
+            'ls'
+            'ls -l'
+            'ls -al'
+            'Get-Help'
+            'help'
+            'ii'
+            'ii .'
+            'skip_pshistory'
         )
 
-        if (($Line.ToLower() -notmatch $SkipExclusion) -and
-            ($Line.Length -ge 4))
+        if (($Line.ToLower() -notmatch $SkipExclusion) -and ($Line.ToLower() -notin $Exclusions))
         {
-            if ($Line.ToLower() -notin $Exclusions)
+            if ($Line.Length -ge 5)
             {
                 $True
             }
@@ -109,6 +120,7 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
             $False
         }
     }
+
     $HasPSReadline = $True
     $_ReadlineOptions = @{
         AddToHistoryHandler           = $_HistoryHandlerScriptBlock
@@ -118,12 +130,11 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         HistorySearchCursorMovesToEnd = $True
         ShowTooltips                  = $False
     }
+
     Set-PSReadLineOption @_ReadlineOptions
-    Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
-    # Set zsh-style tab-complete
-    Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
-    Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
-    # Amend default search behaviour
+    Set-PSReadLineKeyHandler -Key 'Tab' -Function 'MenuComplete'
+    Set-PSReadLineKeyHandler -Key 'UpArrow' -Function 'HistorySearchBackward'
+    Set-PSReadLineKeyHandler -Key 'DownArrow' -Function "HistorySearchForward"
 }
 
 # Default Parameter Values
@@ -175,7 +186,7 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction = {
     )
 
     # Test if the "command" in question is actually a directory path
-    if (Test-Path $CommandName -PathType Container)
+    if (Test-Path $CommandName -PathType 'Container')
     {
         # Tell PowerShell to execute Set-Location against it instead
         $EventArgs.CommandScriptBlock = {
