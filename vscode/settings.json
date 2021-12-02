@@ -146,6 +146,7 @@
   //
   "errorLens.delay": 3000,
   "errorLens.addAnnotationTextPrefixes": true,
+  "errorLens.messageTemplate": "$message ($severity per $source)",
   "errorLens.statusBarMessageEnabled": true,
   "errorLens.statusBarColorsEnabled": true,
   "errorLens.warningColor": "rgba(180,180,0,0.1)"
