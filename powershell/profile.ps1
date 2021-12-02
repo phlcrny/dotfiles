@@ -24,11 +24,6 @@ $NewAliases = @(
     }
 
     @{
-        Name  = "ssps"
-        Value = "Enter-PSSession"
-    }
-
-    @{
         Name  = "gd"
         Value = "Get-Date"
     }
