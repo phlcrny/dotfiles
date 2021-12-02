@@ -12,12 +12,16 @@
   },
   "[python]": {
     "editor.autoIndent": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
     "editor.formatOnSave": false,
     "editor.formatOnPaste": false,
     "editor.rulers": [
       80,
       100
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
   },
   "[terraform]": {
     "editor.autoIndent": true,
@@ -101,6 +105,10 @@
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.promptToUpdatePowerShell": false,
   "powershell.startAutomatically": true,
+  //
+  // Python behaviour
+  //
+  "python.analysis.typeCheckingMode": "basic",
   //
   // git
   //
