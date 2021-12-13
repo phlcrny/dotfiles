@@ -13,6 +13,14 @@ if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
 # Aliases
 $_NewAliases = @(
 
+    if ($Null -ne (Get-Command 'bat' -ErrorAction 'SilentlyContinue'))
+    {
+        @{
+            Name  = 'cat'
+            Value = (Get-Command 'bat').Source[0]
+        }
+    }
+
     if ($Null -ne (Get-Command "hdwwiz.cpl" -ErrorAction "SilentlyContinue"))
     {
         @{
