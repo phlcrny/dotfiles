@@ -17,7 +17,7 @@ $_NewAliases = @(
     {
         @{
             Name  = 'cat'
-            Value = (Get-Command 'bat').Source[0]
+            Value = (Get-Command 'bat')[0].Source
         }
     }
 
