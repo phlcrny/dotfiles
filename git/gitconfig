@@ -14,5 +14,4 @@
     subpull = submodule update --remote --init
     what = log -n 5 --stat
 [include]
-    path = .git-identity
-    path = .git-diff-so-fancy
+    path = .git-extras

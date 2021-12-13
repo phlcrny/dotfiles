@@ -20,7 +20,7 @@ ln -sf ~/dotfiles/bash/bash_aliases ~/.bash_aliases
 # git
 echo "Installing git config"
 ln -sf ~/dotfiles/git/gitconfig ~/.gitconfig
-touch ~/.git-identity
+touch ~/.git-extras
 # tmux
 echo "Installing tmux config symlink"
 ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
