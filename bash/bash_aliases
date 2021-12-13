@@ -25,3 +25,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+if [ -v bat ]; then
+    alias cat='bat'
+fi
