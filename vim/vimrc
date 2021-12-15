@@ -1,35 +1,43 @@
-"""""" Preferences
+"""""" Packages
 
-" Enable syntax highlighting
-syntax enable
-" Disable error bells
-set noerrorbells
-" Disable the temporary swap files
-set noswapfile
-" Add numbers to the side; make the number gutter 5 chars wide
-set number
-set numberwidth=5
-" Add the ruler for line/column details
-set ruler
-" Shows the command executed (or not, but it's harmless).
-set showcmd
-" Highlights the current line
-set cul
-" Search case-insensitive
-set ignorecase
-" Always show the statusline
-set laststatus=2
-" Replace tabs with spaces
-set expandtab
-" Replace each tab with 4 spaces
-set tabstop=4
-" Replace each tab with 2 spaces for yaml
-autocmd FileType yaml setlocal tabstop=2
+packadd! dracula
+packadd! vim-airline
+packadd! vim-ps1
+packadd! nerdtree
 
+"""""" Behaviour
+
+syntax enable                                    " Enable syntax highlighting
+filetype on                                      " Enable file type detection
+filetype plugin on                               " Enable/load plugins for detected file type(s)
+filetype indent on                               " Enable/load indent file for detected file type(s)
+set noerrorbells                                 " Disable error bells
+set noswapfile                                   " Disable the temporary swap files
+set number                                       " Add numbers to the side
+set numberwidth=5                                " Make the number gutter 5 chars wide
+set ruler                                        " Add the ruler for line/column details
+set showcmd                                      " Shows the command executed (or not, but it's harmless).
+set cursorline                                   " Highlights the current line
+set incsearch                                    " Search as characters are entered
+set ignorecase                                   " Search case-insensitive
+set hlsearch                                     " Highlights all search matches
+set laststatus=2                                 " Always show the statusline
+set expandtab                                    " Replace tabs with spaces
+set tabstop=4                                    " Replace each tab with 4 spaces
+autocmd FileType yaml setlocal tabstop=2         " Replace each tab with 2 spaces for yaml
+set wildmenu                                     " Enable auto-complete menu on TAB
+set wildmode=list:full                           " Auto-complete options sorting/style
+
+"""""" NerdTree
+
+nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
+autocmd VimEnter * NERDTree | wincmd p           " Start NERDTree and put the cursor back in the other window.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
 
 """""" Appearance
 
-" Sets the line numbers to be Blue with a black background
-highlight LineNr term=underline ctermfg=Blue ctermbg=Black
-" Sets the status line to Blue with white text
-highlight StatusLine ctermfg=Blue ctermbg=White
+colorscheme dracula                              " Dracula is my preferred theme generally... here come the overrides:
+
+highlight Normal guibg=NONE ctermbg=NONE         " Enables transparent background
+highlight CursorLine guibg=NONE ctermbg=NONE     " Disables colour on the current line, except for the line number
