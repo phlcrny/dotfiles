@@ -70,6 +70,7 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.quickSuggestionsDelay": 2000,
   "files.associations": {
+    ".env-example": "env",
     "*.psrc": "powershell",
     "*.pssc": "powershell",
     "*.ps1xml": "powershell"
