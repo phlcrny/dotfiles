@@ -162,5 +162,10 @@
   "errorLens.messageTemplate": "$message ($severity per $source)",
   "errorLens.statusBarMessageEnabled": true,
   "errorLens.statusBarColorsEnabled": true,
-  "errorLens.warningColor": "rgba(180,180,0,0.1)"
+  "errorLens.warningColor": "rgba(180,180,0,0.1)",
+  //
+  // Pester
+  //
+  "pester.autoRunOnSave": false,
+  //
 }
