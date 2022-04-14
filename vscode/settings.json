@@ -168,4 +168,7 @@
   //
   "pester.autoRunOnSave": false,
   //
+  // Red Hat
+  "redhat.telemetry.enabled": false
+  //
 }
