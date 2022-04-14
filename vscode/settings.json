@@ -66,7 +66,9 @@
   // Editor Mappings/Behaviour
   //
   "editor.formatOnType": true,
+  "editor.hover.delay": 2000,
   "editor.multiCursorModifier": "ctrlCmd",
+  "editor.quickSuggestionsDelay": 2000,
   "files.associations": {
     "*.psrc": "powershell",
     "*.pssc": "powershell",
