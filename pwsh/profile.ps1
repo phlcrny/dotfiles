@@ -131,6 +131,9 @@ Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
 Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
 Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
 $ENV:POWERSHELL_UPDATECHECK = "LTS"
+# Why would you choose bright green as defaults?
+$PSStyle.Formatting.TableHeader = $PSStyle.Foreground.BrightBlack
+$PSStyle.Formatting.FormatAccent = $PSStyle.Foreground.White
 
 # Default Parameter Values
 $PSDefaultParameterValues = @{
