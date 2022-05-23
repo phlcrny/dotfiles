@@ -73,6 +73,8 @@ if [ -x "$(command -v code)" ]; then
     ln -sf "$dotfilesSource/vscode/ansible.json" ~/.config/Code/User/snippets/ansible.json
     echo "Installing Visual Studio Code Powershell snippets symlink..."
     ln -sf "$dotfilesSource/vscode/powershell.json" ~/.config/Code/User/snippets/powershell.json
+    echo "Installing Visual Studio Code Python snippets symlink..."
+    ln -sf "$dotfilesSource/vscode/python.json" ~/.config/Code/User/snippets/python.json
 fi
 # starship
 if [ -x "$(command -v starship)" ]; then

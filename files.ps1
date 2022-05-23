@@ -84,6 +84,13 @@
     }
 
     [PSCustomObject]@{
+        Source             = "$PSScriptRoot/vscode/python.json"
+        UnixDestination    = "/home/$User/.config/Code/User/snippets/python.json"
+        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/python.json"
+        Description        = "Visual Studio Code Python snippets"
+    }
+
+    [PSCustomObject]@{
         Source             = "$PSScriptRoot/vim/vimrc"
         UnixDestination    = "/home/$User/.vimrc"
         WindowsDestination = "C:/Users/$User/_vimrc"
