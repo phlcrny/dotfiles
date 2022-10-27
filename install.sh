@@ -84,3 +84,11 @@ if [ -x "$(command -v starship)" ]; then
 else
     echo "starship not found, skipping"
 fi
+# bat
+if [ -x "$(command -v bat)" ]; then
+    mkdir -p ~/.config
+    echo "Installing bat config..."
+    ln -sf $dotfilesSource/bat/config ~/.config/bat/config
+else
+    echo "bat not found, skipping"
+fi
