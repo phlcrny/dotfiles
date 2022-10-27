@@ -114,6 +114,28 @@
         ],
         "description": "Abbreviated but still opinionated cmdlet snippet."
     },
+    "Phil-HelpBlock": {
+        "prefix": "Phil-HelpBlock",
+        "body": [
+            "<#",
+            ".SYNOPSIS",
+            "\t${1:TBC - Short description}",
+            ".DESCRIPTION",
+            "\t${2:TBC - Long description}",
+            ".EXAMPLE",
+            "\t${3:TBC - Example of how to use this cmdlet}",
+            ".PARAMETER List",
+            "\t${4:TBC - Parameter explanation}",
+            ".INPUTS",
+            "\t${5:TBC - Inputs to this cmdlet (if any)}",
+            ".OUTPUTS",
+            "\t${6:TBC - Output from this cmdlet (if any)}",
+            ".LINK",
+            "\t${7:TBC - Link(s) relevant to this cmdlet}",
+            "#>"
+        ],
+        "description": "A help block"
+    },
     "Phil-MessagingBlock": {
         "prefix": "Phil-MessagingBlock",
         "body": [
