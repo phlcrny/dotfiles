@@ -44,14 +44,22 @@ if [ -x "$(command -v vim)" ]; then
     mkdir -p $themes_dir
     echo "Installing vim plugins..."
     if [ -x "$(command -v git)" ]; then
-        echo "Installing Dracula..."
-        git clone https://github.com/dracula/vim.git "$plugins_dir/dracula"
-        echo "Installing vim-airline..."
-        git clone https://github.com/vim-airline/vim-airline.git "$plugins_dir/vim-airline" && vim -u NONE -c "helptags $plugins_dir/vim-airline/doc" -c q
-        echo "Installing vim-ps1..."
-        git clone https://github.com/PProvost/vim-ps1.git "$plugins_dir/vim-ps1"
-        echo "Installing nerdtree..."
-        git clone https://github.com/preservim/nerdtree.git "$plugins_dir/nerdtree" && vim -u NONE -c "helptags $plugins_dir/nerdtree/doc" -c q
+        if [ ! -d "$plugins_dir/dracula" ]; then
+            echo "Installing Dracula..."
+            git clone https://github.com/dracula/vim.git "$plugins_dir/dracula"
+        fi
+        if [ ! -d "$plugins_dir/vim-airline" ]; then
+            echo "Installing vim-airline..."
+            git clone https://github.com/vim-airline/vim-airline.git "$plugins_dir/vim-airline" && vim -u NONE -c "helptags $plugins_dir/vim-airline/doc" -c q
+        fi
+        if [ ! -d "$plugins_dir/vim-ps1" ]; then
+            echo "Installing vim-ps1..."
+            git clone https://github.com/PProvost/vim-ps1.git "$plugins_dir/vim-ps1"
+        fi
+        if [ ! -d "$plugins_dir/nerdtree" ]; then
+            echo "Installing nerdtree..."
+            git clone https://github.com/preservim/nerdtree.git "$plugins_dir/nerdtree" && vim -u NONE -c "helptags $plugins_dir/nerdtree/doc" -c q
+        fi
     else
         echo "Git not found, unable to clone and install packages"
     fi
