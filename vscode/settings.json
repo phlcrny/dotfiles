@@ -11,7 +11,7 @@
     "files.trimTrailingWhitespace": true
   },
   "[python]": {
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     },
@@ -24,11 +24,11 @@
     "python.analysis.typeCheckingMode": "basic"
   },
   "[terraform]": {
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.TabSize": 2
   },
   "[yaml]": {
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.TabSize": 2
   },
   // Terminal appearance
