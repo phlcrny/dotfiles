@@ -4,20 +4,26 @@
 
 dotfilesSource=~/dotfiles
 CurrentDate=$(date +"%d-%b-%Y_%H%M%S")
+
+if [[ "$1" == "backup" ]]; then
+    echo "Backing up original bash files..."
+    cp ~/.bash_profile ~/.bash_profile_$CurrentDate.bak
+    cp ~/.profile ~/.profile_$CurrentDate.bak
+    cp ~/.bashrc ~/.bashrc_$CurrentDate.bak
+    echo "Backed up"
+fi
+
 # bash
 echo "Installing bash profile symlink..."
-cp ~/.bash_profile ~/.bash_profile_$CurrentDate.bak
 ln -sf "$dotfilesSource/bash/bash_profile" ~/.bash_profile
 echo "Installing Generic bash profile symlink..."
 ln -sf "$dotfilesSource/bash/bash_profile" ~/.profile
-cp ~/.profile ~/.profile_$CurrentDate.bak
 echo "Installing bashrc symlink..."
 ln -sf "$dotfilesSource/bash/bashrc" ~/.bashrc
-cp ~/.bashrc ~/.bashrc_$CurrentDate.bak
 echo "Installing bash aliases symlink..."
 ln -sf "$dotfilesSource/bash/bash_aliases" ~/.bash_aliases
 # git
-echo "Installing git config"
+echo "Installing git config..."
 ln -sf "$dotfilesSource/git/gitconfig" ~/.gitconfig
 touch ~/.git-extras # For extras not suitable for Git
 # tmux
