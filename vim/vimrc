@@ -37,10 +37,10 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 """""" Mappings
 
 nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
-nnoremap <C-Up> <C-W><C-K>                       " Switch to the top pane with Ctrl+Up
-nnoremap <C-Down> <C-W><C-J>                     " Switch to the bottom pane with Ctrl+Down
-nnoremap <C-Left> <C-W><C-H>                     " Switch to the left pane with Ctrl+Left
-nnoremap <C-Right> <C-W><C-L>                    " Switch to the right pane with Ctrl+Right
+nnoremap <S-Up> <C-W><C-K>                       " Switch to the top pane with Shift+Up
+nnoremap <S-Down> <C-W><C-J>                     " Switch to the bottom pane with Shift+Down
+nnoremap <S-Left> <C-W><C-H>                     " Switch to the left pane with Shift+Left
+nnoremap <S-Right> <C-W><C-L>                    " Switch to the right pane with Shift+Right
 
 """""" Appearance
 
