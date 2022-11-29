@@ -1,25 +1,28 @@
 @(
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/powershell/profile.ps1"
+        UnixDestination    = $Null
         WindowsDestination = "C:/Users/$User/Documents/WindowsPowershell/profile.ps1"
         Description        = "Windows Powershell profile"
     }
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/pwsh/profile.ps1"
-        WindowsDestination = "C:/Users/$User/Documents/Powershell/profile.ps1"
         UnixDestination    = "/home/$User/.config/powershell/profile.ps1"
+        WindowsDestination = "C:/Users/$User/Documents/Powershell/profile.ps1"
         Description        = "Powershell (pwsh) profile"
     }
 
     [PSCustomObject]@{
-        Source          = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
-        UnixDestination = "/home/$User/.ps_history.txt"
-        Description     = "PSReadLine (Unix) history"
+        Source             = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
+        UnixDestination    = "/home/$User/.ps_history.txt"
+        WindowsDestination = $Null
+        Description        = 'PSReadLine (Unix) history'
     }
 
     [PSCustomObject]@{
         Source             = "C:/Users/$User/AppData/Roaming/Microsoft/Windows/PowerShell/PSReadline/ConsoleHost_history.txt"
+        UnixDestination    = $Null
         WindowsDestination = "C:/Users/$User/.ps_history.txt"
         Description        = "PSReadLine (Windows) history"
     }
@@ -43,9 +46,10 @@
     )
 
     [PSCustomObject]@{
-        Source          = "$PSScriptRoot/tmux/tmux.conf"
-        UnixDestination = "/home/$User/.tmux.conf"
-        Description     = "tmux config"
+        Source             = "$PSScriptRoot/tmux/tmux.conf"
+        UnixDestination    = "/home/$User/.tmux.conf"
+        WindowsDestination = $Null
+        Description        = 'tmux config'
     }
 
     [PSCustomObject]@{
@@ -106,6 +110,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/terminal/settings.json"
+        UnixDestination    = $Null
         WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
         Description        = "Windows Terminal settings"
     }
