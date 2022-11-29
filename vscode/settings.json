@@ -137,7 +137,8 @@
   "gitlens.codeLens.enabled": false,
   "gitlens.heatmap.toggleMode": "window",
   "gitlens.heatmap.locations": [
-    "gutter"
+    "gutter",
+    "overview"
   ],
   "gitlens.showWelcomeOnInstall": false,
   "gitlens.showWhatsNewAfterUpgrades": false,
