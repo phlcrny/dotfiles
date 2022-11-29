@@ -69,6 +69,7 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.formatOnType": true,
   "editor.hover.delay": 3000,
+  "editor.inlineSuggest.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.quickSuggestionsDelay": 3000,
   "files.associations": {
