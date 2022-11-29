@@ -72,12 +72,14 @@
   "editor.inlineSuggest.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.quickSuggestionsDelay": 3000,
+  "editor.stickyTabStops": true,
   "files.associations": {
     ".env-example": "env",
     "*.psrc": "powershell",
     "*.pssc": "powershell",
     "*.ps1xml": "powershell"
   },
+  "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "scm.alwaysShowActions": true,
   "scm.alwaysShowRepositories": true,
@@ -174,6 +176,6 @@
   "pester.autoRunOnSave": false,
   //
   // Red Hat
-  "redhat.telemetry.enabled": false
   //
+  "redhat.telemetry.enabled": false
 }
