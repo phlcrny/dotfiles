@@ -78,6 +78,7 @@
     "*.pssc": "powershell",
     "*.ps1xml": "powershell"
   },
+  "files.trimTrailingWhitespace": true,
   "scm.alwaysShowActions": true,
   "scm.alwaysShowRepositories": true,
   "scm.defaultViewMode": "tree",
