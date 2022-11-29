@@ -66,6 +66,7 @@
   //
   // Editor Mappings/Behaviour
   //
+  "diffEditor.ignoreTrimWhitespace": false,
   "editor.formatOnType": true,
   "editor.hover.delay": 3000,
   "editor.multiCursorModifier": "ctrlCmd",
