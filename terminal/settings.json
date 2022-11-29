@@ -238,7 +238,6 @@
     "multiLinePasteWarning": false,
     "profiles": {
         "defaults": {
-            "acrylicOpacity": 0.65000000000000002,
             "closeOnExit": "graceful",
             "colorScheme": "Dracula(ish)",
             "cursorShape": "bar",
@@ -246,6 +245,7 @@
                 "face": "CaskaydiaCove Nerd Font Mono"
             },
             "historySize": 9001,
+            "opacity": 65,
             "padding": "1, 0",
             "snapOnInput": true,
             "startingDirectory": "%USERPROFILE%",
