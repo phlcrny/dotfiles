@@ -26,6 +26,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-if [ -v bat ]; then
-    alias cat='bat'
+if [ -x "$(command -v bat)" ]; then
+    alias cat='bat --paging=never'
 fi
