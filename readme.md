@@ -4,6 +4,14 @@ Now features low-quality Powershell for quick installation, and lower quality sh
 
 ## Getting Started
 
+```bash
+# Install everything, back-up existing Bash files ~/.[bash_profile/bashrc/bash_aliases]
+./install.sh backup
+
+# Install everything, no parameters, rely on auto-detection
+./install.sh
+```
+
 ```Powershell
 # Install with symlinks for the current user
 . .\install.ps1 -InstallSymlinks
