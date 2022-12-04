@@ -3,6 +3,7 @@
 # Adapted Windows habits
 alias cls='clear'
 alias dir='ls -al'
+alias ii='open'
 alias md='mkdir -p'
 
 # Ansible
