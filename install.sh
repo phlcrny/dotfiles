@@ -46,7 +46,7 @@ install_bash()
 install_bat()
 {
     if [ -x "$(command -v bat)" ]; then
-        mkdir -p ~/.config
+        mkdir -p ~/.config/bat/
         ln -sf $dotfilesSource/bat/config ~/.config/bat/config
         if [[ $(cat  ~/.config/bat/config) != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} bat config"
