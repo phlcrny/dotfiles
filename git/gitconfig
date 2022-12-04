@@ -12,7 +12,7 @@
     re = remote -v
     remove = branch -D
     settings = config --list --show-origin
-    squash = merge --squash
+    squash = merge --squash --no-commit
     subpull = submodule update --remote --init
     what = log -n 5 --stat
 [include]
