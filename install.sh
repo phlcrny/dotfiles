@@ -178,20 +178,20 @@ install_vim()
         mkdir -p $themes_dir
         if [ -x "$(command -v git)" ]; then
             if [ ! -d "$plugins_dir/dracula" ]; then
-                git clone https://github.com/dracula/vim.git "$plugins_dir/dracula"
-                echo -e "✅ ${GREEN}Installed${NC} Dracula"
+                git clone --quiet https://github.com/dracula/vim.git "$plugins_dir/dracula"
+                echo -e "✅ ${GREEN}Installed${NC} Dracula plugin"
             fi
             if [ ! -d "$plugins_dir/vim-airline" ]; then
-                git clone https://github.com/vim-airline/vim-airline.git "$plugins_dir/vim-airline" && vim -u NONE -c "helptags $plugins_dir/vim-airline/doc" -c q
-                echo -e "✅ ${GREEN}Installed${NC} vim-arline"
+                git clone --quiet https://github.com/vim-airline/vim-airline.git "$plugins_dir/vim-airline" && vim -u NONE -c "helptags $plugins_dir/vim-airline/doc" -c q
+                echo -e "✅ ${GREEN}Installed${NC} vim-arline plugin"
             fi
             if [ ! -d "$plugins_dir/vim-ps1" ]; then
-                git clone https://github.com/PProvost/vim-ps1.git "$plugins_dir/vim-ps1"
-                echo -e "✅ ${GREEN}Installed${NC} vim-ps1"
+                git clone --quiet https://github.com/PProvost/vim-ps1.git "$plugins_dir/vim-ps1"
+                echo -e "✅ ${GREEN}Installed${NC} vim-ps1 plugin"
             fi
             if [ ! -d "$plugins_dir/nerdtree" ]; then
-                git clone https://github.com/preservim/nerdtree.git "$plugins_dir/nerdtree" && vim -u NONE -c "helptags $plugins_dir/nerdtree/doc" -c q
-                echo -e "✅ ${GREEN}Installed${NC} nerdtree"
+                git clone --quiet https://github.com/preservim/nerdtree.git "$plugins_dir/nerdtree" && vim -u NONE -c "helptags $plugins_dir/nerdtree/doc" -c q
+                echo -e "✅ ${GREEN}Installed${NC} nerdtree plugin"
             fi
         else
             echo -e "🟨 ${YELLOW}Git not found, unable to clone and install packages${NC}"
