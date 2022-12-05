@@ -141,14 +141,6 @@
     }
 
     [PSCustomObject]@{
-        Source             = "$PSScriptRoot/zsh/profile"
-        MacDestination     = "/Users/$User/.zprofile"
-        UnixDestination    = "/Users/$User/.zprofile"
-        WindowsDestination = $Null
-        Description        = 'zsh profile'
-    }
-
-    [PSCustomObject]@{
         Source             = "$PSScriptRoot/zsh/zshrc"
         MacDestination     = "/Users/$User/.zshrc"
         UnixDestination    = "/Users/$User/.zshrc"
