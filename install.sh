@@ -12,9 +12,9 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 
 if [[ "$1" == "backup" ]]; then
-    cp ~/.bash_profile ~/.bash_profile_$CurrentDate.bak && \
-    cp ~/.profile ~/.profile_$CurrentDate.bak && \
-    cp ~/.bashrc ~/.bashrc_$CurrentDate.bak
+    cp ~/.bash_profile "$HOME/.bash_profile_$CurrentDate.bak" && \
+    cp ~/.profile "$HOME/.profile_$CurrentDate.bak" && \
+    cp ~/.bashrc "$HOME/.bashrc_$CurrentDate.bak"
     echo -e "✅ ${GREEN}Backed up${NC} Bash files"
 fi
 
