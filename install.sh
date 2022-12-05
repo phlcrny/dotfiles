@@ -199,6 +199,20 @@ install_vim()
     fi
 }
 
+install_zsh()
+{
+    if [ -x "$(command -v zsh)" ]; then
+        ln -sf "$dotfilesSource/zsh/zshrc" ~/.vimrc
+        if [[ $(cat ~/.zshrc) != "" ]]; then
+            echo -e "✅ ${GREEN}Installed${NC} zsh config"
+        else
+            echo -e "❌ ${RED}Error${NC} installing/reading zsh config"
+        fi
+    else
+        echo -e "🟨 ${YELLOW}zsh not found, skipping${NC}"
+    fi
+}
+
 install_bash
 install_bat
 install_code
@@ -207,3 +221,4 @@ install_pwsh
 install_starship
 install_tmux
 install_vim
+install_zsh
