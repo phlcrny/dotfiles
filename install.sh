@@ -202,7 +202,7 @@ install_vim()
 install_zsh()
 {
     if [ -x "$(command -v zsh)" ]; then
-        ln -sf "$dotfilesSource/zsh/zshrc" ~/.vimrc
+        ln -sf "$dotfilesSource/zsh/zshrc" ~/.zshrc
         if [[ $(cat ~/.zshrc) != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} zsh config"
         else
