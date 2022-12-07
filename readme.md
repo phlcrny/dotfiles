@@ -1,11 +1,11 @@
 # dotfiles
 
-Now features low-quality Powershell for quick installation, and lower quality shell scripts for Linux!
+Now features low-quality Powershell (and lower quality shell) scripts for installation!
 
 ## Getting Started
 
 ```bash
-# Install everything, back-up existing Bash files ~/.[bash_profile/bashrc/bash_aliases]
+# Install everything, back-up existing Bash files ~/.[bash_profile|bashrc|bash_aliases]
 ./install.sh backup
 
 # Install everything, no parameters, rely on auto-detection
@@ -32,5 +32,5 @@ Now features low-quality Powershell for quick installation, and lower quality sh
 . .\uninstall.ps1 -Include "Visual Studio Code"
 
 # Uninstall everything but that special something
-. .\uninstall.ps1 -Include "tmux"
+. .\uninstall.ps1 -Exclude "tmux"
 ```
