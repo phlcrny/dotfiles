@@ -92,7 +92,10 @@ powershell_indicator = '_'
 [kubernetes]
 disabled = false
 style = '#cb0eb9'
-format = '[on $symbol$context( \($namespace\))]($style) '
+format = 'on [$symbol$context( \($namespace\))]($style) '
+
+[kubernetes.context_aliases]
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "$var_cluster"
 
 [terraform]
 disabled = true
