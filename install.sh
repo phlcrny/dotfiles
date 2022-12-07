@@ -204,9 +204,20 @@ install_zsh()
     if [ -x "$(command -v zsh)" ]; then
         ln -sf "$dotfilesSource/zsh/zshrc" ~/.zshrc
         if [[ $(cat ~/.zshrc) != "" ]]; then
-            echo -e "✅ ${GREEN}Installed${NC} zsh config"
+            echo -e "✅ ${GREEN}Installed${NC} zsh/oh-my-zsh config"
         else
-            echo -e "❌ ${RED}Error${NC} installing/reading zsh config"
+            echo -e "❌ ${RED}Error${NC} installing/reading zsh/oh-my-zsh config"
+        fi
+        if [[ -f ~/.oh-my-zsh/oh-my-zsh.sh ]]; then
+            mkdir -p ~/.oh-my-zsh/custom/plugins
+            if [[ ! -f ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+                git clone -q https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+            fi
+            if [[ -f ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+                echo -e "✅ ${GREEN}Installed${NC} zsh-autosuggestions plugin"
+            else
+                echo -e "❌ ${RED}Error${NC} installing/reading zsh-autosuggestions plugin"
+            fi
         fi
     else
         echo -e "🟨 ${YELLOW}zsh not found, skipping${NC}"

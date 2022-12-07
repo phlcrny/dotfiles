@@ -11,6 +11,7 @@ if [ -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
         sudo
         tmux
         z
+        zsh-autosuggestions
     )
     source $ZSH/oh-my-zsh.sh
 fi
