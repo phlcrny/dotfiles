@@ -88,3 +88,13 @@ format = '$symbol'
 disabled = true
 style = '#f7f7f9'
 powershell_indicator = '_'
+
+[kubernetes]
+disabled = false
+style = '#cb0eb9'
+format = '[on $symbol$context( \($namespace\))]($style) '
+
+[terraform]
+disabled = true
+style = '#1ec9d6'
+format = '[using $symbol$version]($style) '
