@@ -12,9 +12,9 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 
 if [[ "$1" == "backup" ]]; then
-    cp ~/.bash_profile ~/.bash_profile_$CurrentDate.bak && \
-    cp ~/.profile ~/.profile_$CurrentDate.bak && \
-    cp ~/.bashrc ~/.bashrc_$CurrentDate.bak
+    cp ~/.bash_profile "$HOME/.bash_profile_$CurrentDate.bak" && \
+    cp ~/.profile "$HOME/.profile_$CurrentDate.bak" && \
+    cp ~/.bashrc "$HOME/.bashrc_$CurrentDate.bak"
     echo -e "✅ ${GREEN}Backed up${NC} Bash files"
 fi
 
@@ -199,6 +199,31 @@ install_vim()
     fi
 }
 
+install_zsh()
+{
+    if [ -x "$(command -v zsh)" ]; then
+        ln -sf "$dotfilesSource/zsh/zshrc" ~/.zshrc
+        if [[ $(cat ~/.zshrc) != "" ]]; then
+            echo -e "✅ ${GREEN}Installed${NC} zsh/oh-my-zsh config"
+        else
+            echo -e "❌ ${RED}Error${NC} installing/reading zsh/oh-my-zsh config"
+        fi
+        if [[ -f ~/.oh-my-zsh/oh-my-zsh.sh ]]; then
+            mkdir -p ~/.oh-my-zsh/custom/plugins
+            if [[ ! -f ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+                git clone -q https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+            fi
+            if [[ -f ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh ]]; then
+                echo -e "✅ ${GREEN}Installed${NC} zsh-autosuggestions plugin"
+            else
+                echo -e "❌ ${RED}Error${NC} installing/reading zsh-autosuggestions plugin"
+            fi
+        fi
+    else
+        echo -e "🟨 ${YELLOW}zsh not found, skipping${NC}"
+    fi
+}
+
 install_bash
 install_bat
 install_code
@@ -207,3 +232,4 @@ install_pwsh
 install_starship
 install_tmux
 install_vim
+install_zsh

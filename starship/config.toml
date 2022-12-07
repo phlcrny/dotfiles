@@ -58,9 +58,9 @@ truncate_to_repo = false
 
 [git_branch]
 disabled = false
-symbol = ' '
+symbol = ''
 style = '#1ec9d6'
-format = '[$branch]($style)[$symbol](#cb0eb9) '
+format = '[$symbol $branch]($style) '
 
 [git_status]
 disabled = false
@@ -83,3 +83,21 @@ success_symbol = '[➜ ](bold #009933) '
 error_symbol = '[✗ ](bold red) '
 vicmd_symbol = '[❮](bold green)'
 format = '$symbol'
+
+[shell]
+disabled = true
+style = '#f7f7f9'
+powershell_indicator = '_'
+
+[kubernetes]
+disabled = false
+style = '#cb0eb9'
+format = 'on [$symbol$context( \($namespace\))]($style) '
+
+[kubernetes.context_aliases]
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "$var_cluster"
+
+[terraform]
+disabled = true
+style = '#1ec9d6'
+format = '[using $symbol$version]($style) '
