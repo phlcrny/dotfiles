@@ -83,3 +83,8 @@ success_symbol = '[➜ ](bold #009933) '
 error_symbol = '[✗ ](bold red) '
 vicmd_symbol = '[❮](bold green)'
 format = '$symbol'
+
+[shell]
+disabled = true
+style = '#f7f7f9'
+powershell_indicator = '_'
