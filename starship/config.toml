@@ -58,9 +58,9 @@ truncate_to_repo = false
 
 [git_branch]
 disabled = false
-symbol = ' '
+symbol = ''
 style = '#1ec9d6'
-format = '[$branch]($style)[$symbol](#cb0eb9) '
+format = '[$symbol $branch]($style) '
 
 [git_status]
 disabled = false
