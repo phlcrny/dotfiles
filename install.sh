@@ -12,10 +12,25 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 
 if [[ "$1" == "backup" ]]; then
-    cp ~/.bash_profile "$HOME/.bash_profile_$CurrentDate.bak" && \
-    cp ~/.profile "$HOME/.profile_$CurrentDate.bak" && \
-    cp ~/.bashrc "$HOME/.bashrc_$CurrentDate.bak"
-    echo -e "✅ ${GREEN}Backed up${NC} Bash files"
+    mkdir -p "$HOME/.backups/$CurrentDate"
+    cp "$HOME/.bash_profile" "$HOME/.backups/$CurrentDate/.bash_profile"
+    cp "$HOME/.profile" "$HOME/.backups/$CurrentDate/.profile"
+    cp "$HOME/.bashrc" "$HOME/.backups/$CurrentDate/.bashrc"
+    cp "$HOME/.bash_aliases" "$HOME/.backups/$CurrentDate/.bash_aliases"
+    cp "$HOME/.config/bat/config" "$HOME/.backups/$CurrentDate/bat/config"
+    cp "$HOME/.config/Code/User/settings.json" "$HOME/.backups/$CurrentDate/Code/User/settings.json"
+    cp "$HOME/.config/Code/User/keybindings.json" "$HOME/.backups/$CurrentDate/Code/User/keybindings.json"
+    cp "$HOME/.config/Code/User/snippets/ansible.json" "$HOME/.backups/$CurrentDate/Code/User/snippets/ansible.json"
+    cp "$HOME/.config/Code/User/snippets/powershell.json" "$HOME/.backups/$CurrentDate/Code/User/snippets/powershell.json"
+    cp "$HOME/.config/Code/User/snippets/python.json" "$HOME/.backups/$CurrentDate/Code/User/snippets/python.json"
+    cp "$HOME/.gitconfig" "$HOME/.backups/$CurrentDate/.gitconfig"
+    cp "$HOME/.config/powershell/profile.ps1" "$HOME/.backups/$CurrentDate/powershell/profile.ps1"
+    cp "$HOME/.ps_history.txt" "$HOME/.backups/$CurrentDate/.ps_history.txt"
+    cp "$HOME/.config/starship.toml" "$HOME/.backups/$CurrentDate/starship.toml"
+    cp "$HOME/.tmux.conf" "$HOME/.backups/$CurrentDate/.tmux.conf"
+    cp "$HOME/.vimrc" "$HOME/.backups/$CurrentDate/.vimrc"
+    cp "$HOME/.zshrc" "$HOME/.backups/$CurrentDate/.zshrc"
+    echo -e "✅ ${GREEN}Backed up${NC} existing dotfiles files"
 fi
 
 install_bash()
