@@ -37,7 +37,7 @@
 [OutputType()]
 param
 (
-    [Parameter(Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user.")]
+    [Parameter(Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for. Defaults to the current user")]
     [string[]] $User = [System.Environment]::UserName,
 
     [Parameter(HelpMessage = "How the dotfiles will be installed - symlinks or file copies")]
@@ -45,19 +45,22 @@ param
     [ValidateSet('Symlinks', 'Copies')]
     [string] $Type = 'Symlink',
 
-    [Parameter(HelpMessage = "Installs the vscode extensions for the current user.")]
+    [Parameter(HelpMessage = "Installs the vscode extensions for the current user")]
     [switch] $InstallVSCodeExtensions,
 
-    [Parameter(HelpMessage = "Only symlinks whose descriptions match this string will be installed. Uses regular expression.")]
+    [Parameter(HelpMessage = "Installs vim plugins")]
+    [switch] $InstallVimPlugins,
+
+    [Parameter(HelpMessage = "Only symlinks whose descriptions match this string will be installed. Uses regular expression")]
     [string] $Include,
 
-    [Parameter(HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression.")]
+    [Parameter(HelpMessage = "Any symlinks whose descriptions match this string will not be installed. Uses regular expression")]
     [string] $Exclude,
 
-    [Parameter(HelpMessage = "Backs up any existing symlinks/files to be overwritten.")]
+    [Parameter(HelpMessage = "Backs up any existing symlinks/files to be overwritten")]
     [switch] $Backup,
 
-    [Parameter(HelpMessage = "Overwrites any existing symlinks/files.")]
+    [Parameter(HelpMessage = "Overwrites any existing symlinks/files")]
     [switch] $Force
 )
 
@@ -261,6 +264,76 @@ PROCESS
         elseif (-not (Get-Command "code" -ErrorAction "SilentlyContinue"))
         {
             Write-Warning -Message "No 'code' command was found by Powershell."
+        }
+    }
+
+    if ((($InstallVimPlugins)) -and
+        ((Get-Command 'git' -ErrorAction 'SilentlyContinue') -and (Get-Command 'vim' -ErrorAction 'SilentlyContinue')))
+    {
+        Write-Verbose -Message "Installing Vim plugins for '$([System.Environment]::UserName)'"
+        $VimPluginDirCandidates = $Files |
+            Where-Object 'WindowsDestination' -Like '*/.vim/pack/*' |
+            Select-Object -First 1
+        $VimPluginDir = if ($OS.VersionString -match 'Windows')
+        {
+            $VimPluginDirCandidates.WindowsDestination
+        }
+        elseif (Test-Path -Path '/Users/')
+        {
+            $VimPluginDirCandidates.MacDestination
+        }
+        elseif (Test-Path -Path '/home/')
+        {
+            $VimPluginDirCandidates.UnixDestination
+        }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'dracula')))
+        {
+            git clone --quiet https://github.com/dracula/vim.git (Join-Path -Path $VimPluginDir -ChildPath 'dracula')
+        }
+        else
+        {
+            Write-Verbose -Message 'Dracula theme already installed for Vim'
+        }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-airline')))
+        {
+            git clone --quiet https://github.com/vim-airline/vim-airline.git (Join-Path -Path $VimPluginDir -ChildPath 'vim-airline')
+            vim -u NONE -c "helptags $(Join-Path -Path $VimPluginDir -ChildPath 'vim-airline/doc')" -c q
+        }
+        else
+        {
+            Write-Verbose -Message 'vim-airline plugin already installed for Vim'
+        }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-ps1')))
+        {
+            git clone --quiet https://github.com/PProvost/vim-ps1.git (Join-Path -Path $VimPluginDir -ChildPath 'vim-ps1')
+        }
+        else
+        {
+            Write-Verbose -Message 'vim-ps1 plugin already installed for Vim'
+        }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'nerdtree')))
+        {
+            git clone --quiet https://github.com/preservim/nerdtree.git (Join-Path -Path $VimPluginDir -ChildPath 'nerdtree')
+            vim -u NONE -c "helptags $(Join-Path -Path $VimPluginDir -ChildPath 'nerdtree/doc')" -c q
+        }
+        else
+        {
+            Write-Verbose -Message 'Nerdtree plugin already installed for Vim'
+        }
+    }
+    else
+    {
+        if (-not (Get-Command 'vim' -ErrorAction 'SilentlyContinue'))
+        {
+            Write-Warning -Message "The expected 'vim' command was not found by Powershell."
+        }
+        elseif (-not (Get-Command 'git' -ErrorAction 'SilentlyContinue'))
+        {
+            Write-Warning -Message "The expected 'git' command was not found by Powershell."
         }
     }
 }

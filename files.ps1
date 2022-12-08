@@ -141,6 +141,14 @@
     }
 
     [PSCustomObject]@{
+        Source             = $Null
+        MacDestination     = "/Users/$User/.vim/pack/plugins/start"
+        UnixDestination    = "/home/$User/.vim/pack/plugins/start"
+        WindowsDestination = "C:/Users/$User/.vim/pack/start/opt"
+        Description        = "Vim plugins directory"
+    }
+
+    [PSCustomObject]@{
         Source             = "$PSScriptRoot/terminal/settings.json"
         MacDestination     = $Null
         UnixDestination    = $Null
