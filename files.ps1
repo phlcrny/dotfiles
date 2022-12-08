@@ -1,4 +1,12 @@
 @(
+    # Example
+    # [PSCustomObject]@{
+    #     Source             = ''
+    #     MacDestination     = ''
+    #     UnixDestination    = ''
+    #     WindowsDestination = ''
+    #     Description        = ''
+    # }
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/bat/config"
