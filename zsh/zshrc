@@ -9,8 +9,8 @@ if [ -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
     plugins=(
         command-not-found
         sudo
+        thefuck
         tmux
-        z
         zsh-autosuggestions
     )
     source $ZSH/oh-my-zsh.sh
