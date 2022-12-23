@@ -159,7 +159,7 @@
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/zsh/zshrc"
         MacDestination     = "/Users/$User/.zshrc"
-        UnixDestination    = "/Users/$User/.zshrc"
+        UnixDestination    = "/home/$User/.zshrc"
         WindowsDestination = $Null
         Description        = '.zshrc'
     }
