@@ -1,10 +1,30 @@
 #!/usr/bin/env bash
-# This script assumes that the repository is cloned to $HOME/dotfiles
-# Adjust the path as required if this isn't right for you.
+while [[ "$#" -gt 0 ]]
+do
+    case $1 in
+        -b|--backup)
+          BACKUP="true"
+          ;;
+        -s|--source)
+          SOURCE="$2"
+          ;;
+        -h|--help)
+          SHOW_HELP="true"
+          ;;
+    esac
+    shift
+done
 
-# Base variables
-dotfilesSource="$HOME/dotfiles"
-CurrentDate=$(date +"%d-%b-%Y_%H%M%S")
+if [[ "$BACKUP" == "" ]]; then
+    BACKUP="false"
+fi
+
+if [[ "$SOURCE" == "" ]]; then
+    dotfilesSource="$HOME/dotfiles"
+else
+    dotfilesSource=$SOURCE
+fi
+CurrentDate=$(date +"%Y%m%d_%H%M%S")
 
 # Colours
 NC='\033[0m'
@@ -12,27 +32,42 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 
-if [[ "$1" == "backup" ]]; then
-    (mkdir -p "$HOME/.backups/$CurrentDate" &&
-    cp "$HOME/.bash_profile" "$HOME/.backups/$CurrentDate/.bash_profile" &&
-    cp "$HOME/.profile" "$HOME/.backups/$CurrentDate/.profile" &&
-    cp "$HOME/.bashrc" "$HOME/.backups/$CurrentDate/.bashrc" &&
-    cp "$HOME/.bash_aliases" "$HOME/.backups/$CurrentDate/.bash_aliases" &&
-    cp "$HOME/.config/bat/config" "$HOME/.backups/$CurrentDate/bat/config" &&
-    cp "$HOME/.config/Code/User/settings.json" "$HOME/.backups/$CurrentDate/Code/User/settings.json" &&
-    cp "$HOME/.config/Code/User/keybindings.json" "$HOME/.backups/$CurrentDate/Code/User/keybindings.json" &&
-    cp "$HOME/.config/Code/User/snippets/ansible.json" "$HOME/.backups/$CurrentDate/Code/User/snippets/ansible.json" &&
-    cp "$HOME/.config/Code/User/snippets/powershell.json" "$HOME/.backups/$CurrentDate/Code/User/snippets/powershell.json" &&
-    cp "$HOME/.config/Code/User/snippets/python.json" "$HOME/.backups/$CurrentDate/Code/User/snippets/python.json" &&
-    cp "$HOME/.gitconfig" "$HOME/.backups/$CurrentDate/.gitconfig" &&
-    cp "$HOME/.config/powershell/profile.ps1" "$HOME/.backups/$CurrentDate/powershell/profile.ps1" &&
-    cp "$HOME/.ps_history.txt" "$HOME/.backups/$CurrentDate/.ps_history.txt" &&
-    cp "$HOME/.config/starship.toml" "$HOME/.backups/$CurrentDate/starship.toml" &&
-    cp "$HOME/.tmux.conf" "$HOME/.backups/$CurrentDate/.tmux.conf" &&
-    cp "$HOME/.vimrc" "$HOME/.backups/$CurrentDate/.vimrc" &&
-    cp "$HOME/.zshrc" "$HOME/.backups/$CurrentDate/.zshrc" &&
-    echo -e "✅ ${GREEN}Backed up${NC} existing dotfiles") || echo -e "❌ ${RED}Error${NC} backing up existing dotfiles"
-fi
+show_help()
+{
+    echo "usage: install.sh [-b|--backup] [-s|--source] [-h|--help]"
+    echo ""
+    echo "options:"
+    echo "  -b, --backup Backs up existing dotfiles to prevent them being overwritten"
+    echo "  -s, --source Explicitly defines a source for the dotfiles rather than assuming it is ~/dotfiles"
+    echo "  -h, --help   Only shows this help message (unhelpfully)"
+    echo ""
+}
+
+backup_dotfiles()
+{
+    if [[ "$BACKUP" == "true" ]]; then
+        (BACKUP_LOCATION="$HOME/.backups/dotfiles/$CurrentDate" && \
+        mkdir -p "$BACKUP_LOCATION" && \
+        cp "$HOME/.bash_profile" "$BACKUP_LOCATION/.bash_profile" && \
+        cp "$HOME/.profile" "$BACKUP_LOCATION/.profile" && \
+        cp "$HOME/.bashrc" "$BACKUP_LOCATION/.bashrc" && \
+        cp "$HOME/.bash_aliases" "$BACKUP_LOCATION/.bash_aliases" && \
+        cp "$HOME/.config/bat/config" "$BACKUP_LOCATION/bat-config" && \
+        cp "$HOME/.config/Code/User/settings.json" "$BACKUP_LOCATION/Code-settings.json" && \
+        cp "$HOME/.config/Code/User/keybindings.json" "$BACKUP_LOCATION/Code-keybindings.json" && \
+        cp "$HOME/.config/Code/User/snippets/ansible.json" "$BACKUP_LOCATION/Code-snippets-ansible.json" && \
+        cp "$HOME/.config/Code/User/snippets/powershell.json" "$BACKUP_LOCATION/Code-snippets-powershell.json" && \
+        cp "$HOME/.config/Code/User/snippets/python.json" "$BACKUP_LOCATION/Code-snippets-python.json" && \
+        cp "$HOME/.gitconfig" "$BACKUP_LOCATION/.gitconfig" && \
+        cp "$HOME/.config/powershell/profile.ps1" "$BACKUP_LOCATION/ps_profile.ps1" && \
+        cp "$HOME/.ps_history.txt" "$BACKUP_LOCATION/.ps_history.txt" && \
+        cp "$HOME/.config/starship.toml" "$BACKUP_LOCATION/starship.toml" && \
+        cp "$HOME/.tmux.conf" "$BACKUP_LOCATION/.tmux.conf" && \
+        cp "$HOME/.vimrc" "$BACKUP_LOCATION/.vimrc" && \
+        cp "$HOME/.zshrc" "$BACKUP_LOCATION/.zshrc" && echo -e "✅ ${GREEN}Backed up${NC} dotfiles") \
+        || echo -e "❌ ${RED}Error${NC} backing up dotfiles"
+    fi
+}
 
 install_bash()
 {
@@ -241,12 +276,17 @@ install_zsh()
     fi
 }
 
-install_bash
-install_bat
-install_code
-install_git
-install_pwsh
-install_starship
-install_tmux
-install_vim
-install_zsh
+if [[ "$SHOW_HELP" != "" ]]; then
+    show_help
+else
+    backup_dotfiles
+    install_bash
+    install_bat
+    install_code
+    install_git
+    install_pwsh
+    install_starship
+    install_tmux
+    install_vim
+    install_zsh
+fi
