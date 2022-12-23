@@ -5,7 +5,7 @@ Now features low-quality Powershell (and lower quality shell) scripts for instal
 ## Getting Started
 
 ```bash
-# Install everything, back-up existing Bash files ~/.[bash_profile|bashrc|bash_aliases]
+# Install everything, back-up existing files a sub-directory of $HOME/.backups
 ./install.sh backup
 
 # Install everything, no parameters, rely on auto-detection
