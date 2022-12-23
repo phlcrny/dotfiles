@@ -138,8 +138,9 @@ install_pwsh()
         fi
 
         mkdir -p "$HOME/.local/share/powershell/PSReadLine/"
+        touch "$HOME/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
         ln -sf "$HOME/.local/share/powershell/PSReadLine/ConsoleHost_history.txt" "$HOME/.ps_history.txt"
-        if [[ $(stat" $HOME/.ps_history.txt") != "" ]]; then
+        if [[ $(stat "$HOME/.ps_history.txt") != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} PSReadline history symlink"
         else
             echo -e "❌ ${RED}Error${NC} installing/reading PSReadline history symlink"
