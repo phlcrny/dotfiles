@@ -107,14 +107,20 @@ PROCESS
                 {
                     $Destination = $File.WindowsDestination
                 }
-                elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
-                {
-                    $Destination = $File.UnixDestination
-                }
                 else
                 {
-                    # Skip entirely if the item doesn't have a viable destination for the current OS
-                    Continue
+                    $Destination = if (($IsLinux) -and ($File.UnixDestination))
+                    {
+                        $File.UnixDestination
+                    }
+                    elseif (($IsMacOS) -and ($File.MacDestination))
+                    {
+                        $File.MacDestination
+                    }
+                    else
+                    {
+                        Continue
+                    }
                 }
 
                 # Ensure that any parent directories are created.

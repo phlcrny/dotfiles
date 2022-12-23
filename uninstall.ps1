@@ -67,18 +67,24 @@ PROCESS
             {
                 Write-Verbose -Message "Processing $($File.Description)"
 
-                if (($OS.VersionString -match "Windows") -and ($File.WindowsDestination))
+                if (($OS.VersionString -match 'Windows') -and ($File.WindowsDestination))
                 {
                     $Destination = $File.WindowsDestination
                 }
-                elseif (($OS.VersionString -notmatch "Windows") -and ($File.UnixDestination))
-                {
-                    $Destination = $File.UnixDestination
-                }
                 else
                 {
-                    # Skip entirely if the item doesn't have a viable destination for the current OS
-                    Continue
+                    $Destination = if (($IsLinux) -and ($File.UnixDestination))
+                    {
+                        $File.UnixDestination
+                    }
+                    elseif (($IsMacOS) -and ($File.MacDestination))
+                    {
+                        $File.MacDestination
+                    }
+                    else
+                    {
+                        Continue
+                    }
                 }
 
                 if ($PSCmdlet.ShouldProcess($Destination, "Uninstalling '$($File.Description)' for '$User'"))
