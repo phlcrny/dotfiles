@@ -5,8 +5,8 @@ Now features low-quality Powershell (and lower quality shell) scripts for instal
 ## Getting Started
 
 ```bash
-# Install everything, back-up existing files a sub-directory of $HOME/.backups
-./install.sh backup
+# Install everything, back-up existing files to a sub-directory of $HOME/.backups/dotfiles/
+./install.sh --backup
 
 # Install everything, no parameters, rely on auto-detection
 ./install.sh
