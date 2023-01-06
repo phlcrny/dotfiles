@@ -70,6 +70,7 @@
   "editor.formatOnType": true,
   "editor.hover.delay": 3000,
   "editor.inlineSuggest.enabled": false,
+  "editor.linkedEditing": true,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.quickSuggestionsDelay": 3000,
   "editor.stickyTabStops": true,
