@@ -18,3 +18,5 @@
     what = log -n 5 --stat
 [include]
     path = .git-extras
+[init]
+	defaultBranch = main
