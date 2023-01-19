@@ -144,5 +144,9 @@
         "key": "enter",
         "command": "-acceptSelectedSuggestion",
         "when": "acceptSuggestionOnEnter && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && suggestionMakesTextEdit && textInputFocus"
+    },
+    {
+        "key": "ctrl+k g",
+        "command": "workbench.scm.focus"
     }
 ]
