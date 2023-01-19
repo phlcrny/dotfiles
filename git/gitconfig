@@ -1,6 +1,7 @@
 [alias]
     add-executable = add --chmod=+x
     br = branch -avv
+    co = checkout .
     change = checkout
     fee = fetch --prune --all
     find = log --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit -i --grep
