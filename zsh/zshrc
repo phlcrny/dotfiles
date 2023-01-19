@@ -7,6 +7,7 @@ if [ -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
     ZSH_THEME="robbyrussell"
     COMPLETION_WAITING_DOTS="true"
     plugins=(
+        autojump
         command-not-found
         gcloud
         history
