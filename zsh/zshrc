@@ -8,10 +8,12 @@ if [ -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
     COMPLETION_WAITING_DOTS="true"
     plugins=(
         command-not-found
-        sudo
+        gcloud
+        history
         thefuck
         tmux
         zsh-autosuggestions
+        z
     )
     source $ZSH/oh-my-zsh.sh
 fi
