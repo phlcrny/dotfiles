@@ -8,7 +8,6 @@
     last-diff = diff HEAD~1..HEAD
     logline = log -n 10 --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit
     oops = reset HEAD~1
-    ooops = oops
     pu = push origin HEAD
     re = remote -v
     remove = branch -D
@@ -16,6 +15,11 @@
     squash = merge --squash --no-commit
     subpull = submodule update --remote --init
     what = log -n 5 --stat
+    # aliases of aliases
+    lc = last-commit
+    ld = last-diff
+    ll = logline
+    ooops = oops
 [include]
     path = .git-extras
 [init]
