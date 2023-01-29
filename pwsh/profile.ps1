@@ -1,11 +1,6 @@
-[string] $_CurrentUser = "$([Environment]::UserDomainName)\$([Environment]::UserName)"
-[string] $_Titlebar = "$_CurrentUser - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
-$Host.UI.RawUI.WindowTitle = $_Titlebar
-
 if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
 {
     [void] (Import-Module -Name "Posh-Git")
-    $_PoshGit = $True
 }
 
 # Aliases and preferences
@@ -38,16 +33,6 @@ $_NewAliases = @(
         Name  = "gfh"
         Value = "Get-Help"
     }
-
-    $(
-        if (Get-Module -Name "Plaster" -ListAvailable)
-        {
-            @{
-                Name  = "Plaster"
-                Value = "Invoke-Plaster"
-            }
-        }
-    )
 
     $(
         if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
@@ -121,12 +106,8 @@ $_ReadlineOptions = @{
     ShowTooltips                  = $False
 }
 
-if (Get-Module "PSReadline" | Where-Object Version -ge 2.1.0)
-{
-    $_ReadlineOptions.Add("PredictionSource", "History")
-}
-
 Set-PSReadLineOption @_ReadlineOptions
+Set-PSReadlineOption -PredictionSource 'HistoryAndPlugin' -ErrorAction 'SilentlyContinue' # In case we're using an old version of PSReadline
 Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
 Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
 Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
@@ -173,11 +154,11 @@ if (Get-Command "starship" -ErrorAction "SilentlyContinue")
     Import-Module -Name 'Terminal-Icons' -ErrorAction 'SilentlyContinue'
 }
 
-if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorAction "SilentlyContinue")
+if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction "SilentlyContinue")
 {
     # Adds items not for public consumption - work-specific etc
-    . (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1")
+    . ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1'))
 }
 
 # Variable clean-up.
-Remove-Variable "_Alias", "_AliasSplat", "_CurrentUser", "_NewAliases" -ErrorAction "SilentlyContinue"
+$Alias, $AliasSplat, $CurrentUser, $NewAliases = $Null

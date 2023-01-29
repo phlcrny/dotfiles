@@ -1,12 +1,6 @@
-# Determine if current user is an Administrator
-$CurrentUserID = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-$WindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($CurrentUserID)
-$Admin = [System.Security.Principal.WindowsBuiltInRole]::Administrator
-$UserIsAdmin = $WindowsPrincipal.IsInRole($Admin)
 # Force Powershell to use TLS 1.2 for HTTPS
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 # Lazy variable
-$Hosts = "C:\Windows\System32\drivers\etc\hosts"
 
 # Aliases and preferences
 
@@ -22,7 +16,6 @@ $NewAliases = @(
         Name  = "devicemanager"
         Value = "hdwwiz.cpl"
     }
-
 
     @{
         Name  = "gd"
@@ -40,23 +33,8 @@ $NewAliases = @(
     }
 
     @{
-        Name  = "Hosts"
-        Value = $Hosts
-    }
-
-    @{
-        Name  = "Import"
-        Value = "Import-Module"
-    }
-
-    @{
         Name  = "Touch"
         Value = "New-Item"
-    }
-
-    @{
-        Name  = "Plaster"
-        Value = "Invoke-Plaster"
     }
 
     @{
@@ -81,7 +59,7 @@ forEach ($Alias in $NewAliases)
 # Preferences
 
 # PSReadline
-if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
+try
 {
     $_HistoryHandlerScriptBlock = {
         param(
@@ -121,7 +99,6 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
         }
     }
 
-    $HasPSReadline = $True
     $_ReadlineOptions = @{
         AddToHistoryHandler           = $_HistoryHandlerScriptBlock
         BellStyle                     = "None"
@@ -135,6 +112,10 @@ if (Get-Command "Set-PSReadlineKeyHandler" -ErrorAction "SilentlyContinue")
     Set-PSReadLineKeyHandler -Key 'Tab' -Function 'MenuComplete'
     Set-PSReadLineKeyHandler -Key 'UpArrow' -Function 'HistorySearchBackward'
     Set-PSReadLineKeyHandler -Key 'DownArrow' -Function "HistorySearchForward"
+}
+catch [System.Management.Automation.CommandNotFoundException]
+{
+    Write-Warning "Unable to set PSReadline settings"
 }
 
 # Default Parameter Values
@@ -150,31 +131,10 @@ $PSDefaultParameterValues = @{
     "New-Item:ItemType"            = "File"
     "Set-Location:Path"            = $HOME
 }
-
 # Display
-
-# Window title bar
-$AdminStatus = switch ($UserIsAdmin)
-{
-    $True
-    {
-        "Elevated"
-    }
-    $False
-    {
-        "Non-Elevated"
-    }
-}
-
-[string] $CurrentUser = "$([Environment]::UserDomainName)\$([Environment]::UserName)"
-[string] $Titlebar = "$CurrentUser ($AdminStatus) - $(($ExecutionContext.SessionState.Path.CurrentLocation.Path) -split "::" | Select-Object -Last 1)"
-$Host.UI.RawUI.WindowTitle = $Titlebar
-$Host.PrivateData.VerboseForegroundColor = "Cyan"
-
 if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
 {
     [void] (Import-Module -Name "Posh-Git")
-    $_PoshGit = $True
 }
 
 # Via Mathias Jessen:
@@ -206,11 +166,11 @@ if (Get-Command "starship" -ErrorAction "SilentlyContinue")
     Import-Module -Name 'Terminal-Icons' -ErrorAction 'SilentlyContinue'
 }
 
-if (Test-Path (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1") -ErrorAction "SilentlyContinue")
+if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction "SilentlyContinue")
 {
     # Adds items not for public consumption - work-specific etc
-    . (Join-Path -Path $PSScriptRoot -ChildPath "extras.ps1")
+    . ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1'))
 }
 
 # Clean-up stray variables before going out into the wild.
-Remove-Variable "Alias", "Admin", "AliasSplat", "CurrentUserID", "HasPSReadLine", "NewAliases", "Titlebar", "WindowsPrincipal", "UserIsAdmin", "_HistoryHandlerScriptBlock", "_ReadlineOptions" -ErrorAction "SilentlyContinue"
+$Alias, $Admin, $AliasSplat, $CurrentUserID, $HasPSReadLine, $NewAliases, $Titlebar, $WindowsPrincipal, $UserIsAdmin, $_HistoryHandlerScriptBlock, $_ReadlineOptions = $Null
