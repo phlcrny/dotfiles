@@ -161,7 +161,7 @@ PROCESS
                             try
                             {
                                 $BackupSplat = @{
-                                    Path        = $File.FullName
+                                    Path        = $Target.FullName
                                     Destination = (Join-Path -Path $Target.Directory.FullName -ChildPath $NewName)
                                     Force       = $True
                                 }
