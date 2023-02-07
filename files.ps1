@@ -86,7 +86,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/vscode/settings.json"
-        MacDestination     = "/Users/$User/.config/Code/User/settings.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/settings.json"
         UnixDestination    = "/home/$User/.config/Code/User/settings.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/settings.json"
         Description        = 'Visual Studio Code settings'
@@ -94,7 +94,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/vscode/keybindings.json"
-        MacDestination     = "/Users/$User/.config/Code/User/keybindings.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/keybindings.json"
         UnixDestination    = "/home/$User/.config/Code/User/keybindings.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/keybindings.json"
         Description        = 'Visual Studio Code keybindings'
@@ -102,7 +102,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/vscode/ansible.json"
-        MacDestination     = "/Users/$User/.config/Code/User/snippets/ansible.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/ansible.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/ansible.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/ansible.json"
         Description        = 'Visual Studio Code Ansible snippets'
@@ -110,7 +110,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/vscode/ansible.json"
-        MacDestination     = "/Users/$User/.config/Code/User/snippets/yaml.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/yaml.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/yaml.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/yaml.json"
         Description        = 'Visual Studio Code YAML/Ansible snippets'
@@ -118,7 +118,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/vscode/powershell.json"
-        MacDestination     = "/Users/$User/.config/Code/User/snippets/powershell.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/powershell.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/powershell.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/powershell.json"
         Description        = 'Visual Studio Code Powershell snippets'
@@ -126,7 +126,7 @@
 
     [PSCustomObject]@{
         Source             = "$PSScriptRoot/vscode/python.json"
-        MacDestination     = "/Users/$User/.config/Code/User/snippets/python.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/python.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/python.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/python.json"
         Description        = 'Visual Studio Code Python snippets'

@@ -111,38 +111,44 @@ install_bat()
 
 install_code()
 {
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        codeRoot="$HOME/.config/Code/"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        codeRoot="$HOME/Library/Application Support/Code/"
+    fi
+
     if [ -x "$(command -v code)" ]; then
-        mkdir -p "$HOME/.config/Code/User" && mkdir -p "$HOME/.config/Code/User/snippets/"
-        ln -sf "$dotfilesSource/vscode/settings.json" "$HOME/.config/Code/User/settings.json"
-        if [[ $(cat "$HOME/.config/Code/User/settings.json") != "" ]]; then
+        mkdir -p "$codeRoot/User" && mkdir -p "$codeRoot/User/snippets/"
+        ln -sf "$dotfilesSource/vscode/settings.json" "$codeRoot/User/settings.json"
+        if [[ $(cat "$codeRoot/User/settings.json") != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} VS Code settings"
         else
             echo -e "❌ ${RED}Error${NC} installing/reading VS Code settings"
         fi
 
-        ln -sf "$dotfilesSource/vscode/keybindings.json" "$HOME/.config/Code/User/keybindings.json"
-        if [[ $(cat "$HOME/.config/Code/User/keybindings.json") != "" ]]; then
+        ln -sf "$dotfilesSource/vscode/keybindings.json" "$codeRoot/User/keybindings.json"
+        if [[ $(cat "$codeRoot/User/keybindings.json") != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} VS Code keybindings"
         else
             echo -e "❌ ${RED}Error${NC} installing/reading VS Code keybindings"
         fi
 
-        ln -sf "$dotfilesSource/vscode/ansible.json" "$HOME/.config/Code/User/snippets/ansible.json"
-        if [[ $(cat "$HOME/.config/Code/User/snippets/ansible.json") != "" ]]; then
+        ln -sf "$dotfilesSource/vscode/ansible.json" "$codeRoot/User/snippets/ansible.json"
+        if [[ $(cat "$codeRoot/User/snippets/ansible.json") != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} VS Code Ansible snippets"
         else
             echo -e "❌ ${RED}Error${NC} installing/reading VS Code Ansible snippets"
         fi
 
-        ln -sf "$dotfilesSource/vscode/powershell.json" "$HOME/.config/Code/User/snippets/powershell.json"
-        if [[ $(cat "$HOME/.config/Code/User/snippets/powershell.json") != "" ]]; then
+        ln -sf "$dotfilesSource/vscode/powershell.json" "$codeRoot/User/snippets/powershell.json"
+        if [[ $(cat "$codeRoot/User/snippets/powershell.json") != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} VS Code Powershell snippets"
         else
             echo -e "❌ ${RED}Error${NC} installing/reading VS Code Powershell snippets"
         fi
 
-        ln -sf "$dotfilesSource/vscode/python.json" "$HOME/.config/Code/User/snippets/python.json"
-        if [[ $(cat "$HOME/.config/Code/User/snippets/python.json") != "" ]]; then
+        ln -sf "$dotfilesSource/vscode/python.json" "$codeRoot/User/snippets/python.json"
+        if [[ $(cat "$codeRoot/User/snippets/python.json") != "" ]]; then
             echo -e "✅ ${GREEN}Installed${NC} VS Code Python snippets"
         else
             echo -e "❌ ${RED}Error${NC} installing/reading VS Code Python snippets"
