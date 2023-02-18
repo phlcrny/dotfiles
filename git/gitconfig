@@ -22,6 +22,6 @@
     ll = logline
     ooops = oops
 [include]
-    path = .git-extras
+    path = .git_extras
 [init]
 	defaultBranch = main

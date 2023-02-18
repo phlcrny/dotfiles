@@ -159,7 +159,7 @@ install_code()
 install_git()
 {
     ln -sf "$dotfilesSource/git/gitconfig" "$HOME/.gitconfig"
-    touch "$HOME/.git-extras" # For extras not suitable for Git
+    touch "$HOME/.git_extras" # For extras not suitable for Git
     if [[ $(cat "$HOME/.gitconfig") != "" ]]; then
         echo -e "✅ ${GREEN}Installed${NC} git config"
     else

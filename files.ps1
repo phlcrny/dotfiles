@@ -25,13 +25,13 @@
         Description        = 'Git user config'
     }
 
-    $( if (Test-Path "$PSScriptRoot/git/.git-extras" -ErrorAction 'SilentlyContinue')
+    $( if (Test-Path "$PSScriptRoot/git/.git_extras" -ErrorAction 'SilentlyContinue')
         {
             [PSCustomObject]@{
-                Source             = "$PSScriptRoot/git/.git-extras"
-                MacDestination     = "/Users/$User/.git-extras"
-                UnixDestination    = "/home/$User/.git-extras"
-                WindowsDestination = "C:/Users/$User/.git-extras"
+                Source             = "$PSScriptRoot/git/.git_extras"
+                MacDestination     = "/Users/$User/.git_extras"
+                UnixDestination    = "/home/$User/.git_extras"
+                WindowsDestination = "C:/Users/$User/.git_extras"
                 Description        = 'Git extras not for source-control/defaults'
             }
         }
