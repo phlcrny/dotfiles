@@ -24,4 +24,4 @@
 [include]
     path = .git_extras
 [init]
-	defaultBranch = main
+    defaultBranch = main
