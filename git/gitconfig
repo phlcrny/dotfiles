@@ -12,6 +12,7 @@
     pu = push origin HEAD
     re = remote -v
     remove = branch -D
+    search = log --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit -S
     settings = config --list --show-origin
     squash = merge --squash --no-commit
     subpull = submodule update --remote --init
