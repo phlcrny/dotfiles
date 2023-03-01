@@ -135,6 +135,7 @@
     "~/Dev"
   ],
   "git.suggestSmartCommit": false,
+  "git.supportCancellation": true,
   //
   // GitHub
   //
