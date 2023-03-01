@@ -17,6 +17,7 @@
     subpull = submodule update --remote --init
     what = log -n 5 --stat
     # aliases of aliases
+    find-commit = find
     lc = last-commit
     ld = last-diff
     ll = logline
