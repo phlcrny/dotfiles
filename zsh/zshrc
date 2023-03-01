@@ -2,7 +2,7 @@ if [ -f /usr/bin/vim ]; then
     export EDITOR=/usr/bin/vim
 fi
 
-if [ -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
+if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     export ZSH="$HOME/.oh-my-zsh"
     ZSH_THEME="robbyrussell"
     COMPLETION_WAITING_DOTS="true"
@@ -16,13 +16,13 @@ if [ -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
         zsh-autosuggestions
         z
     )
-    source $ZSH/oh-my-zsh.sh
+    source "$ZSH/oh-my-zsh.sh"
 fi
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "$HOME/.bash_aliases" ]; then
+    . "$HOME/.bash_aliases"
 fi
 
-if [ -f ~/.profile_extras ]; then
-    . ~/.profile_extras
+if [ -f "$HOME/.profile_extras" ]; then
+    . "$HOME/.profile_extras"
 fi

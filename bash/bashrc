@@ -80,17 +80,17 @@ if ! shopt -oq posix; then
 fi
 
 # Additional/optional files
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f "$HOME/.bash_aliases" ]; then
+    . "$HOME/.bash_aliases"
 fi
 
-if [ -f ~/.profile_extras ]; then
-    . ~/.profile_extras
+if [ -f "$HOME/.profile_extras" ]; then
+    . "$HOME/.profile_extras"
 fi
 
 if [ -x "$(command -v starship)" ]; then
 
-    if [ -f ~/.config/starship.toml ]; then
+    if [ -f "$HOME/.config/starship.toml" ]; then
         eval "$(starship init bash)"
     fi
 
