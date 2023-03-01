@@ -134,6 +134,7 @@
     "C:\\Dev",
     "~/Dev"
   ],
+  "git.suggestSmartCommit": false,
   //
   // GitHub
   //
