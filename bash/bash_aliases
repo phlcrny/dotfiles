@@ -6,14 +6,18 @@ alias dir='ls -al'
 alias ii='open'
 alias md='mkdir -p'
 
-# Ansible
-alias ans='ansible'
-alias ans-c='ansible-config'
-alias ans-i='ansible-inventory'
-alias ans-p='ansible-playbook'
+# Terraform
+alias tff='terraform format'
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfv='terraform validate'
 
-# General convenience and amusement
-alias please='sudo'
+# tmux
+alias attach='tmux attach -t'
+
+# lazy apps
+alias doc='lazydocker' # ld already exists
+alias lg='lazygit'
 
 # Colours
 if [ -x /usr/bin/dircolors ]; then
