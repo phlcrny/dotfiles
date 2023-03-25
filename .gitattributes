@@ -8,7 +8,7 @@ install.sh eol=lf
 git text eol=lf
 
 # Bash
-bash_aliases eol=lf
+aliases eol=lf
 bash_profile eol=lf
 bashrc eol=lf
 

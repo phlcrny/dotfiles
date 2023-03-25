@@ -51,7 +51,7 @@ backup_dotfiles()
         cp "$HOME/.bash_profile" "$BACKUP_LOCATION/.bash_profile" && \
         cp "$HOME/.profile" "$BACKUP_LOCATION/.profile" && \
         cp "$HOME/.bashrc" "$BACKUP_LOCATION/.bashrc" && \
-        cp "$HOME/.bash_aliases" "$BACKUP_LOCATION/.bash_aliases" && \
+        cp "$HOME/.aliases" "$BACKUP_LOCATION/.aliases" && \
         cp "$HOME/.config/bat/config" "$BACKUP_LOCATION/bat-config" && \
         cp "$HOME/.config/Code/User/settings.json" "$BACKUP_LOCATION/Code-settings.json" && \
         cp "$HOME/.config/Code/User/keybindings.json" "$BACKUP_LOCATION/Code-keybindings.json" && \
@@ -86,8 +86,8 @@ install_bash()
         echo -e "❌ ${RED}Error${NC} installing/reading Bash rc"
     fi
 
-    ln -sf "$dotfilesSource/bash/bash_aliases" "$HOME/.bash_aliases"
-    if [[ $(cat  "$HOME/.bash_aliases") != "" ]]; then
+    ln -sf "$dotfilesSource/bash/aliases" "$HOME/.aliases"
+    if [[ $(cat  "$HOME/.aliases") != "" ]]; then
         echo -e "✅ ${GREEN}Installed${NC} Bash aliases"
     else
         echo -e "❌ ${RED}Error${NC} installing/reading Bash aliases"

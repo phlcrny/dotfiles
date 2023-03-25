@@ -20,7 +20,11 @@ if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
 fi
 
 if [ -f "$HOME/.bash_aliases" ]; then
-    . "$HOME/.bash_aliases"
+    mv "$HOME/.bash_aliases" "$HOME/.aliases"
+fi
+
+if [ -f "$HOME/.aliases" ]; then
+    . "$HOME/.aliases"
 fi
 
 if [ -f "$HOME/.profile_extras" ]; then
