@@ -97,5 +97,33 @@
     {
         "key": "ctrl+k g",
         "command": "workbench.scm.focus"
+    },
+    {
+        "key": "alt+win+up",
+        "command": "editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+win+down",
+        "command": "editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+win+right",
+        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+win+l",
+        "command": "addCursorsAtSearchResults",
+        "when": "fileMatchOrMatchFocus && searchViewletVisible"
+    },
+    {
+        "key": "alt+win+end",
+        "command": "editor.action.addCursorsToBottom"
+    },
+    {
+        "key": "alt+win+home",
+        "command": "editor.action.addCursorsToTop"
     }
 ]
