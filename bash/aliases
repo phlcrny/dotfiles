@@ -7,7 +7,7 @@ alias ii='open'
 alias md='mkdir -p'
 
 # Terraform
-alias tff='terraform format'
+alias tff='terraform fmt'
 alias tfi='terraform init'
 alias tfp='terraform plan'
 alias tfv='terraform validate'
