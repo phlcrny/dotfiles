@@ -88,6 +88,7 @@
   "scm.defaultViewMode": "tree",
   "scm.providerCountBadge": "visible",
   "telemetry.telemetryLevel": "error",
+  "window.commandCenter": true,
   "window.title": "${dirty}${separator}${remoteName}${separator}${activeEditorMedium}${separator}${rootPath}${separator}",
   //
   // Powershell formatting
