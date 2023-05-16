@@ -9,6 +9,7 @@
             "parser.add_argument('${6:-v}', '${7:--verbose}',",
             "\t\t\t\t\trequired = ${8:False},",
             "\t\t\t\t\tdefault = ${9:False},",
+            "\t\t\t\t\taction = \"store_true\",",
             "\t\t\t\t\thelp='${10:Enables verbose messaging}')",
             "args = parser.parse_args()"
         ],
