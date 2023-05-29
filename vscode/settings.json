@@ -55,6 +55,12 @@
       "variables": "#ffd09a"
     }
   },
+  "workbench.colorCustomizations": {
+    "errorLens.errorBackground": "#e454541b",
+    "errorLens.errorForeground": "#ff6454",
+    "errorLens.warningBackground": "#f6b87e1b",
+    "errorLens.warningForeground": "#ffbc64"
+  },
   "workbench.colorTheme": "Dracula",
   "workbench.editor.focusRecentEditorAfterClose": false,
   "workbench.editor.highlightModifiedTabs": true,
@@ -164,18 +170,17 @@
   "gitlens.views.stashes.files.layout": "tree",
   "gitlens.views.tags.files.layout": "tree",
   //
-  // tabnine
+  // Azure
   //
-  "tabnine.experimentalAutoImports": true,
+  "azureResourceGroups.groupBy": "resourceGroup",
   //
   // Error Lens
   //
-  "errorLens.delay": 3000,
+  "errorLens.delay": 10000,
   "errorLens.addAnnotationTextPrefixes": true,
-  "errorLens.messageTemplate": "$message ($severity per $source)",
+  "errorLens.messageTemplate": "$severity: $message [$source]",
   "errorLens.statusBarMessageEnabled": true,
   "errorLens.statusBarColorsEnabled": true,
-  "errorLens.warningColor": "rgba(180,180,0,0.1)",
   //
   // Pester
   //
