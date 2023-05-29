@@ -3,7 +3,7 @@
         "prefix": "Phil-ArgBlock",
         "body": [
             "parser = argparse.ArgumentParser()",
-            "parser.add_argument('${1:-e}', '${2:--example}', '${3:--example-arg}'",
+            "parser.add_argument('${1:-e}', '${2:--example}', '${3:--example-arg}',",
             "\t\t\t\t\trequired = ${4:True},",
             "\t\t\t\t\thelp='${5:An example required parameter}')",
             "parser.add_argument('${6:-v}', '${7:--verbose}',",
