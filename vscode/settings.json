@@ -49,6 +49,7 @@
   "editor.minimap.showSlider": "always",
   "editor.scrollbar.verticalScrollbarSize": 20,
   "editor.scrollbar.horizontalScrollbarSize": 20,
+  "editor.stickyScroll.enabled": true,
   "editor.tokenColorCustomizations": {
     "[Dracula]": {
       "variables": "#ffd09a"
