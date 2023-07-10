@@ -32,12 +32,17 @@
     "editor.autoIndent": "full",
     "editor.TabSize": 2
   },
+  //
   // Terminal appearance
   "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
+  //
+  // Terminal behaviour
+  //
+  "terminal.integrated.copyOnSelection": true,
   //
   // Editor appearance
   //
