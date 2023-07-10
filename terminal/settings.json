@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": [
         {
@@ -10,9 +11,9 @@
         {
             "command": {
                 "action": "newTab",
-                "index": 2
+                "index": 5
             },
-            "keys": "ctrl+shift+2"
+            "keys": "ctrl+shift+5"
         },
         {
             "command": {
@@ -23,10 +24,37 @@
         },
         {
             "command": {
+                "action": "newTab",
+                "index": 2
+            },
+            "keys": "ctrl+shift+2"
+        },
+        {
+            "command": {
                 "action": "moveFocus",
                 "direction": "down"
             },
             "keys": "ctrl+shift+down"
+        },
+        {
+            "command": {
+                "action": "splitPane",
+                "split": "right"
+            },
+            "keys": "alt+shift+plus"
+        },
+        {
+            "command": {
+                "action": "newTab"
+            },
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "command": {
+                "action": "switchToTab",
+                "index": 1
+            },
+            "keys": "ctrl+alt+1"
         },
         {
             "command": {
@@ -42,19 +70,6 @@
         {
             "command": {
                 "action": "newTab",
-                "index": 5
-            },
-            "keys": "ctrl+shift+5"
-        },
-        {
-            "command": {
-                "action": "newTab"
-            },
-            "keys": "ctrl+shift+t"
-        },
-        {
-            "command": {
-                "action": "newTab",
                 "index": 6
             },
             "keys": "ctrl+shift+6"
@@ -65,6 +80,13 @@
                 "direction": "up"
             },
             "keys": "ctrl+shift+up"
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "left"
+            },
+            "keys": "ctrl+shift+left"
         },
         {
             "command": {
@@ -127,6 +149,19 @@
         },
         {
             "command": {
+                "action": "switchToTab",
+                "index": 2
+            },
+            "keys": "ctrl+alt+2"
+        },
+        {
+            "command": {
+                "action": "prevTab"
+            },
+            "keys": "ctrl+shift+tab"
+        },
+        {
+            "command": {
                 "action": "newTab",
                 "index": 8
             },
@@ -154,22 +189,16 @@
         },
         {
             "command": {
+                "action": "switchToTab",
+                "index": 6
+            },
+            "keys": "ctrl+alt+6"
+        },
+        {
+            "command": {
                 "action": "openSettings"
             },
             "keys": "ctrl+comma"
-        },
-        {
-            "command": {
-                "action": "splitPane",
-                "split": "right"
-            },
-            "keys": "alt+shift+plus"
-        },
-        {
-            "command": {
-                "action": "prevTab"
-            },
-            "keys": "ctrl+shift+tab"
         },
         {
             "command": "scrollDownPage",
@@ -181,34 +210,6 @@
                 "index": 0
             },
             "keys": "ctrl+alt+0"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 1
-            },
-            "keys": "ctrl+alt+1"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 2
-            },
-            "keys": "ctrl+alt+2"
-        },
-        {
-            "command": {
-                "action": "moveFocus",
-                "direction": "left"
-            },
-            "keys": "ctrl+shift+left"
-        },
-        {
-            "command": {
-                "action": "switchToTab",
-                "index": 6
-            },
-            "keys": "ctrl+alt+6"
         },
         {
             "command": {
@@ -232,10 +233,17 @@
     ],
     "alwaysShowTabs": false,
     "confirmCloseAllTabs": false,
+    "copyFormatting": "none",
+    "copyOnSelect": true,
     "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
     "initialCols": 100,
     "initialRows": 35,
     "multiLinePasteWarning": false,
+    "newTabMenu": [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
     "profiles": {
         "defaults": {
             "closeOnExit": "graceful",
@@ -270,7 +278,6 @@
                 "name": "Windows Powershell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
                 "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
@@ -337,19 +344,9 @@
             "yellow": "#C19C00"
         },
         {
-            "name": "Dracula",
-            "cursorColor": "#F8F8F2",
-            "selectionBackground": "#44475A",
             "background": "#282A36",
-            "foreground": "#F8F8F2",
             "black": "#21222C",
             "blue": "#BD93F9",
-            "cyan": "#8BE9FD",
-            "green": "#50FA7B",
-            "purple": "#FF79C6",
-            "red": "#FF5555",
-            "white": "#F8F8F2",
-            "yellow": "#F1FA8C",
             "brightBlack": "#6272A4",
             "brightBlue": "#D6ACFF",
             "brightCyan": "#A4FFFF",
@@ -357,7 +354,17 @@
             "brightPurple": "#FF92DF",
             "brightRed": "#FF6E6E",
             "brightWhite": "#FFFFFF",
-            "brightYellow": "#FFFFA5"
+            "brightYellow": "#FFFFA5",
+            "cursorColor": "#F8F8F2",
+            "cyan": "#8BE9FD",
+            "foreground": "#F8F8F2",
+            "green": "#50FA7B",
+            "name": "Dracula",
+            "purple": "#FF79C6",
+            "red": "#FF5555",
+            "selectionBackground": "#44475A",
+            "white": "#F8F8F2",
+            "yellow": "#F1FA8C"
         },
         {
             "background": "#17171F",
@@ -521,6 +528,29 @@
             "yellow": "#C4A000"
         },
         {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-22.04-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
+        },
+        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -548,5 +578,43 @@
     "showTerminalTitleInTitlebar": true,
     "startOnUserLogin": true,
     "tabSwitcherMode": "disabled",
+    "themes": [
+        {
+            "name": "legacyDark",
+            "tab": {
+                "background": null,
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "window": {
+                "applicationTheme": "dark",
+                "useMica": false
+            }
+        },
+        {
+            "name": "legacyLight",
+            "tab": {
+                "background": null,
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "window": {
+                "applicationTheme": "light",
+                "useMica": false
+            }
+        },
+        {
+            "name": "legacySystem",
+            "tab": {
+                "background": null,
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "window": {
+                "applicationTheme": "system",
+                "useMica": false
+            }
+        }
+    ],
     "trimBlockSelection": true
 }
