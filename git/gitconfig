@@ -1,5 +1,6 @@
 [alias]
     add-executable = add --chmod=+x
+    al = commit --amend
     br = branch -avv
     co = checkout .
     change = checkout
@@ -18,7 +19,11 @@
     subpull = submodule update --remote --init
     what = log -n 5 --stat
     # aliases of aliases
-    find-commit = find
+    amend-last = al
+    search-content = search
+    search-msg = find
+    find-by-msg = find
+    find-by-content = search
     lc = last-commit
     ld = last-diff
     ll = logline
