@@ -32,3 +32,5 @@
     path = .git_extras
 [init]
     defaultBranch = main
+[rerere]
+    enabled = true
