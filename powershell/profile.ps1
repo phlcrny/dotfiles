@@ -17,6 +17,14 @@ $NewAliases = @(
         Value = "hdwwiz.cpl"
     }
 
+    if (Get-Module -Name 'z' -ListAvailable -ErrorAction 'SilentlyContinue')
+    {
+        @{
+            Name  = 'j'
+            Value = 'z'
+        }
+    }
+
     @{
         Name  = "gd"
         Value = "Get-Date"
