@@ -251,6 +251,10 @@ install_vim()
                 git clone --quiet "https://github.com/preservim/nerdtree.git" "$plugins_dir/nerdtree" && vim -u NONE -c "helptags $plugins_dir/nerdtree/doc" -c q
                 echo -e "✅ ${GREEN}Installed${NC} nerdtree plugin"
             fi
+            if [ ! -d "$plugins_dir/vim-startify" ]; then
+                git clone --quiet "https://github.com/mhinz/vim-startify.git" "$plugins_dir/vim-startify"
+                echo -e "✅ ${GREEN}Installed${NC} vim-startify plugin"
+            fi
         else
             echo -e "🟨 ${YELLOW}Git not found, unable to clone and install packages${NC}"
         fi

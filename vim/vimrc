@@ -4,6 +4,7 @@ packadd! dracula
 packadd! vim-airline
 packadd! vim-ps1
 packadd! nerdtree
+packadd! vim-startify
 
 """""" Behaviour
 

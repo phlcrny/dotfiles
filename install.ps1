@@ -331,6 +331,15 @@ PROCESS
         {
             Write-Verbose -Message 'Nerdtree plugin already installed for Vim'
         }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-startify')))
+        {
+            git clone --quiet https://github.com/mhinz/vim-startify.git (Join-Path -Path $VimPluginDir -ChildPath 'vim-startify')
+        }
+        else
+        {
+            Write-Verbose -Message 'vim-startify plugin already installed for Vim'
+        }
     }
     else
     {
