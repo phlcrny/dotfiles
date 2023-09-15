@@ -35,3 +35,4 @@
     defaultBranch = main
 [rerere]
     enabled = true
+    autoupdate = true
