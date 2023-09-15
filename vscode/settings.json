@@ -161,6 +161,8 @@
   // GitLens
   //
   "gitlens.codeLens.enabled": false,
+  "gitlens.graph.layout": "editor",
+  "gitlens.graph.dimMergeCommits": true,
   "gitlens.heatmap.toggleMode": "window",
   "gitlens.heatmap.locations": [
     "gutter",
