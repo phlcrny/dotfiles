@@ -154,6 +154,10 @@
   //
   "github.gitAuthentication": false,
   //
+  // GitLab
+  //
+  "gitlab.showPipelineUpdateNotifications": true,
+  //
   // GitLens
   //
   "gitlens.codeLens.enabled": false,
