@@ -7,14 +7,15 @@ if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     ZSH_THEME="robbyrussell"
     COMPLETION_WAITING_DOTS="true"
     plugins=(
-        aliases             # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases
-        autojump            # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump
-        command-not-found   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found
-        gcloud              # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
-        history             # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
-        thefuck             # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/thefuck
-        z                   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
-        zsh-autosuggestions # https://github.com/zsh-users/zsh-autosuggestions - manual installation in ../install.sh
+        aliases                 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases
+        autojump                # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/autojump
+        command-not-found       # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found
+        gcloud                  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
+        history                 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
+        thefuck                 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/thefuck
+        z                       # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
+        zsh-autosuggestions     # https://github.com/zsh-users/zsh-autosuggestions - manual download/installation in ../install.sh
+        zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting/ - manual download/installation in ../install.sh
     )
     source "$ZSH/oh-my-zsh.sh"
 fi
