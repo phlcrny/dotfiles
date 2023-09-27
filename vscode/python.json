@@ -27,7 +27,8 @@
         "prefix": "Phil-Request",
         "body": [
             "try:",
-            "\tr = requests.${1:request}(URL)",
+            "\tdata = {'key1': 'value1'}",
+            "\tr = requests.${1:post}(${2:URL}, data=payload)",
             "\tr.raise_for_status()",
             "\tdata = r.json()",
             "except (requests.exceptions.ConnectionError, requests.exceptions.HTTPError, requests.exceptions.RequestException) as e:",
