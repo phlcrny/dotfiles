@@ -106,6 +106,13 @@
         ],
         "description": "Abbreviated but still opinionated cmdlet snippet."
     },
+    "Phil-DateString": {
+        "prefix": "",
+        "body": [
+            "Get-Date -Format '${0:yyyy-MM-dd_HHmmss}'"
+        ],
+        "description": "Date and time in a file-friendly format I can never remember the syntax for"
+    },
     "Phil-HelpBlock": {
         "prefix": "Phil-HelpBlock",
         "body": [
