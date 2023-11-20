@@ -1,51 +1,80 @@
-"""""" Packages
-
-packadd! dracula
-packadd! vim-airline
-packadd! vim-ps1
-packadd! nerdtree
-packadd! vim-startify
-
-"""""" Behaviour
+"" Defaults
 
 syntax enable                                    " Enable syntax highlighting
-filetype on                                      " Enable file type detection
-filetype plugin on                               " Enable/load plugins for detected file type(s)
-filetype indent on                               " Enable/load indent file for detected file type(s)
+set expandtab                                    " Replace tabs with spaces
+set history=1000                                 " Remember more commands/searches
+set matchtime=2                                  " Time to highlight matching brackets
 set noerrorbells                                 " Disable error bells
 set noswapfile                                   " Disable the temporary swap files
-set number                                       " Add numbers to the side
-set numberwidth=5                                " Make the number gutter 5 chars wide
-set ruler                                        " Add the ruler for line/column details
-set showcmd                                      " Shows the command executed (or not, but it's harmless).
-set cursorline                                   " Highlights the current line
-set incsearch                                    " Search as characters are entered
-set ignorecase                                   " Search case-insensitive
-set hlsearch                                     " Highlights all search matches
-set laststatus=2                                 " Always show the statusline
-set expandtab                                    " Replace tabs with spaces
+set scrolloff=5                                  " Adds a buffer between the cursor and the start of the scrolling action
+set sidescrolloff=5                              " Adds a buffer between the cursor and the start of the sideways scrolling action
 set tabstop=4                                    " Replace each tab with 4 spaces
-autocmd FileType yaml setlocal tabstop=2         " Replace each tab with 2 spaces for yaml
 set wildmenu                                     " Enable auto-complete menu on TAB
 set wildmode=list:full                           " Auto-complete options sorting/style
 
-"""""" NerdTree
+""" Search
 
-autocmd VimEnter * NERDTree | wincmd p           " Start NERDTree and put the cursor back in the other window.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
+set hlsearch                                     " Highlights all search matches
+set ignorecase                                   " Search case-insensitive
+set incsearch                                    " Search as characters are entered
 
-"""""" Mappings
+""" UI
+
+set cursorline                                   " Highlights the current line
+set laststatus=2                                 " Always show the statusline
+set nowrap                                       " I don't want line wrapping by default
+set number                                       " Add numbers to the side gutter
+set numberwidth=5                                " Make the number gutter 5 chars wide
+set ruler                                        " Add the ruler for line/column details
+set showcmd                                      " Shows the command executed (or not, but it's harmless).
+
+""" Mappings
+
+""" Note: <leader> is default '\'
 
 nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
 nnoremap <S-Up> <C-W><C-K>                       " Switch to the top pane with Shift+Up
 nnoremap <S-Down> <C-W><C-J>                     " Switch to the bottom pane with Shift+Down
 nnoremap <S-Left> <C-W><C-H>                     " Switch to the left pane with Shift+Left
 nnoremap <S-Right> <C-W><C-L>                    " Switch to the right pane with Shift+Right
+nnoremap <leader>stack :split<cr>                " Short-hand for stacked splits
+nnoremap <leader>sbs :vsplit<cr>                 " Short-hand for side-by-side splits
 
-"""""" Appearance
+"" Plugins
 
-colorscheme dracula                              " Dracula is my preferred theme generally... here come the overrides:
+""" Packages
 
+packadd! dracula
+packadd! nerdtree
+packadd! vim-airline
+packadd! vim-ps1
+packadd! vim-startify
+
+"" Conditionals                                  " Grouped by language/theme/setting where possible
+
+"""" Indentation
+if has("autocmd")                                " Stolen from Graham: https://github.com/gma/dotvim/blob/main/vimrc
+  filetype plugin indent on                      " Enable file type detection, indent file(s)
+endif
+
+"""" Shell script
+if has("autocmd")                                " Stolen from Graham: https://github.com/gma/dotvim/blob/main/vimrc
+  autocmd FileType sh setlocal shiftwidth=4      " Set 4 space indent for shell scripts
+endif
+
+"""" yaml
+if has ("autocmd")
+  autocmd FileType yaml setlocal tabstop=2       " Replace each tab with 2 spaces for yaml
+endif
+
+"" Plugin configuration
+
+colorscheme dracula                              " Dracula is my preferred theme generally... but here come the overrides:
 highlight Normal guibg=NONE ctermbg=NONE         " Enables transparent background
 highlight CursorLine guibg=NONE ctermbg=NONE     " Disables colour on the current line, except for the line number
+
+""" NerdTree
+
+autocmd VimEnter * NERDTree | wincmd p           " Start NERDTree and put the cursor back in the other window.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.

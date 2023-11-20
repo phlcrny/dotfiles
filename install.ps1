@@ -10,6 +10,8 @@
     Determines if the dotfiles will be installed as symlinks or file copies
 .PARAMETER InstallVSCodeExtensions
     Installs VS Code extensions for the current user
+.PARAMETER InstallVimPlugins
+    Installs Vim plugins for the current user
 .PARAMETER Include
     Includes only dotfiles whose descriptions match this regular expression pattern.
 .PARAMETER Exclude
