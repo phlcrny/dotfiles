@@ -29,6 +29,7 @@
     ld = last-diff
     ll = logline
     ooops = oops
+    remoev = remove
 [include]
     path = .git_extras
 [init]
