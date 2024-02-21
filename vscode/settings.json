@@ -13,7 +13,7 @@
   "[python]": {
     "editor.autoIndent": "full",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": "explicit"
     },
     "editor.formatOnSave": false,
     "editor.formatOnPaste": false,
@@ -200,4 +200,3 @@
   // Red Hat
   //
   "redhat.telemetry.enabled": false
-}
