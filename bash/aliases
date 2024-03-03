@@ -32,5 +32,5 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ -x "$(command -v bat)" ]; then
-    alias cat='bat --paging=never'
+    alias cat='bat --plain'
 fi
