@@ -6,18 +6,28 @@ alias dir='ls -al'
 alias ii='open'
 alias md='mkdir -p'
 
-# Terraform
-alias tff='terraform fmt'
-alias tfi='terraform init'
-alias tfp='terraform plan'
-alias tfv='terraform validate'
+if [ -x "$(command -v bat)" ]; then
+    alias cat='bat --plain'
+fi
 
-# tmux
-alias attach='tmux attach -t'
+if [ -x "$(command -v lazydocker)" ]; then
+    alias doc='lazydocker' # ld already exists
+fi
 
-# lazy apps
-alias doc='lazydocker' # ld already exists
-alias lg='lazygit'
+if [ -x "$(command -v git)" ]; then
+    alias lg='lazygit'
+fi
+
+if [ -x "$(command -v terraform)" ]; then
+    alias tff='terraform fmt'
+    alias tfi='terraform init'
+    alias tfp='terraform plan'
+    alias tfv='terraform validate'
+fi
+
+if [ -x "$(command -v tmux)" ]; then
+    alias attach='tmux attach -t'
+fi
 
 # Colours
 if [ -x /usr/bin/dircolors ]; then
@@ -29,8 +39,4 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-fi
-
-if [ -x "$(command -v bat)" ]; then
-    alias cat='bat --plain'
 fi
