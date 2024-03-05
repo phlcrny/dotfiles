@@ -9,6 +9,8 @@
     last-commit = log -n 1 --stat
     last-diff = diff HEAD~1..HEAD
     logline = log -n 10 --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit
+    ls = ls-files --full-name --eol --stage
+    ls-excluded = ls-files --full-name --eol -o
     oops = reset HEAD~1
     pu = push origin HEAD
     push-no-ci = push -o ci.skip
