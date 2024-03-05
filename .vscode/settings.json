@@ -4,6 +4,7 @@
         "aliases": "shellscript",
         "bash_profile": "shellscript",
         "bashrc": "shellscript",
+        "extensions": "plaintext",
         "gitconfig": "ini",
         "tmux.conf": "shellscript",
         "vimrc": "viml"
