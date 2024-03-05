@@ -125,5 +125,46 @@
     {
         "key": "alt+win+home",
         "command": "editor.action.addCursorsToTop"
+    },
+    {
+        "key": "ctrl+k ctrl+r",
+        "command": "-git.revertSelectedRanges",
+        "when": "isInDiffEditor && !operationInProgress"
+    },
+    {
+        "key": "ctrl+k ctrl+r",
+        "command": "-workbench.action.keybindingsReference"
+    },
+    {
+        "key": "ctrl+g ctrl+v",
+        "command": "gl.validateCIConfig"
+    },
+    {
+        "key": "ctrl+g ctrl+s",
+        "command": "gl.showMergedCIConfig"
+    },
+    {
+        "key": "ctrl+g ctrl+p",
+        "command": "gl.openProjectPage"
+    },
+    {
+        "key": "ctrl+g ctrl+f",
+        "command": "gl.openActiveFile"
+    },
+    {
+        "key": "ctrl+g ctrl+b",
+        "command": "gl.openInBrowser"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "gl.openCreateNewMR"
+    },
+    {
+        "key": "ctrl+k ctrl+m",
+        "command": "gl.openCurrentMergeRequest"
+    },
+    {
+        "key": "ctrl+g ctrl+a",
+        "command": "gl.addAccount"
     }
 ]
