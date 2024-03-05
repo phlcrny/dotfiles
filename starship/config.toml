@@ -8,6 +8,8 @@ $git_state\
 $git_status\
 $kubernetes\
 $docker_context\
+$gcloud\
+$azure\
 $golang\
 $nodejs\
 $python\
