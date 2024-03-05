@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias ll='ls -alh'
+
 # Adapted Windows habits
 alias cls='clear'
 alias dir='ls -al'
@@ -12,6 +14,15 @@ fi
 
 if [ -x "$(command -v lazydocker)" ]; then
     alias doc='lazydocker' # ld already exists
+fi
+
+if [ -x "$(command -v lsd)" ]; then
+    alias ls='lsd'
+    alias ll='lsd -alh'
+    alias lt='lsd --tree'
+else
+    alias ll='ls -alh'
+    alias lt='ls --tree'
 fi
 
 if [ -x "$(command -v git)" ]; then
