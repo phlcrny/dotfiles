@@ -152,11 +152,11 @@
         "command": "gl.openInBrowser"
     },
     {
-        "key": "ctrl+k ctrl+n",
+        "key": "ctrl+g ctrl+n",
         "command": "gl.openCreateNewMR"
     },
     {
-        "key": "ctrl+k ctrl+m",
+        "key": "ctrl+g ctrl+m",
         "command": "gl.openCurrentMergeRequest"
     },
     {
