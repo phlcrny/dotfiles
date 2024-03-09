@@ -1,7 +1,7 @@
 [alias]
     add-executable = add --chmod=+x
     al = commit --amend
-    br = branch -avv
+    br = branch -avv --sort=-committerdate
     co = checkout .
     change = checkout
     fee = fetch --prune --all
