@@ -5,10 +5,10 @@
     co = checkout .
     change = checkout
     fee = fetch --prune --all
-    find = log --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit -i --grep
+    find = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -i --grep
     last-commit = log -n 1 --stat
     last-diff = diff HEAD~1..HEAD
-    logline = log -n 10 --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit
+    logline = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -n 10
     ls = ls-files --full-name --eol --stage
     ls-excluded = ls-files --full-name --eol -o
     oops = reset HEAD~1
@@ -16,7 +16,7 @@
     push-no-ci = push -o ci.skip
     re = remote -v
     remove = branch -D
-    search = log --graph --pretty=format:'%Cred%cr%Creset - %Cgreen%h%Creset: %s %d%C(cyan)<%aN/%ae>%Creset' --abbrev-commit -S
+    search = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -S
     settings = config --list --show-origin
     squash = merge --squash --no-commit
     subpull = submodule update --remote --init
