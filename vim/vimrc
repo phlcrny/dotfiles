@@ -49,6 +49,7 @@ nnoremap <leader>sbs :vsplit<cr>                 " Short-hand for side-by-side s
 packadd! dracula
 packadd! nerdtree
 packadd! vim-airline
+packadd! vim-airline-themes
 packadd! vim-ps1
 packadd! vim-startify
 
@@ -77,6 +78,7 @@ highlight CursorLine guibg=NONE ctermbg=NONE     " Disables colour on the curren
 
 """ Airline
 
+let g:airline_theme='dracula'
 let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
 
 """ NerdTree

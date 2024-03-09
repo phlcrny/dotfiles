@@ -347,6 +347,15 @@ PROCESS
             Write-Verbose -Message 'vim-airline plugin already installed for Vim'
         }
 
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-airline-themes')))
+        {
+            git clone --quiet "https://github.com/vim-airline/vim-airline-themes.git" (Join-Path -Path $VimPluginDir -ChildPath 'vim-airline-themes')
+        }
+        else
+        {
+            Write-Verbose -Message 'vim-airline-themes plugin already installed for Vim'
+        }
+
         if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-ps1')))
         {
             git clone --quiet 'https://github.com/PProvost/vim-ps1.git' (Join-Path -Path $VimPluginDir -ChildPath 'vim-ps1')

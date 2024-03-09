@@ -23,18 +23,27 @@ if [ -x "$(command -v vim)" ]; then
             git clone --quiet "https://github.com/dracula/vim.git" "$PLUGINS_DIR/dracula"
             echo -e "✅ ${GREEN}Installed${NC} Dracula plugin"
         fi
+
         if [ ! -d "$PLUGINS_DIR/vim-airline" ]; then
             git clone --quiet "https://github.com/vim-airline/vim-airline.git" "$PLUGINS_DIR/vim-airline" && vim -u NONE -c "helptags $PLUGINS_DIR/vim-airline/doc" -c q
-            echo -e "✅ ${GREEN}Installed${NC} vim-arline plugin"
+            echo -e "✅ ${GREEN}Installed${NC} vim-airline plugin"
         fi
+
+        if [ ! -d "$PLUGINS_DIR/vim-airline-themes" ]; then
+            git clone --quiet "https://github.com/vim-airline/vim-airline-themes.git" "$PLUGINS_DIR/vim-airline-themes"
+            echo -e "✅ ${GREEN}Installed${NC} vim-airline-themes plugin"
+        fi
+
         if [ ! -d "$PLUGINS_DIR/vim-ps1" ]; then
             git clone --quiet "https://github.com/PProvost/vim-ps1.git" "$PLUGINS_DIR/vim-ps1"
             echo -e "✅ ${GREEN}Installed${NC} vim-ps1 plugin"
         fi
+
         if [ ! -d "$PLUGINS_DIR/nerdtree" ]; then
             git clone --quiet "https://github.com/preservim/nerdtree.git" "$PLUGINS_DIR/nerdtree" && vim -u NONE -c "helptags $PLUGINS_DIR/nerdtree/doc" -c q
             echo -e "✅ ${GREEN}Installed${NC} nerdtree plugin"
         fi
+
         if [ ! -d "$PLUGINS_DIR/vim-startify" ]; then
             git clone --quiet "https://github.com/mhinz/vim-startify.git" "$PLUGINS_DIR/vim-startify"
             echo -e "✅ ${GREEN}Installed${NC} vim-startify plugin"
