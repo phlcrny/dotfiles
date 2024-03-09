@@ -20,7 +20,7 @@
     settings = config --list --show-origin
     squash = merge --squash --no-commit
     subpull = submodule update --remote --init
-    what = log -n 5 --stat
+    what = log -n 5 --stat --date iso
     # aliases of aliases
     amend-last = al
     search-content = search
