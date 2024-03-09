@@ -39,8 +39,8 @@ nnoremap <S-Up> <C-W><C-K>                       " Switch to the top pane with S
 nnoremap <S-Down> <C-W><C-J>                     " Switch to the bottom pane with Shift+Down
 nnoremap <S-Left> <C-W><C-H>                     " Switch to the left pane with Shift+Left
 nnoremap <S-Right> <C-W><C-L>                    " Switch to the right pane with Shift+Right
-nnoremap <leader>stack :split<cr>                " Short-hand for stacked splits
-nnoremap <leader>sbs :vsplit<cr>                 " Short-hand for side-by-side splits
+nnoremap <leader>stack :split<CR>                " Short-hand for stacked splits
+nnoremap <leader>sbs :vsplit<CR>                 " Short-hand for side-by-side splits
 
 "" Plugins
 
