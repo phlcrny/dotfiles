@@ -50,6 +50,7 @@ packadd! dracula
 packadd! nerdtree
 packadd! vim-airline
 packadd! vim-airline-themes
+packadd! vim-fugitive
 packadd! vim-ps1
 packadd! vim-startify
 

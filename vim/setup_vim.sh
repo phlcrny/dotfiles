@@ -48,6 +48,11 @@ if [ -x "$(command -v vim)" ]; then
             git clone --quiet "https://github.com/mhinz/vim-startify.git" "$PLUGINS_DIR/vim-startify"
             echo -e "✅ ${GREEN}Installed${NC} vim-startify plugin"
         fi
+
+        if [ ! -d "$PLUGINS_DIR/vim-fugitive" ]; then
+            git clone --quiet "https://tpope.io/vim/fugitive.git" "$PLUGINS_DIR/vim-fugitive" && vim -u NONE -c "helptags $PLUGINS_DIR/fugitive/doc" -c q
+            echo -e "✅ ${GREEN}Installed${NC} vim-fugitive plugin"
+        fi
     else
         echo -e "🟨 ${YELLOW}Git not found, unable to clone and install packages${NC}"
     fi

@@ -383,6 +383,16 @@ PROCESS
         {
             Write-Verbose -Message 'vim-startify plugin already installed for Vim'
         }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-fugitive')))
+        {
+            git clone --quiet 'https://tpope.io/vim/fugitive.git' (Join-Path -Path $VimPluginDir -ChildPath 'vim-fugitive')
+            vim -u NONE -c "helptags $(Join-Path -Path $VimPluginDir -ChildPath 'vim-fugitive/doc')" -c q
+        }
+        else
+        {
+            Write-Verbose -Message 'vim-fugitive plugin already installed for Vim'
+        }
     }
     else
     {
