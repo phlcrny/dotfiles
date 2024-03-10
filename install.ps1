@@ -393,6 +393,16 @@ PROCESS
         {
             Write-Verbose -Message 'vim-fugitive plugin already installed for Vim'
         }
+
+        if (-not (Test-Path (Join-Path -Path $VimPluginDir -ChildPath 'vim-gitgutter')))
+        {
+            git clone --quiet 'https://github.com/airblade/vim-gitgutter' (Join-Path -Path $VimPluginDir -ChildPath 'vim-gitgutter')
+            vim -u NONE -c "helptags $(Join-Path -Path $VimPluginDir -ChildPath 'vim-gitgutter/doc')" -c q
+        }
+        else
+        {
+            Write-Verbose -Message 'vim-gitgutter plugin already installed for Vim'
+        }
     }
     else
     {

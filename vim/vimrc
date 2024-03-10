@@ -41,6 +41,7 @@ nnoremap <S-Left> <C-W><C-H>                     " Switch to the left pane with 
 nnoremap <S-Right> <C-W><C-L>                    " Switch to the right pane with Shift+Right
 nnoremap <leader>stack :split<CR>                " Short-hand for stacked splits
 nnoremap <leader>sbs :vsplit<CR>                 " Short-hand for side-by-side splits
+nnoremap <leader>gf :GitGutterFold<CR>           " Folds all unchanged lines
 
 "" Plugins
 
@@ -51,6 +52,7 @@ packadd! nerdtree
 packadd! vim-airline
 packadd! vim-airline-themes
 packadd! vim-fugitive
+packadd! vim-gitgutter
 packadd! vim-ps1
 packadd! vim-startify
 
