@@ -1,4 +1,4 @@
 .git_identity
 .git_proxy
-.git_extras
+.*_extras
 todo.md

@@ -10,6 +10,7 @@
     # }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/bat/config"
         MacDestination     = "/Users/$User/.config/bat/config"
         UnixDestination    = "/home/$User/.config/bat/config"
@@ -18,6 +19,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/git/gitconfig"
         MacDestination     = "/Users/$User/.gitconfig"
         UnixDestination    = "/home/$User/.gitconfig"
@@ -28,6 +30,7 @@
     $( if (Test-Path "$PSScriptRoot/git/.git_extras" -ErrorAction 'SilentlyContinue')
         {
             [PSCustomObject]@{
+                Type               = 'File'
                 Source             = "$PSScriptRoot/git/.git_extras"
                 MacDestination     = "/Users/$User/.git_extras"
                 UnixDestination    = "/home/$User/.git_extras"
@@ -38,6 +41,7 @@
     )
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/powershell/profile.ps1"
         MacDestination     = $Null
         UnixDestination    = $Null
@@ -46,6 +50,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/pwsh/profile.ps1"
         MacDestination     = "/Users/$User/.config/powershell/profile.ps1"
         UnixDestination    = "/home/$User/.config/powershell/profile.ps1"
@@ -54,6 +59,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "/home/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
         MacDestination     = "/Users/$User/.local/share/powershell/PSReadLine/ConsoleHost_history.txt"
         UnixDestination    = "/home/$User/.ps_history.txt"
@@ -62,6 +68,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "C:/Users/$User/AppData/Roaming/Microsoft/Windows/PowerShell/PSReadline/ConsoleHost_history.txt"
         MacDestination     = $Null
         UnixDestination    = $Null
@@ -70,6 +77,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/starship/config.toml"
         MacDestination     = "/Users/$User/.config/starship.toml"
         UnixDestination    = "/home/$User/.config/starship.toml"
@@ -78,6 +86,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/tmux/tmux.conf"
         MacDestination     = "/Users/$User/.tmux.conf"
         UnixDestination    = "/home/$User/.tmux.conf"
@@ -86,6 +95,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/settings.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/settings.json"
         UnixDestination    = "/home/$User/.config/Code/User/settings.json"
@@ -94,6 +104,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/keybindings.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/keybindings.json"
         UnixDestination    = "/home/$User/.config/Code/User/keybindings.json"
@@ -102,6 +113,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/ansible.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/ansible.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/ansible.json"
@@ -110,6 +122,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/ansible.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/yaml.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/yaml.json"
@@ -118,6 +131,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/powershell.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/powershell.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/powershell.json"
@@ -126,6 +140,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/python.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/python.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/python.json"
@@ -134,6 +149,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vim/vimrc"
         MacDestination     = "/Users/$User/.vimrc"
         UnixDestination    = "/home/$User/.vimrc"
@@ -142,6 +158,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'Directory'
         Source             = $Null
         MacDestination     = "/Users/$User/.vim/pack/plugins/start"
         UnixDestination    = "/home/$User/.vim/pack/plugins/start"
@@ -150,6 +167,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/terminal/settings.json"
         MacDestination     = $Null
         UnixDestination    = $Null
@@ -158,6 +176,7 @@
     }
 
     [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/zsh/zshrc"
         MacDestination     = "/Users/$User/.zshrc"
         UnixDestination    = "/home/$User/.zshrc"

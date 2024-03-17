@@ -24,41 +24,38 @@
 [CmdletBinding(ConfirmImpact = 'Low', SupportsShouldProcess = $True)]
 param
 (
-    [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = "The user(s) the dotfiles will be installed for")]
+    [Parameter(Mandatory = $False, Position = 0, ValueFromPipeline = $True, ValueFromPipelineByPropertyName = $True, HelpMessage = 'The user(s) the dotfiles will be installed for')]
     [string[]] $User = [System.Environment]::UserName,
 
-    [Parameter(HelpMessage = "Only symlinks whose descriptions match this string will be uninstalled. Uses regular expression.")]
+    [Parameter(HelpMessage = 'Only symlinks whose descriptions match this string will be uninstalled. Uses regular expression.')]
     [string] $Include,
 
-    [Parameter(HelpMessage = "Any symlinks whose descriptions match this string will not be uninstalled. Uses regular expression.")]
+    [Parameter(HelpMessage = 'Any symlinks whose descriptions match this string will not be uninstalled. Uses regular expression.')]
     [string] $Exclude
 )
 
 BEGIN
 {
-    if ($PSBoundParameters.ContainsKey("Debug"))
+    if ($PSBoundParameters.Debug)
     {
-        $DebugPreference = "Continue"
+        $DebugPreference = 'Continue'
     }
-    Write-Debug -Message "BEGIN Block"
-
-    Write-Debug -Message "Determining 'OS' version."
+    Write-Debug -Message 'Determining OS version.'
     $OS = [Environment]::OSVersion
 }
 
 PROCESS
 {
-    Write-Debug -Message "PROCESS Block"
     forEach ($User in $Users)
     {
         # Just to ensure we don't have a case-mismatch. Mainly for Linux.
         $User = $User.ToLower()
         Write-Verbose -Message "Processing '$User'"
         # For ease of maintenance for install and uninstall, the files are loaded from an external file.
-        $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath "files.ps1"))
+        $Files = @(. (Join-Path -Path $PSScriptRoot -ChildPath 'files.ps1'))
         forEach ($File in $Files)
         {
-            # We'll only try and install under certain conditions:
+            # We'll only try and uninstall under certain conditions:
             # If the Exclude parameter is used, and the file doesn't match $Exclude
             # If the Include parameter is used, and the file matches $Include
             # Or, if we're not adding restrictions at all (i.e. Exclude or Include are not specified)
@@ -94,8 +91,18 @@ PROCESS
                     {
                         try
                         {
-                            Write-Verbose -Message "Removing sym-link/file for '$($File.Source)' from '$Destination"
-                            Remove-Item -Path $Destination -Force
+                            Write-Verbose -Message "Removing '$($File.Description)' from '$Destination"
+                            $RemovalSplat = @{
+                                Path = $Destination
+                                Force = $True
+                            }
+
+                            if ($File.Type -like 'Directory')
+                            {
+                                $RemovalSplat.Add('Recurse', $True)
+                            }
+
+                            Remove-Item @RemovalSplat
                         }
                         catch
                         {
@@ -114,6 +121,4 @@ PROCESS
 }
 
 END
-{
-    Write-Debug -Message "END Block"
-}
+{}
