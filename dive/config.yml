@@ -1,0 +1,7 @@
+diff:
+  hide:
+    - unmodified
+
+filetree:
+  collapse-dir: true
+  show-attributes: true

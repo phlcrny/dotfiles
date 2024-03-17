@@ -10,6 +10,7 @@
     #     Description        = ''
     # }
 
+    # bat
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/bat/config"
@@ -19,6 +20,17 @@
         Description        = 'Bat config'
     }
 
+    # dive
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/dive/config.yml"
+        MacDestination     = "/Users/$User/.dive.yaml"
+        UnixDestination    = "/home/$User/.dive.yaml"
+        WindowsDestination = "C:/Users/$User/.dive.yaml"
+        Description        = 'Dive config'
+    }
+
+    # git
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/git/gitconfig"
@@ -41,6 +53,7 @@
         }
     )
 
+    # lsd
     [PSCustomObject]@{
         Type               = 'Directory'
         Source             = $Null
@@ -68,13 +81,14 @@
         Description        = 'lsd theme'
     }
 
+    # Powershell/pwsh
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/powershell/profile.ps1"
         MacDestination     = $Null
         UnixDestination    = $Null
         WindowsDestination = "C:/Users/$User/Documents/WindowsPowershell/profile.ps1"
-        Description        = 'Windows Powershell profile'
+        Description        = 'Powershell (Windows) profile'
     }
 
     [PSCustomObject]@{
@@ -104,6 +118,7 @@
         Description        = 'PSReadLine (Windows) history'
     }
 
+    # ripgrep
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/ripgrep/ripgreprc"
@@ -113,6 +128,7 @@
         Description        = 'ripgrep config'
     }
 
+    # starship
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/starship/config.toml"
@@ -122,6 +138,17 @@
         Description        = 'starship config'
     }
 
+    # terminal
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/terminal/settings.json"
+        MacDestination     = $Null
+        UnixDestination    = $Null
+        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
+        Description        = 'Windows Terminal settings'
+    }
+
+    # tmux
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/tmux/tmux.conf"
@@ -129,6 +156,25 @@
         UnixDestination    = "/home/$User/.tmux.conf"
         WindowsDestination = $Null
         Description        = 'tmux config'
+    }
+
+    # vim
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/vim/vimrc"
+        MacDestination     = "/Users/$User/.vimrc"
+        UnixDestination    = "/home/$User/.vimrc"
+        WindowsDestination = "C:/Users/$User/_vimrc"
+        Description        = 'Vim config'
+    }
+
+    [PSCustomObject]@{
+        Type               = 'Directory'
+        Source             = $Null
+        MacDestination     = "/Users/$User/.vim/pack/plugins/start"
+        UnixDestination    = "/home/$User/.vim/pack/plugins/start"
+        WindowsDestination = "C:/Users/$User/.vim/pack/start/opt"
+        Description        = 'Vim plugins directory'
     }
 
     [PSCustomObject]@{
@@ -183,33 +229,6 @@
         UnixDestination    = "/home/$User/.config/Code/User/snippets/python.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/python.json"
         Description        = 'Visual Studio Code Python snippets'
-    }
-
-    [PSCustomObject]@{
-        Type               = 'File'
-        Source             = "$PSScriptRoot/vim/vimrc"
-        MacDestination     = "/Users/$User/.vimrc"
-        UnixDestination    = "/home/$User/.vimrc"
-        WindowsDestination = "C:/Users/$User/_vimrc"
-        Description        = 'Vim config'
-    }
-
-    [PSCustomObject]@{
-        Type               = 'Directory'
-        Source             = $Null
-        MacDestination     = "/Users/$User/.vim/pack/plugins/start"
-        UnixDestination    = "/home/$User/.vim/pack/plugins/start"
-        WindowsDestination = "C:/Users/$User/.vim/pack/start/opt"
-        Description        = "Vim plugins directory"
-    }
-
-    [PSCustomObject]@{
-        Type               = 'File'
-        Source             = "$PSScriptRoot/terminal/settings.json"
-        MacDestination     = $Null
-        UnixDestination    = $Null
-        WindowsDestination = "C:/Users/$User/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
-        Description        = 'Windows Terminal settings'
     }
 
     [PSCustomObject]@{
