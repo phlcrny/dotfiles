@@ -26,6 +26,11 @@ $NewAliases = @(
     }
 
     @{
+        Name  = "ll"
+        Value = "Get-ChildItem"
+    }
+
+    @{
         Name  = "gd"
         Value = "Get-Date"
     }
