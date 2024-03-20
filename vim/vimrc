@@ -75,6 +75,10 @@ colorscheme dracula                              " Dracula is my preferred theme
 highlight Normal guibg=NONE ctermbg=NONE         " Enables transparent background
 highlight CursorLine guibg=NONE ctermbg=NONE     " Disables colour on the current line, except for the line number
 
+""" Airline
+
+let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
+
 """ NerdTree
 
 let g:NERDTreeShowHidden = 1                     " Show hidden files by default
