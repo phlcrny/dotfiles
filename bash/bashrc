@@ -9,8 +9,7 @@ case $- in
       *) return;;
 esac
 
-# Don't put duplicate lines or lines start with space in history.
-HISTCONTROL=ignoredups
+HISTCONTROL=ignoredups # Don't put duplicate lines or lines start with space in history.
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -36,9 +35,6 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -68,9 +64,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         . /usr/share/bash-completion/bash_completion
@@ -79,7 +72,22 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Additional/optional files
+if [ -f "/usr/bin/vim" ]; then
+    export EDITOR=/usr/bin/vim
+fi
+
+# Additional/optional config
+if [ -f "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [ -x "$(command -v starship)" ]; then
+
+    if [ -f "$HOME/.config/starship.toml" ]; then
+        eval "$(starship init bash)"
+    fi
+fi
+
 if [ -f "$HOME/.bash_aliases" ]; then
     mv "$HOME/.bash_aliases" "$HOME/.aliases"
 fi
@@ -92,10 +100,6 @@ if [ -f "$HOME/.profile_extras" ]; then
     . "$HOME/.profile_extras"
 fi
 
-if [ -x "$(command -v starship)" ]; then
-
-    if [ -f "$HOME/.config/starship.toml" ]; then
-        eval "$(starship init bash)"
-    fi
-
+if [ -x "$(command -v fzf)" ]; then
+    export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 fi
