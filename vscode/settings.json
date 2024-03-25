@@ -138,10 +138,9 @@
   // git
   //
   "git.autofetch": "all",
-  "git.autofetchPeriod": 30,
+  "git.autofetchPeriod": 15,
   "git.autoStash": true,
   "git.fetchOnPull": true,
-  "git.pruneOnFetch": true,
   "git.scanRepositories": [
     "C:\\Dev",
     "~/Dev"
