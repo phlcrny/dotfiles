@@ -2,6 +2,7 @@
 @(
     # Example
     # [PSCustomObject]@{
+    #     Type               = ''
     #     Source             = ''
     #     MacDestination     = ''
     #     UnixDestination    = ''
@@ -39,6 +40,33 @@
             }
         }
     )
+
+    [PSCustomObject]@{
+        Type               = 'Directory'
+        Source             = $Null
+        MacDestination     = "/Users/$User/.config/lsd"
+        UnixDestination    = "/home/$User/.config/lsd"
+        WindowsDestination = $Null
+        Description        = 'lsd config folder'
+    }
+
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/lsd/config.yaml"
+        MacDestination     = "/Users/$User/.config/lsd/config.yaml"
+        UnixDestination    = "/home/$User/.config/lsd/config.yaml"
+        WindowsDestination = $Null
+        Description        = 'lsd config'
+    }
+
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/lsd/colors.yaml"
+        MacDestination     = "/Users/$User/.config/lsd/colors.yaml"
+        UnixDestination    = "/home/$User/.config/lsd/colors.yaml"
+        WindowsDestination = $Null
+        Description        = 'lsd theme'
+    }
 
     [PSCustomObject]@{
         Type               = 'File'
