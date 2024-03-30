@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+BACKUP=${BACKUP:=false}
+SHOW_HELP=${SHOW_HELP:=false}
+
 while [[ "$#" -gt 0 ]]; do
     case $1 in
     -b | --backup)
@@ -31,6 +37,7 @@ show_help() {
 }
 
 backup_dotfiles() {
+    echo "ℹ Creating backups..."
     CURRENT_DATE=$(date +"%Y%m%d_%H%M%S")
     (BACKUP_LOCATION="$HOME/.backups/dotfiles/$CURRENT_DATE" &&
         mkdir -p "$BACKUP_LOCATION" &&
@@ -54,34 +61,31 @@ backup_dotfiles() {
         echo -e "❌ ${RED}Error${NC} backing up dotfiles"
 }
 
-if [[ "$BACKUP" == "" ]]; then
-    BACKUP="false"
-fi
-
-if [ -z ${SOURCE+x} ]; then
-
-    if [ -z ${DOTFILES_SOURCE+x} ]; then
-
-        if [[ -d "$HOME/dotfiles" ]]; then
-            export DOTFILES_SOURCE="$HOME/dotfiles"
-            echo "ℹ Using '$DOTFILES_SOURCE' as implicit default"
-        else
-            echo "❌ Specify DOTFILES_SOURCE or --source and run again"
-        fi
-    else
-        echo "ℹ Using '$DOTFILES_SOURCE' via environment variable"
-    fi
-else
-    export DOTFILES_SOURCE=$SOURCE
-    echo "ℹ Using '$DOTFILES_SOURCE' as specified via --source"
-fi
-
-if [[ "$SHOW_HELP" != "" ]]; then
+if [[ "$SHOW_HELP" == "true" ]]; then
     show_help
-elif [[ -d "$DOTFILES_SOURCE" ]]; then
-    echo "ℹ Installing dotfiles..."
-    if [[ "$BACKUP" == "true" ]]; then
-        backup_dotfiles
+else
+    set +u
+    if [[ "$SOURCE" != "" && "$SOURCE" != "$HOME/dotfiles" ]]; then
+        echo "ℹ Using '$SOURCE' specified --source parameter"
+        export DOTFILES_SOURCE="$SOURCE"
+    elif [ ! -z "$DOTFILES_SOURCE" ]; then
+        echo "ℹ Using '$DOTFILES_SOURCE' via environment variable"
+    else
+        echo "ℹ Using '$SOURCE' via implicit default"
+        export DOTFILES_SOURCE="$SOURCE"
     fi
-    find . -name 'setup_*.sh' -exec bash {} \;
+    set -u
+
+    if [[ -d "$DOTFILES_SOURCE" ]]; then
+
+        if [[ "$BACKUP" == "true" ]]; then
+            backup_dotfiles
+        fi
+
+        echo "ℹ Installing dotfiles..."
+        find "$DOTFILES_SOURCE" -name 'setup_*.sh' -exec bash {} \;
+    else
+        echo "❌ Specified SOURCE '$DOTFILES_SOURCE' not found!"
+        exit 1
+    fi
 fi
