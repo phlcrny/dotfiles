@@ -1,0 +1,8 @@
+# Ignore case
+--smart-case
+
+# Include hidden files
+--hidden
+
+# Add a custom type for GitLab CI files
+--type-add=gitlab:*gitlab-ci.yml

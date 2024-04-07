@@ -106,6 +106,15 @@
 
     [PSCustomObject]@{
         Type               = 'File'
+        Source             = "$PSScriptRoot/ripgrep/ripgreprc"
+        MacDestination     = "/Users/$User/.ripgreprc"
+        UnixDestination    = "/home/$User/.ripgreprc"
+        WindowsDestination = "C:/Users/$User/.ripgreprc"
+        Description        = 'ripgrep config'
+    }
+
+    [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/starship/config.toml"
         MacDestination     = "/Users/$User/.config/starship.toml"
         UnixDestination    = "/home/$User/.config/starship.toml"
