@@ -3,10 +3,10 @@
     # Example
     # [PSCustomObject]@{
     #     Type               = ''
-    #     Source             = ''
-    #     MacDestination     = ''
-    #     UnixDestination    = ''
-    #     WindowsDestination = ''
+    #     Source             = ""
+    #     MacDestination     = ""
+    #     UnixDestination    = ""
+    #     WindowsDestination = ""
     #     Description        = ''
     # }
 
