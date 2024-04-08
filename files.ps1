@@ -53,6 +53,16 @@
         }
     )
 
+    # glow
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/glow/glow.yml"
+        MacDestination     = "/Users/$User/Library/Preferences/glow/glow.yml"
+        UnixDestination    = "/home/$User/.config/glow/glow.yml"
+        WindowsDestination = "C:/Users/$USER/AppData/Local/glow/Config/glow.yml"
+        Description        = 'Glow config'
+    }
+
     # lsd
     [PSCustomObject]@{
         Type               = 'Directory'
