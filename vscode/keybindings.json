@@ -193,5 +193,49 @@
         "key": "ctrl+shift+tab",
         "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
         "when": "inEditorsPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+g down",
+        "command": "git.pull"
+    },
+    {
+        "key": "ctrl+shift+g shift+down",
+        "command": "git.pullRebase"
+    },
+    {
+        "key": "ctrl+shift+g up",
+        "command": "git.push"
+    },
+    {
+        "key": "ctrl+shift+g space",
+        "command": "git.stageSelectedRanges",
+        "when": "isInDiffEditor && !operationInProgress"
+    },
+    {
+        "key": "ctrl+k ctrl+alt+s",
+        "command": "-git.stageSelectedRanges",
+        "when": "isInDiffEditor && !operationInProgress"
+    },
+    {
+        "key": "ctrl+shift+g shift+space",
+        "command": "git.unstageSelectedRanges",
+        "when": "isInDiffEditor && !operationInProgress"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "-git.unstageSelectedRanges",
+        "when": "isInDiffEditor && !operationInProgress"
+    },
+    {
+        "key": "ctrl+shift+g r",
+        "command": "git.rebase"
+    },
+    {
+        "key": "ctrl+shift+g f",
+        "command": "git.fetch"
+    },
+    {
+        "key": "ctrl+shift+g shift+f",
+        "command": "git.fetchPrune"
     }
 ]
