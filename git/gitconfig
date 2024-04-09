@@ -6,6 +6,7 @@
     change = checkout
     fee = fetch --prune --all
     find = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -i --grep
+    histo = diff --diff-algorithm=histogram
     last-commit = log -n 1 --stat
     last-diff = diff HEAD~1..HEAD
     logline = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -n 10
