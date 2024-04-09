@@ -16,6 +16,7 @@
     push-no-ci = push -o ci.skip
     re = remote -v
     remove = branch -D
+    repull = pull --rebase
     search = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -S
     settings = config --list --show-origin
     squash = merge --squash --no-commit
