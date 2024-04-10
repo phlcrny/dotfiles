@@ -3,6 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 BACKUP=${BACKUP:=false}
+SOURCE=${SOURCE:=$HOME/dotfiles}
 SHOW_HELP=${SHOW_HELP:=false}
 
 while [[ "$#" -gt 0 ]]; do
