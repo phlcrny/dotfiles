@@ -76,39 +76,40 @@ try
 {
     $_HistoryHandlerScriptBlock = {
         param(
-            [string] $Line
+            [string] $InputLine
         )
 
-        $SkipExclusion = '(\$env\:(\w|\d)+(key|token|password)( +)?=)|((\-\w+\S)?(assecurestring|asplaintext)( +)?(=)?)'
-        $Exclusions = @(
-            'powershell_ise'
-            'cls'
-            'cd'
-            'cd ..'
-            'ls'
-            'ls -l'
+        $Line = $InputLine.ToLower()
+        $ExclusionsList = @(
+            'get-help'
             'ls -al'
-            'Get-Help'
-            'help'
-            'ii'
-            'ii .'
+            'powershell_ise'
             'skip_pshistory'
         )
 
-        if (($Line.ToLower() -notmatch $SkipExclusion) -and ($Line.ToLower() -notin $Exclusions))
+        if ($Line.Length -lt 6)
         {
-            if ($Line.Length -ge 5)
-            {
-                $True
-            }
-            else
-            {
-                $False
-            }
+            $False
+        }
+        elseif ($Line -in $ExclusionsList)
+        {
+            $False
+        }
+        elseif ($Line -match '^\$env:([a-z]+)?(token|key|pass)')
+        {
+            $False
+        }
+        elseif ($Line -match '-(asplaintext|assecurestring)')
+        {
+            $False
+        }
+        elseif ($Line -match '^ ')
+        {
+            $False
         }
         else
         {
-            $False
+            $InputLine
         }
     }
 
