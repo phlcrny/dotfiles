@@ -30,8 +30,8 @@ set showcmd                                      " Shows the command executed (o
 
 """ Mappings
 
-""" Note: <leader> is default '\'
-
+let mapleader = "\<Space>"
+nnoremap <leader>w :w<CR>                        " Save the current file
 nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
 nnoremap <leader>t :NERDTreeToggle<CR>           " Or with <leader> + t
 nnoremap <leader>r :NERDTreeRefreshRoot<CR>      " Refresh the file tree
