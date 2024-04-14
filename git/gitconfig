@@ -29,6 +29,7 @@
     search-msg = find
     find-by-msg = find
     find-by-content = search
+    la = ll --all
     lc = last-commit
     ld = last-diff
     ll = logline
