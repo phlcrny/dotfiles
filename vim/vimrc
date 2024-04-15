@@ -27,6 +27,7 @@ set number                                       " Add numbers to the side gutte
 set numberwidth=5                                " Make the number gutter 5 chars wide
 set ruler                                        " Add the ruler for line/column details
 set showcmd                                      " Shows the command executed (or not, but it's harmless).
+set belloff=all                                  " No bells
 
 """ Mappings
 
