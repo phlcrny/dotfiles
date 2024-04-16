@@ -33,6 +33,8 @@ set belloff=all                                  " No bells
 
 let mapleader = "\<Space>"
 nnoremap <leader>w :w<CR>                        " Save the current file
+nnoremap <leader><left> :bp<CR>                  " Move to the previous buffer
+nnoremap <leader><right> :bn<CR>                 " Move to the next buffer
 nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
 nnoremap <leader>t :NERDTreeToggle<CR>           " Or with <leader> + t
 nnoremap <leader>r :NERDTreeRefreshRoot<CR>      " Refresh the file tree
