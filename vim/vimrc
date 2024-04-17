@@ -33,6 +33,9 @@ set belloff=all                                  " No bells
 
 let mapleader = "\<Space>"
 nnoremap <leader>w :w<CR>                        " Save the current file
+nnoremap <leader>x :wq<CR>                       " Save and exit the current editor
+nnoremap <leader>q :q!<CR>                       " Quit the current editor without saving
+nnoremap <leader>e  :edit!<CR>                   " Reload the current file
 nnoremap <leader><left> :bp<CR>                  " Move to the previous buffer
 nnoremap <leader><right> :bn<CR>                 " Move to the next buffer
 nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
