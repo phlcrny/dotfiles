@@ -17,7 +17,7 @@ fi
 
 if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     export ZSH="$HOME/.oh-my-zsh"
-    ZSH_THEME="robbyrussell"
+    ZSH_THEME="ys"
     COMPLETION_WAITING_DOTS="true"
     plugins=(
         aliases                 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases
