@@ -21,6 +21,7 @@
     search = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -S
     settings = config --list --show-origin
     squash = merge --squash --no-commit
+    st = status
     subpull = submodule update --remote --init
     what = log -n 5 --stat --date iso
     # aliases of aliases
