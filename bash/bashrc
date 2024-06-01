@@ -76,9 +76,10 @@ if [ -f "/usr/bin/vim" ]; then
     export EDITOR=/usr/bin/vim
 fi
 
-# Additional/optional config
 if [ -f "/opt/homebrew/bin/brew" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 if [ -x "$(command -v starship)" ]; then
