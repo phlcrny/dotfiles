@@ -2,10 +2,12 @@
     add-executable = add --chmod=+x
     al = commit --amend
     br = branch -avv --sort=-committerdate
+    catch-up = rebase origin/main
     co = checkout .
     change = checkout
     fee = fetch --prune --all
     find = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -i --grep
+    fpl = push --force-with-lease
     histo = diff --diff-algorithm=histogram
     last-commit = log -n 1 --stat
     last-diff = diff HEAD~1..HEAD
@@ -24,8 +26,10 @@
     st = status
     subpull = submodule update --remote --init
     what = log -n 5 --stat --date iso
+    wip-commit = commit -am 'WIP temporary commit'
     # aliases of aliases
     amend-last = al
+    cu = catch-up
     search-content = search
     search-msg = find
     find-by-msg = find
@@ -36,6 +40,7 @@
     ll = logline
     ooops = oops
     remoev = remove
+    wc = wip-commit
 [include]
     path = .git_extras
 [init]
