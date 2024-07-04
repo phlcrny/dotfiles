@@ -18,5 +18,8 @@ tmux.conf eol=lf
 # vim
 vimrc eol=lf
 
+# wezterm
+wezterm.lua eol=lf
+
 # zsh
 zshrc eol=lf

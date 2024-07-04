@@ -187,6 +187,7 @@
         Description        = 'Vim plugins directory'
     }
 
+    # VS Code
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/vscode/settings.json"
@@ -241,6 +242,17 @@
         Description        = 'Visual Studio Code Python snippets'
     }
 
+    # wezterm
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/wezterm/wezterm.lua"
+        MacDestination     = "/Users/$User/.wezterm.lua"
+        UnixDestination    = "/home/$User/.wezterm.lua"
+        WindowsDestination = "C:/Users/$User/.wezterm.lua"
+        Description        = 'WezTerm configuration'
+    }
+
+    # zsh
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/zsh/zshrc"
