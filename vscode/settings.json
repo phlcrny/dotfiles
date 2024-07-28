@@ -46,6 +46,7 @@
   //
   // Editor appearance
   //
+  "breadcrumbs.enabled": false,
   "editor.bracketPairColorization.enabled": true,
   "editor.fontSize": 14,
   "editor.fontFamily": "'CaskaydiaCove Nerd Font Mono', Inconsolata, Monaco, Consolas, 'Courier New', Courier",
