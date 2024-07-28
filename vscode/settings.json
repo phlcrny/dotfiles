@@ -95,6 +95,7 @@
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
+  "problems.autoReveal": false,
   "scm.alwaysShowActions": true,
   "scm.alwaysShowRepositories": true,
   "scm.defaultViewMode": "tree",
