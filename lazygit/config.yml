@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+gui:
+  sidePanelWidth: 0.25
+  expandFocusedSidePanel: true
+  nerdFontsVersion: "3"
+  authorColors:
+    "Phil Carney": "magenta"
+    "j84581012": "magenta"
+  theme:
+    activeBorderColor:
+      - magenta
+      - bold
+    inactiveBorderColor:
+      - white
+    searchingActiveBorderColor:
+      - cyan
+      - bold
+    optionsTextColor:
+      - white
+    selectedLineBgColor:
+      - magenta
+    cherryPickedCommitBgColor:
+      - cyan
+    cherryPickedCommitFgColor:
+      - blue
+    markedBaseCommitBgColor:
+      - yellow
+    markedBaseCommitFgColor:
+      - blue
+    unstagedChangesColor:
+      - white
+    defaultFgColor:
+      - default
+  showRandomTip: false
+  showCommandLog: true
+git:
+  parseEmoji: true
+  commit:
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+  paging:
+    colorArg: always
