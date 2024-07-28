@@ -36,10 +36,10 @@ format = '[$duration]($style) '
 min_time = 100
 
 [username]
-disabled = false
+disabled = true
 style_user = '#1ec9d6'
 style_root = 'white bold'
-format = '[$user]($style) '
+format = '[$user]($style) in '
 show_always = true
 
 [hostname]
@@ -53,7 +53,7 @@ disabled = false
 style = '#cb0eb9'
 read_only = '🔒'
 read_only_style = 'red'
-format = 'in [$path]($style)[$read_only]($read_only_style) '
+format = '[$path]($style)[$read_only]($read_only_style) '
 truncation_length = 8
 truncation_symbol = '…/'
 truncate_to_repo = false
