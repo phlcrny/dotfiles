@@ -63,6 +63,16 @@
         Description        = 'Glow config'
     }
 
+    # k9s
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/k9s/config.yaml"
+        MacDestination     = "/Users/$User/Library/Application Support/k9s/config.yaml"
+        UnixDestination    = "/home/$User/.config/k9s/config.yaml"
+        WindowsDestination = "C:/Users/$User/AppData/Local/k9s/config.yaml"
+        Description        = 'k9s config'
+    }
+
     # lazygit
     [PSCustomObject]@{
         Type               = 'File'
