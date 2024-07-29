@@ -67,7 +67,7 @@
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/lazygit/config.yml"
-        MacDestination     = "Users/$User/Library/Application\ Support/lazygit/config.yml"
+        MacDestination     = "/Users/$User/Library/Application Support/lazygit/config.yml"
         UnixDestination    = "/home/$User/.config/lazygit/config.yml"
         WindowsDestination = "C:/Users/$User/AppData/Local/lazygit/config.yml"
         Description        = 'lazygit config'
