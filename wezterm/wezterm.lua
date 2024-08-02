@@ -11,7 +11,7 @@ local mux = wezterm.mux
 local act = wezterm.action
 local config = {}
 local launch_menu = {}
-local hasextras, extras = pcall(require, "extras")
+local hasextras, extras = pcall(require, ".wezterm_extras")
 --[[
 
 core configuration
