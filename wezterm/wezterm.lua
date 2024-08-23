@@ -43,6 +43,7 @@ config.initial_cols = 100
 config.initial_rows = 30
 config.show_tab_index_in_tab_bar = true
 config.tab_bar_at_bottom = false
+config.tab_max_width = 120
 config.use_fancy_tab_bar = false
 config.window_background_opacity = 0.80
 config.window_decorations = "RESIZE"
