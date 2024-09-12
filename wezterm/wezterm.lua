@@ -266,6 +266,76 @@ end
 actions/keys
 
 ]] --
+config.leader = {
+    key = 'Space',
+    mods = 'CTRL',
+    timeout_milliseconds = 2000
+}
+
+config.keys = {{
+    key = 'r',
+    mods = 'LEADER',
+    action = wezterm.action.ReloadConfiguration
+}, -- ^ Reload config without menus
+{
+    key = 's',
+    mods = 'LEADER',
+    action = act.ShowLauncherArgs {
+        flags = 'FUZZY|WORKSPACES'
+    }
+}, -- ^ Allow switching between workspaces in the fuzzy menu using Ctrl+Space S
+{
+    key = '<',
+    mods = 'LEADER',
+    action = act.SwitchWorkspaceRelative(-1)
+}, -- ^ Switch to previous workspace
+{
+    key = '>',
+    mods = 'LEADER',
+    action = act.SwitchWorkspaceRelative(1)
+}, -- ^ Switch to next workspace
+{
+    key = '|',
+    mods = 'LEADER',
+    action = wezterm.action.SplitHorizontal {
+        domain = 'CurrentPaneDomain'
+    }
+}, -- ^ Create a side-by-side split
+{
+    key = '-',
+    mods = 'LEADER',
+    action = wezterm.action.SplitVertical {
+        domain = 'CurrentPaneDomain'
+    }
+}, -- ^ Create a top-bottom split
+{
+    key = 'p',
+    mods = 'LEADER',
+    action = act.PaneSelect {
+        alphabet = '1234567890'
+    }
+}, -- ^ Launch pane selector,
+{
+    key = 'UpArrow',
+    mods = 'LEADER',
+    action = act.ActivatePaneDirection 'Up'
+}, -- ^ Select upwards pane
+{
+    key = 'DownArrow',
+    mods = 'LEADER',
+    action = act.ActivatePaneDirection 'Down'
+}, -- ^ Select downwards pane
+{
+    key = 'LeftArrow',
+    mods = 'LEADER',
+    action = act.ActivatePaneDirection 'Left'
+}, -- ^ Select leftwards pane
+{
+    key = 'RightArrow',
+    mods = 'LEADER',
+    action = act.ActivatePaneDirection 'Right'
+} -- ^ Select rightwards pane
+}
 
 mouse_bindings = {{
     event = {
