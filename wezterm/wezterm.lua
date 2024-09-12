@@ -57,6 +57,7 @@ config.window_padding = {
 -- right status starts
 wezterm.on('update-right-status', function(window, pane)
     local cells = {}
+    table.insert(cells, window:active_workspace())
     local username = os.getenv('USERNAME') or os.getenv('USER') or os.getenv('LOGNAME')
     table.insert(cells, username)
     local cwd_uri = pane:get_current_working_dir()
@@ -301,6 +302,21 @@ config.mouse_bindings = mouse_bindings
 Start-up
 
 ]] --
+
+wezterm.on('gui-startup', function(cmd)
+    local args = {}
+    if cmd then
+        args = cmd.args
+    end
+
+    local starting_dir = wezterm.home_dir
+    local tab, main_pane, window = mux.spawn_window {
+        workspace = 'main',
+        cwd = starting_dir,
+        args = config.default_prog
+    }
+    mux.set_active_workspace 'main'
+end)
 
 --[[
 
