@@ -157,8 +157,8 @@
   //
   // GitLab
   //
+  "gitlab.duoCodeSuggestions.enabled": false,
   "gitlab.showPipelineUpdateNotifications": true,
-  "gitlab.aiAssistedCodeSuggestions.enabled": false,
   //
   // GitLens
   //
