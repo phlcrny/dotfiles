@@ -316,26 +316,136 @@ config.keys = {{
     }
 }, -- ^ Launch pane selector,
 {
+    key = "UpArrow",
+    mods = "LEADER",
+    action = act {
+        AdjustPaneSize = {"Up", 5}
+    }
+}, -- ^ Resize the current pane up
+{
+    key = "DownArrow",
+    mods = "LEADER",
+    action = act {
+        AdjustPaneSize = {"Down", 5}
+    }
+}, -- ^ Resize the current pane down
+{
+    key = "LeftArrow",
+    mods = "LEADER",
+    action = act {
+        AdjustPaneSize = {"Left", 5}
+    }
+}, -- ^ Resize the current pane left
+{
+    key = "RightArrow",
+    mods = "LEADER",
+    action = act {
+        AdjustPaneSize = {"Right", 5}
+    }
+}, -- ^ Resize the current pane right
+{
     key = 'UpArrow',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = act.ActivatePaneDirection 'Up'
 }, -- ^ Select upwards pane
 {
     key = 'DownArrow',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = act.ActivatePaneDirection 'Down'
 }, -- ^ Select downwards pane
 {
     key = 'LeftArrow',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = act.ActivatePaneDirection 'Left'
 }, -- ^ Select leftwards pane
 {
     key = 'RightArrow',
-    mods = 'LEADER',
+    mods = 'ALT',
     action = act.ActivatePaneDirection 'Right'
-} -- ^ Select rightwards pane
-}
+}, -- ^ Select rightwards pane
+{
+    key = "t",
+    mods = "LEADER",
+    action = act {
+        SpawnTab = "CurrentPaneDomain"
+    }
+}, -- ^ Create new tab in the current tab
+{
+    key = "`",
+    mods = "ALT",
+    action = act.ActivateLastTab
+}, -- ^ Add tab quick-swap
+{
+    key = "1",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 0
+    }
+}, -- ^ Change tab by number
+{
+    key = "2",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 1
+    }
+}, -- ^ Change tab by number
+{
+    key = "3",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 2
+    }
+}, -- ^ Change tab by number
+{
+    key = "4",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 3
+    }
+}, -- ^ Change tab by number
+{
+    key = "5",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 4
+    }
+}, -- ^ Change tab by number
+{
+    key = "6",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 5
+    }
+}, -- ^ Change tab by number
+{
+    key = "7",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 6
+    }
+}, -- ^ Change tab by number
+{
+    key = "8",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 7
+    }
+}, -- ^ Change tab by number
+{
+    key = "9",
+    mods = "LEADER",
+    action = act {
+        ActivateTab = 8
+    }
+}, {
+    key = "w",
+    mods = "LEADER",
+    action = act {
+        CloseCurrentPane = {
+            confirm = true
+        }
+    }
+}}
 
 mouse_bindings = {{
     event = {
