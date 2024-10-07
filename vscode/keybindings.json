@@ -237,5 +237,9 @@
     {
         "key": "ctrl+shift+g shift+f",
         "command": "git.fetchPrune"
+    },
+    {
+        "key": "cmd+j",
+        "command": "-workbench.action.togglePanel"
     }
 ]
