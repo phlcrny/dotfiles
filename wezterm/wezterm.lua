@@ -437,7 +437,8 @@ config.keys = {{
     action = act {
         ActivateTab = 8
     }
-}, {
+}, -- ^ Change tab by number
+{
     key = "w",
     mods = "LEADER",
     action = act {
@@ -445,6 +446,11 @@ config.keys = {{
             confirm = true
         }
     }
+}, -- ^ Close current pane
+{
+    mods = 'LEADER',
+    key = 'm',
+    action = wezterm.action.TogglePaneZoomState
 }}
 
 mouse_bindings = {{
