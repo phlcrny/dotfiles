@@ -7,6 +7,10 @@ fi
 if [ -x "$(command -v wezterm)" ]; then
     ln -sf "$DOTFILES_SOURCE/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
 
+    if [[ ! -f "$HOME/.config/wezterm/wezterm_extras.lua" ]]; then
+        mkdir -p "$HOME/.config/wezterm" && touch "$HOME/.config/wezterm/wezterm_extras.lua"
+    fi
+
     if [[ $(cat "$HOME/.wezterm.lua") != "" ]]; then
         echo -e "✅ ${GREEN}Installed${NC} wezterm config"
     else
