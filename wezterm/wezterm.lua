@@ -537,6 +537,7 @@ wezterm.on('gui-startup', function(cmd)
         args = config.default_prog
     }
     mux.set_active_workspace 'main'
+    window:active_tab():set_title('Main')
 end)
 
 --[[
