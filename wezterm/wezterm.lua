@@ -451,7 +451,42 @@ config.keys = {{
     mods = 'LEADER',
     key = 'm',
     action = wezterm.action.TogglePaneZoomState
-}}
+}, -- ^ Toggle full zoom on the current pane
+{
+    key = 'T',
+    mods = 'ALT|SHIFT',
+    action = act.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, pane, line)
+            -- line will be `nil` if they hit escape without entering anything
+            -- An empty string if they just hit enter
+            -- Or the actual line of text they wrote
+            if line then
+                window:active_tab():set_title(line)
+            end
+        end)
+    }
+}, -- ^ Rename the current tab after prompting for input
+{
+    key = 'S',
+    mods = 'ALT|SHIFT',
+    action = act.PromptInputLine {
+        description = wezterm.format {{
+            Text = 'Enter name for new workspace'
+        }},
+        action = wezterm.action_callback(function(window, pane, line)
+            -- line will be `nil` if they hit escape without entering anything
+            -- An empty string if they just hit enter
+            -- Or the actual line of text they wrote
+            if line then
+                window:perform_action(act.SwitchToWorkspace {
+                    name = line
+                }, pane)
+            end
+        end)
+    }
+} -- ^ Create a new workspace after prompting for the new name
+}
 
 mouse_bindings = {{
     event = {
