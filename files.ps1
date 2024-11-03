@@ -111,6 +111,15 @@
         Description        = 'lsd theme'
     }
 
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/neovim/init.vim"
+        MacDestination     = "/Users/$User/.config/nvim/init.vim"
+        UnixDestination    = "/home/$User/.config/nvim/init.vim"
+        WindowsDestination = "C:/Users/$User/AppData/Local/nvim/init.vim"
+        Description        = 'Neovimconfig'
+    }
+
     # Powershell/pwsh
     [PSCustomObject]@{
         Type               = 'File'
