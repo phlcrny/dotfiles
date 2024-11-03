@@ -67,7 +67,7 @@
     "errorLens.warningBackground": "#f6b87e1b",
     "errorLens.warningForeground": "#ffbc64"
   },
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.focusRecentEditorAfterClose": false,
