@@ -158,7 +158,6 @@
   //
   // GitLab
   //
-  "gitlab.duoCodeSuggestions.enabled": false,
   "gitlab.showPipelineUpdateNotifications": true,
   //
   // GitLens
@@ -206,5 +205,10 @@
   //
   // Red Hat
   //
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  //
+  // AI shite
+  //
+  "chat.commandCenter.enabled": false,
+  "gitlab.duoCodeSuggestions.enabled": false
 }
