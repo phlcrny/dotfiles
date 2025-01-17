@@ -453,6 +453,11 @@ config.keys = {{
     action = wezterm.action.TogglePaneZoomState
 }, -- ^ Toggle full zoom on the current pane
 {
+    mods = 'LEADER',
+    key = 'z',
+    action = wezterm.action.TogglePaneZoomState
+}, -- ^ Toggle full zoom on the current pane (one-hand/VS Code compatability mode)
+{
     key = 'T',
     mods = 'ALT|SHIFT',
     action = act.PromptInputLine {
