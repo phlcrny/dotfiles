@@ -210,5 +210,33 @@
   // AI shite
   //
   "chat.commandCenter.enabled": false,
-  "gitlab.duoCodeSuggestions.enabled": false
+  "gitlab.duoCodeSuggestions.enabled": false,
+  "gitlab.duoChat.enabled": false,
+  "gitlab.duo.enabledWithoutGitlabProject": false,
+  "gitlab.duoCodeSuggestions.enabledSupportedLanguages": {
+    "c": false,
+    "cpp": false,
+    "csharp": false,
+    "go": false,
+    "haml": false,
+    "handlebars": false,
+    "javascript": false,
+    "java": false,
+    "vue": false,
+    "terragrunt": false,
+    "terraform": false,
+    "svelte": false,
+    "typescript": false,
+    "swift": false,
+    "shellscript": false,
+    "scala": false,
+    "javascriptreact": false,
+    "kotlin": false,
+    "python": false,
+    "php": false,
+    "ruby": false,
+    "rust": false,
+    "sql": false,
+    "typescriptreact": false
+  }
 }
