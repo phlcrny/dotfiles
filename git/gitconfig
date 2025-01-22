@@ -14,6 +14,7 @@
     logline = log --graph --abbrev-commit --pretty=format:'%Cred%cr%Creset %Cgreen(%h)%Creset %s %d%C(cyan)<%aN/%ae>%Creset' -n 10
     ls = ls-files --full-name --eol --stage
     ls-excluded = ls-files --full-name --eol -o
+    mwps = push -o merge_request.create -o merge_request.target=main
     oops = reset HEAD~1
     pu = push origin HEAD
     push-no-ci = push -o ci.skip
