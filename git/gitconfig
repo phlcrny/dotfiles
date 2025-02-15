@@ -26,6 +26,7 @@
     squash = merge --squash --no-commit
     st = status
     subpull = submodule update --remote --init
+    uu = branch --unset-upstream
     what = log -n 5 --stat --date iso
     wip-commit = commit -am 'WIP temporary commit'
     # aliases of aliases
