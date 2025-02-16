@@ -525,28 +525,6 @@ config.mouse_bindings = mouse_bindings
 
 --[[
 
-Start-up
-
-]] --
-
-wezterm.on('gui-startup', function(cmd)
-    local args = {}
-    if cmd then
-        args = cmd.args
-    end
-
-    local starting_dir = wezterm.home_dir
-    local tab, main_pane, window = mux.spawn_window {
-        workspace = 'main',
-        cwd = starting_dir,
-        args = config.default_prog
-    }
-    mux.set_active_workspace 'main'
-    window:active_tab():set_title('Main')
-end)
-
---[[
-
 override file
 
 ]] --
