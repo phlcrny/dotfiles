@@ -16,6 +16,7 @@
     ls-excluded = ls-files --full-name --eol -o
     mwps = push -o merge_request.create -o merge_request.target=main
     oops = reset HEAD~1
+    psu = push --set-upstream
     pu = push origin HEAD
     push-no-ci = push -o ci.skip
     re = remote -v
