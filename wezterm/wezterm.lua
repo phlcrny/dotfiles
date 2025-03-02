@@ -172,7 +172,7 @@ function tab_title(tab_info)
     if title and #title > 0 then
         return title
     end
-    return tab_info.active_pane.title
+    return tab_info.active_pane.title:gsub("%.exe", "")
 end
 
 --- format-tab-title starts
