@@ -27,10 +27,26 @@ formatting and theming!
 
 ]] --
 
+--[[ All colours set from here for sanity/ease/consistency ]] --
+local lavender = wezterm.color.parse('#bd93f9')
+local grey = wezterm.color.parse('#282a36')
+COLOURS = {
+    text_colour = grey,
+    main_colour = lavender,
+    main_colour_dark1 = lavender:darken(0.1),
+    main_colour_dark2 = lavender:darken(0.2),
+    main_colour_dark3 = lavender:darken(0.3),
+    main_colour_dark4 = lavender:darken(0.4),
+    main_colour_light1 = lavender:lighten(0.1),
+    main_colour_light2 = lavender:lighten(0.2),
+    main_colour_light3 = lavender:lighten(0.3),
+    main_colour_light4 = lavender:lighten(0.4)
+}
+
 config.color_scheme = "Dracula (Official)"
 config.command_palette_rows = 10
-config.command_palette_bg_color = "#282a36"
-config.command_palette_fg_color = "#bd93f9"
+config.command_palette_bg_color = COLOURS.text_colour
+config.command_palette_fg_color = COLOURS.main_colour
 config.default_cursor_style = 'BlinkingBar'
 config.enable_scroll_bar = true
 config.font = wezterm.font_with_fallback({{
@@ -87,10 +103,6 @@ wezterm.on('update-right-status', function(window, pane)
     local SOLID_RIGHT = wezterm.nerdfonts.ple_right_half_circle_thick
     local SOLID_LEFT = wezterm.nerdfonts.ple_left_half_circle_thick
 
-    local lavender = wezterm.color.parse("#bd93f9")
-    local colors = {lavender, lavender:lighten(0.2), lavender:lighten(0.1), lavender, lavender:darken(0.1),
-                    lavender:darken(0.2)}
-    local grey = '#282a36'
     local elements = {}
     local num_cells = 0
 
@@ -99,17 +111,15 @@ wezterm.on('update-right-status', function(window, pane)
         -- Left element edge
         table.insert(elements, {
             Foreground = {
-                Color = colors[cell_no]
+                Color = COLOURS.main_colour_light2
             }
         })
         table.insert(elements, {
-            Background = {
-                Color = grey
-            }
+            Background = {COLOURS.text_colour}
         })
         table.insert(elements, {
             Foreground = {
-                Color = colors[cell_no + 1]
+                Color = COLOURS.main_colour_light2
             }
         })
         table.insert(elements, {
@@ -119,13 +129,11 @@ wezterm.on('update-right-status', function(window, pane)
         -- Centre/text element
         table.insert(elements, {
             Background = {
-                Color = colors[cell_no + 1]
+                Color = COLOURS.main_colour_light2
             }
         })
         table.insert(elements, {
-            Foreground = {
-                Color = grey
-            }
+            Foreground = {COLOURS.text_colour}
         })
         table.insert(elements, {
             Text = text
@@ -133,13 +141,11 @@ wezterm.on('update-right-status', function(window, pane)
 
         -- Right element edge
         table.insert(elements, {
-            Background = {
-                Color = grey
-            }
+            Background = {COLOURS.text_colour}
         })
         table.insert(elements, {
             Foreground = {
-                Color = colors[cell_no + 1]
+                Color = COLOURS.main_colour_light2
             }
         })
         table.insert(elements, {
@@ -147,7 +153,7 @@ wezterm.on('update-right-status', function(window, pane)
         })
         table.insert(elements, {
             Foreground = {
-                Color = colors[cell_no + 1]
+                Color = COLOURS.main_colour_light2
             }
         })
     end
@@ -174,26 +180,23 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
 
     local SOLID_RIGHT = wezterm.nerdfonts.ple_right_half_circle_thick
     local SOLID_LEFT = wezterm.nerdfonts.ple_left_half_circle_thick
-    local lavender = wezterm.color.parse('#bd93f9')
-    local grey = wezterm.color.parse('#282a36')
+
     local icon = wezterm.nerdfonts.cod_question
 
     if tab.is_active then
-        background = lavender
-        foreground = grey
+        tab_background = COLOURS.main_colour
+        tab_foreground = COLOURS.text_colour
         icon = wezterm.nerdfonts.cod_debug_start
     elseif hover then
-        background = grey
-        foreground = lavender
+        tab_background = COLOURS.text_colour
+        tab_foreground = COLOURS.main_colour
         icon = wezterm.nerdfonts.cod_debug_continue
     else
-        background = lavender:lighten(0.4)
-        foreground = grey
+        tab_background = COLOURS.main_colour_light4
+        tab_foreground = COLOURS.text_colour
         icon = wezterm.nerdfonts.cod_debug_pause
     end
 
-    local edge_background = grey
-    local edge_foreground = background
     local title = tab_title(tab)
 
     title = wezterm.truncate_right(icon .. ' ' .. title, max_width + 50)
@@ -201,33 +204,33 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     return {{
         -- Left element edge
         Background = {
-            Color = edge_background
+            Color = COLOURS.text_colour
         }
     }, {
         Foreground = {
-            Color = edge_foreground
+            Color = tab_background
         }
     }, {
         Text = " " .. SOLID_LEFT
         -- Centre/text element
     }, {
         Background = {
-            Color = background
+            Color = tab_background
         }
     }, {
         Foreground = {
-            Color = foreground
+            Color = tab_foreground
         }
     }, {
         Text = title
         -- Right element edge
     }, {
         Background = {
-            Color = edge_background
+            Color = COLOURS.text_colour
         }
     }, {
         Foreground = {
-            Color = edge_foreground
+            Color = tab_background
         }
     }, {
         Text = SOLID_RIGHT .. " "
