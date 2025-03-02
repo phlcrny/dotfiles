@@ -42,6 +42,11 @@ COLOURS = {
     main_colour_light3 = lavender:lighten(0.3),
     main_colour_light4 = lavender:lighten(0.4)
 }
+--[[ Shapes used for tab/element separations ]] --
+SHAPES = {
+    element_end_left = wezterm.nerdfonts.ple_left_half_circle_thick,
+    element_end_right = wezterm.nerdfonts.ple_right_half_circle_thick
+}
 
 config.color_scheme = "Dracula (Official)"
 config.command_palette_rows = 10
@@ -98,11 +103,6 @@ wezterm.on('update-right-status', function(window, pane)
 
     local date = wezterm.strftime '%A %B %-d %H:%M'
     table.insert(cells, date)
-    local LEFT_CIRCLE = wezterm.nerdfonts.ple_left_half_circle_thin
-    local SOLID_LEFT_CIRCLE = wezterm.nerdfonts.ple_left_half_circle_thick
-    local SOLID_RIGHT = wezterm.nerdfonts.ple_right_half_circle_thick
-    local SOLID_LEFT = wezterm.nerdfonts.ple_left_half_circle_thick
-
     local elements = {}
     local num_cells = 0
 
@@ -123,7 +123,7 @@ wezterm.on('update-right-status', function(window, pane)
             }
         })
         table.insert(elements, {
-            Text = " " .. SOLID_LEFT .. ""
+            Text = " " .. SHAPES.element_end_left .. ""
         })
 
         -- Centre/text element
@@ -149,7 +149,7 @@ wezterm.on('update-right-status', function(window, pane)
             }
         })
         table.insert(elements, {
-            Text = "" .. SOLID_RIGHT .. " "
+            Text = "" .. SHAPES.element_end_right .. " "
         })
         table.insert(elements, {
             Foreground = {
@@ -177,9 +177,6 @@ end
 
 --- format-tab-title starts
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
-
-    local SOLID_RIGHT = wezterm.nerdfonts.ple_right_half_circle_thick
-    local SOLID_LEFT = wezterm.nerdfonts.ple_left_half_circle_thick
 
     local icon = wezterm.nerdfonts.cod_question
 
@@ -211,7 +208,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
             Color = tab_background
         }
     }, {
-        Text = " " .. SOLID_LEFT
+        Text = " " .. SHAPES.element_end_left
         -- Centre/text element
     }, {
         Background = {
@@ -233,7 +230,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
             Color = tab_background
         }
     }, {
-        Text = SOLID_RIGHT .. " "
+        Text = SHAPES.element_end_right .. " "
     }}
 end)
 --- format-tab-title ends
