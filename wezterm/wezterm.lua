@@ -115,7 +115,9 @@ wezterm.on('update-right-status', function(window, pane)
             }
         })
         table.insert(elements, {
-            Background = {COLOURS.text_colour}
+            Background = {
+                Color = COLOURS.text_colour
+            }
         })
         table.insert(elements, {
             Foreground = {
@@ -141,7 +143,9 @@ wezterm.on('update-right-status', function(window, pane)
 
         -- Right element edge
         table.insert(elements, {
-            Background = {COLOURS.text_colour}
+            Background = {
+                Color = COLOURS.text_colour
+            }
         })
         table.insert(elements, {
             Foreground = {
