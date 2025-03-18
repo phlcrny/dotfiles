@@ -115,7 +115,9 @@ wezterm.on('update-right-status', function(window, pane)
             }
         })
         table.insert(elements, {
-            Background = {COLOURS.text_colour}
+            Background = {
+                Color = COLOURS.text_colour
+            }
         })
         table.insert(elements, {
             Foreground = {
@@ -141,7 +143,9 @@ wezterm.on('update-right-status', function(window, pane)
 
         -- Right element edge
         table.insert(elements, {
-            Background = {COLOURS.text_colour}
+            Background = {
+                Color = COLOURS.text_colour
+            }
         })
         table.insert(elements, {
             Foreground = {
@@ -502,7 +506,8 @@ mouse_bindings = {{
     },
     mods = "NONE",
     action = act.CompleteSelection("ClipboardAndPrimarySelection")
-}, {
+}, -- ^ Copy to clipboard when left-clicking a word selection
+{
     event = {
         Up = {
             streak = 1,
@@ -511,7 +516,8 @@ mouse_bindings = {{
     },
     mods = "CTRL",
     action = act.OpenLinkAtMouseCursor
-}, {
+}, -- ^ Open (or try to) CTRL+left-clicking a word selection in browser
+{
     event = {
         Down = {
             streak = 3,
@@ -520,7 +526,8 @@ mouse_bindings = {{
     },
     action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
     mods = "NONE"
-}}
+} -- ^ Simply select a word selection with three left clicks
+}
 config.mouse_bindings = mouse_bindings
 
 --[[
