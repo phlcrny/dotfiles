@@ -238,5 +238,9 @@
     "rust": false,
     "sql": false,
     "typescriptreact": false
-  }
+  },
+  "gitlab.duoCodeSuggestions.openTabsContext": false,
+  "inlineChat.holdToSpeech": false,
+  "inlineChat.lineNaturalLanguageHint": false,
+  "chat.detectParticipant.enabled": false,
 }
