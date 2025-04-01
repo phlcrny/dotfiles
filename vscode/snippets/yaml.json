@@ -1,0 +1,65 @@
+{
+    "Phil-GitLabCaching": {
+        "prefix": "Phil-GitLabCaching",
+        "description": "Adds (intelligent) caching",
+        "body": [
+            "cache:",
+            "  - key:",
+            "      files:",
+            "        - ${1:file.lock}",
+            "    fallback_keys:",
+            "      - ${3:CI_COMMIT_REF_SLUG}",
+            "    paths:",
+            "      - ${2:CI_PROJECT_DIR/.cache}"
+        ]
+    },
+    "Phil-GitLabTestReports": {
+        "prefix": "Phil-GitLabTestReports",
+        "description": "Adds reports for tests in a GitLab CI job",
+        "body": [
+            "artifacts:",
+            "  when: always",
+            "  paths:",
+            "    - ${1:junit.xml}",
+            "  reports:",
+            "    junit: ${1:junit.xml}"
+        ]
+    },
+    "Phil-GitLabParallelMatrix": {
+        "prefix": "Phil-GitLabParallelMatrix",
+        "description": "Adds a two-leg example parallel:matrix",
+        "body": [
+            "parallel:",
+            "  matrix:",
+            "    - ${1:some_var}: ${2:default_value}",
+            "      ${3:new_var}: ${4:some_value}",
+            "    - ${5:some_var}: ${6:different_value}"
+        ]
+    },
+    "Phil-GitLabVariables": {
+        "prefix": "Phil-GitLabVariables",
+        "description": "Adds a top-level variables block",
+        "body": [
+            "variables:",
+            "  ${1:some_variable}:",
+            "    value: \"${2:default_value}\"",
+            "    options:",
+            "      - \"${2:default_value}\"",
+            "      - \"${3:other_value}\"",
+            "    description: \"${4:example description}\""
+        ]
+    },
+    "Phil-GitLabWorkflow": {
+        "prefix": "Phil-GitLabWorkflow",
+        "description": "Adds a workflow to prevent duplicate pipelines",
+        "body": [
+            "workflow:",
+            "  rules:",
+            "    - if: $CI_PIPELINE_SOURCE == \"schedule\"",
+            "      when: never",
+            "    - if: $CI_PIPELINE_SOURCE == \"push\"",
+            "      when: never",
+            "    - when: always"
+        ]
+    }
+}

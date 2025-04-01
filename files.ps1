@@ -237,7 +237,7 @@
 
     [PSCustomObject]@{
         Type               = 'File'
-        Source             = "$PSScriptRoot/vscode/powershell.json"
+        Source             = "$PSScriptRoot/vscode/snippets/powershell.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/powershell.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/powershell.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/powershell.json"
@@ -246,11 +246,20 @@
 
     [PSCustomObject]@{
         Type               = 'File'
-        Source             = "$PSScriptRoot/vscode/python.json"
+        Source             = "$PSScriptRoot/vscode/snippets/python.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/python.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/python.json"
         WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/python.json"
         Description        = 'Visual Studio Code Python snippets'
+    }
+
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/vscode/snippets/yaml.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/yaml.json"
+        UnixDestination    = "/home/$User/.config/Code/User/snippets/yaml.json"
+        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/yaml.json"
+        Description        = 'Visual Studio Code YAML snippets'
     }
 
     # wezterm
