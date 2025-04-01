@@ -237,24 +237,6 @@
 
     [PSCustomObject]@{
         Type               = 'File'
-        Source             = "$PSScriptRoot/vscode/ansible.json"
-        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/ansible.json"
-        UnixDestination    = "/home/$User/.config/Code/User/snippets/ansible.json"
-        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/ansible.json"
-        Description        = 'Visual Studio Code Ansible snippets'
-    }
-
-    [PSCustomObject]@{
-        Type               = 'File'
-        Source             = "$PSScriptRoot/vscode/ansible.json"
-        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/yaml.json"
-        UnixDestination    = "/home/$User/.config/Code/User/snippets/yaml.json"
-        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/yaml.json"
-        Description        = 'Visual Studio Code YAML/Ansible snippets'
-    }
-
-    [PSCustomObject]@{
-        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/powershell.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/powershell.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/powershell.json"

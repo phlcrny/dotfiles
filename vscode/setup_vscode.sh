@@ -27,24 +27,17 @@ if [ -x "$(command -v code)" ]; then
         echo -e "❌ ${RED}Error${NC} installing/reading VS Code keybindings"
     fi
 
-    ln -sf "$DOTFILES_SOURCE/vscode/ansible.json" "$VSCODE_ROOT/User/snippets/ansible.json"
-    if [[ $(cat "$VSCODE_ROOT/User/snippets/ansible.json") != "" ]]; then
-        echo -e "✅ ${GREEN}Installed${NC} VS Code Ansible snippets"
-    else
-        echo -e "❌ ${RED}Error${NC} installing/reading VS Code Ansible snippets"
-    fi
-
     ln -sf "$DOTFILES_SOURCE/vscode/powershell.json" "$VSCODE_ROOT/User/snippets/powershell.json"
     if [[ $(cat "$VSCODE_ROOT/User/snippets/powershell.json") != "" ]]; then
-        echo -e "✅ ${GREEN}Installed${NC} VS Code Powershell snippets"
+        echo -e "✅ ${GREEN}Installed${NC} Powershell snippets VS Code"
     else
-        echo -e "❌ ${RED}Error${NC} installing/reading VS Code Powershell snippets"
+        echo -e "❌ ${RED}Error${NC} installing/reading Powershell snippets VS Code"
     fi
 
     ln -sf "$DOTFILES_SOURCE/vscode/python.json" "$VSCODE_ROOT/User/snippets/python.json"
     if [[ $(cat "$VSCODE_ROOT/User/snippets/python.json") != "" ]]; then
-        echo -e "✅ ${GREEN}Installed${NC} VS Code Python snippets"
+        echo -e "✅ ${GREEN}Installed${NC} Python snippets VS Code"
     else
-        echo -e "❌ ${RED}Error${NC} installing/reading VS Code Python snippets"
+        echo -e "❌ ${RED}Error${NC} installing/reading Python snippets VS Code"
     fi
 fi

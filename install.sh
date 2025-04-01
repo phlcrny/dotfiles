@@ -49,7 +49,6 @@ backup_dotfiles() {
         cp "$HOME/.config/bat/config" "$BACKUP_LOCATION/bat-config" &&
         cp "$HOME/.config/Code/User/settings.json" "$BACKUP_LOCATION/Code-settings.json" &&
         cp "$HOME/.config/Code/User/keybindings.json" "$BACKUP_LOCATION/Code-keybindings.json" &&
-        cp "$HOME/.config/Code/User/snippets/ansible.json" "$BACKUP_LOCATION/Code-snippets-ansible.json" &&
         cp "$HOME/.config/Code/User/snippets/powershell.json" "$BACKUP_LOCATION/Code-snippets-powershell.json" &&
         cp "$HOME/.config/Code/User/snippets/python.json" "$BACKUP_LOCATION/Code-snippets-python.json" &&
         cp "$HOME/.gitconfig" "$BACKUP_LOCATION/.gitconfig" &&
