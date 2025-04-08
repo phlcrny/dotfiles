@@ -14,6 +14,13 @@ if [ -x "$(command -v code)" ]; then
     mkdir -p "$VSCODE_ROOT/User" && mkdir -p "$VSCODE_ROOT/User/snippets/"
     ln -sf "$DOTFILES_SOURCE/vscode/settings.json" "$VSCODE_ROOT/User/settings.json"
 
+    code --install-extension dracula-theme.theme-dracula 2>&1 1>/dev/null
+    if code --list-extensions | grep -q 'dracula-theme.theme-dracula'; then
+        echo -e "✅ ${GREEN}Installed${NC} VS Code Dracula theme"
+    else
+        echo -e "❌ ${RED}Error${NC} installing VS Code Dracula theme"
+    fi
+
     if [[ $(cat "$VSCODE_ROOT/User/settings.json") != "" ]]; then
         echo -e "✅ ${GREEN}Installed${NC} VS Code settings"
     else
