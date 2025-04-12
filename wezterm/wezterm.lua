@@ -135,7 +135,9 @@ wezterm.on('update-right-status', function(window, pane)
             }
         })
         table.insert(elements, {
-            Foreground = {COLOURS.text_colour}
+            Foreground = {
+                Color = COLOURS.text_colour,
+            }
         })
         table.insert(elements, {
             Text = text
