@@ -78,32 +78,15 @@ config.window_padding = {
 -- right status starts
 wezterm.on('update-right-status', function(window, pane)
     local cells = {}
-    table.insert(cells, window:active_workspace())
-    local username = os.getenv('USERNAME') or os.getenv('USER') or os.getenv('LOGNAME')
-    table.insert(cells, username)
-    local cwd_uri = pane:get_current_working_dir()
-    if cwd_uri then
-        local cwd = ''
-        local hostname = ''
-
-        local dot = hostname:find '[.]'
-        if dot then
-            hostname = hostname:sub(1, dot - 1)
-        end
-        if hostname == '' then
-            hostname = wezterm.hostname()
-        end
-
-        table.insert(cells, hostname)
-    end
-
-    local battery_charge = wezterm.battery_info()[1].state_of_charge
-    table.insert(cells, string.format('%.0f%%', battery_charge * 100))
-
-    local date = wezterm.strftime '%A %B %-d %H:%M'
-    table.insert(cells, date)
     local elements = {}
     local num_cells = 0
+
+    -- Elements are added onto the right and pushed left when something new is added
+    table.insert(cells, window:active_workspace())
+    local battery_charge = wezterm.battery_info()[1].state_of_charge
+    table.insert(cells, string.format('%.0f%%', battery_charge * 100))
+    local date = wezterm.strftime '%A %B %-d %H:%M'
+    table.insert(cells, date)
 
     function push(text, is_last)
         local cell_no = num_cells + 1
