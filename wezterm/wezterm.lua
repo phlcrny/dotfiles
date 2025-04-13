@@ -88,7 +88,7 @@ wezterm.on('update-right-status', function(window, pane)
     local date = wezterm.strftime '%A %B %-d %H:%M'
     table.insert(cells, date)
 
-    function push(text, is_last)
+    function add_element_to_status_bar(text, is_last)
         local cell_no = num_cells + 1
         -- Left element edge
         table.insert(elements, {
@@ -148,7 +148,7 @@ wezterm.on('update-right-status', function(window, pane)
 
     while #cells > 0 do
         local cell = table.remove(cells, 1)
-        push(cell, #cells == 0)
+        add_element_to_status_bar(cell, #cells == 0)
     end
 
     window:set_right_status(wezterm.format(elements))
