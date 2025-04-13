@@ -97,9 +97,8 @@ wezterm.on('update-right-status', function(window, pane)
         table.insert(cells, hostname)
     end
 
-    for _, b in ipairs(wezterm.battery_info()) do
-        table.insert(cells, string.format('%.0f%%', b.state_of_charge * 100))
-    end
+    local battery_charge = wezterm.battery_info()[1].state_of_charge
+    table.insert(cells, string.format('%.0f%%', battery_charge * 100))
 
     local date = wezterm.strftime '%A %B %-d %H:%M'
     table.insert(cells, date)
