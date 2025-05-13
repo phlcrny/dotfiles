@@ -255,6 +255,15 @@
 
     [PSCustomObject]@{
         Type               = 'File'
+        Source             = "$PSScriptRoot/vscode/snippets/shellscript.json"
+        MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/shellscript.json"
+        UnixDestination    = "/home/$User/.config/Code/User/snippets/shellscript.json"
+        WindowsDestination = "C:/Users/$User/AppData/Roaming/Code/User/snippets/shellscript.json"
+        Description        = 'Visual Studio Code shellscript snippets'
+    }
+
+    [PSCustomObject]@{
+        Type               = 'File'
         Source             = "$PSScriptRoot/vscode/snippets/yaml.json"
         MacDestination     = "/Users/$User/Library/Application Support/Code/User/snippets/yaml.json"
         UnixDestination    = "/home/$User/.config/Code/User/snippets/yaml.json"

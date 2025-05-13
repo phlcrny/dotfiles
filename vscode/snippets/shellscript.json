@@ -1,0 +1,30 @@
+{
+    "Phil-ShellHeader": {
+        "prefix": "Phil-ShellHeader",
+        "description": "Adds a script header",
+        "body": [
+            "#!/usr/bin/env bash",
+            "set -euo pipefail",
+            "IFS=$'\\n\\t'"
+        ]
+    },
+    "Phil-ShellLoop": {
+        "prefix": "Phil-ShellLoop",
+        "description": "Adds a loop",
+        "body": [
+            "for ${1:ELEMENT} in ${2:ELEMENT1} \\",
+            "               ${3:ELEMENT2} \\",
+            "               ${4:ELEMENT3}",
+            "do",
+            "\techo \"${1:ELEMENT}\"",
+            "done"
+        ]
+    },
+    "Phil-ShellTrap": {
+        "prefix": "Phil-ShellTrap",
+        "description": "Adds a trap statement with an error message",
+        "body": [
+            "trap \"set +x; echo '${0:An error has occurred}'\" EXIT"
+        ]
+    }
+}

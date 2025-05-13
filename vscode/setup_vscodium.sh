@@ -48,10 +48,10 @@ if [ -x "$(command -v codium)" ]; then
         echo -e "❌ ${RED}Error${NC} installing/reading Python snippets for VSCodium"
     fi
 
-    ln -sf "$DOTFILES_SOURCE/vscode/snippets/yaml.json" "$VSCODIUM_ROOT/User/snippets/yaml.json"
-    if [[ $(cat "$VSCODIUM_ROOT/User/snippets/yaml.json") != "" ]]; then
-        echo -e "✅ ${GREEN}Installed${NC} YAML snippets for VSCodium"
+    ln -sf "$DOTFILES_SOURCE/vscode/snippets/shellscript.json" "$VSCODIUM_ROOT/User/snippets/shellscript.json"
+    if [[ $(cat "$VSCODIUM_ROOT/User/snippets/shellscript.json") != "" ]]; then
+        echo -e "✅ ${GREEN}Installed${NC} shellscript snippets for VSCodium"
     else
-        echo -e "❌ ${RED}Error${NC} installing/reading YAML snippets for VSCodium"
+        echo -e "❌ ${RED}Error${NC} installing/reading shellscript snippets for VSCodium"
     fi
 fi
