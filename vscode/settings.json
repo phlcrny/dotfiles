@@ -26,6 +26,7 @@
   "[terraform]": {
     "editor.autoIndent": "full",
     "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
     "editor.TabSize": 2
   },
   "[yaml]": {
