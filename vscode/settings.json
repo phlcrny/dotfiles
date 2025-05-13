@@ -210,7 +210,10 @@
   //
   // AI shite
   //
+  "chat.agent.enabled": false,
   "chat.commandCenter.enabled": false,
+  "chat.detectParticipant.enabled": false,
+  "chat.edits2.enabled": false,
   "gitlab.duoCodeSuggestions.enabled": false,
   "gitlab.duoChat.enabled": false,
   "gitlab.duo.enabledWithoutGitlabProject": false,
@@ -241,7 +244,7 @@
     "typescriptreact": false
   },
   "gitlab.duoCodeSuggestions.openTabsContext": false,
+  "gitlens.ai.generateCommitMessage.enabled": false,
   "inlineChat.holdToSpeech": false,
   "inlineChat.lineNaturalLanguageHint": false,
-  "chat.detectParticipant.enabled": false,
 }
