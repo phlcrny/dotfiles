@@ -164,8 +164,6 @@ end
 --- format-tab-title starts
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
 
-    local icon = wezterm.nerdfonts.cod_question
-
     if tab.is_active then
         tab_background = COLOURS.main_colour
         tab_foreground = COLOURS.text_colour
@@ -179,7 +177,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
 
     local title = tab_title(tab)
 
-    title = wezterm.truncate_right(icon .. ' ' .. title, max_width + 50)
+    title = wezterm.truncate_right( title, max_width + 50 .. '  ')
 
     return {{
         -- Left element edge
