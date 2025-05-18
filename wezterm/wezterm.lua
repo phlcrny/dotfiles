@@ -169,15 +169,12 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
     if tab.is_active then
         tab_background = COLOURS.main_colour
         tab_foreground = COLOURS.text_colour
-        icon = wezterm.nerdfonts.cod_debug_start
     elseif hover then
-        tab_background = COLOURS.text_colour
-        tab_foreground = COLOURS.main_colour
-        icon = wezterm.nerdfonts.cod_debug_continue
-    else
         tab_background = COLOURS.main_colour_light4
         tab_foreground = COLOURS.text_colour
-        icon = wezterm.nerdfonts.cod_debug_pause
+    else
+        tab_background = COLOURS.text_colour
+        tab_foreground = COLOURS.main_colour
     end
 
     local title = tab_title(tab)
