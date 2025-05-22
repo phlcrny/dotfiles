@@ -54,4 +54,11 @@ if [ -x "$(command -v code)" ]; then
     else
         echo -e "❌ ${RED}Error${NC} installing/reading shellscript snippets for VS Code"
     fi
+
+    ln -sf "$DOTFILES_SOURCE/vscode/snippets/yaml.json" "$VSCODE_ROOT/User/snippets/yaml.json"
+    if [[ $(cat "$VSCODE_ROOT/User/snippets/yaml.json") != "" ]]; then
+        echo -e "✅ ${GREEN}Installed${NC} YAML snippets for VS Code"
+    else
+        echo -e "❌ ${RED}Error${NC} installing/reading YAML snippets for VS Code"
+    fi
 fi

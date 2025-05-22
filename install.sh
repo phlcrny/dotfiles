@@ -51,6 +51,7 @@ backup_dotfiles() {
         cp "$HOME/.config/Code/User/keybindings.json" "$BACKUP_LOCATION/Code-keybindings.json" &&
         cp "$HOME/.config/Code/User/snippets/powershell.json" "$BACKUP_LOCATION/Code-snippets-powershell.json" &&
         cp "$HOME/.config/Code/User/snippets/python.json" "$BACKUP_LOCATION/Code-snippets-python.json" &&
+        cp "$HOME/.config/Code/User/snippets/shellscript.json" "$BACKUP_LOCATION/Code-snippets-shell.json" &&
         cp "$HOME/.config/Code/User/snippets/yaml.json" "$BACKUP_LOCATION/Code-snippets-yaml.json" &&
         cp "$HOME/.gitconfig" "$BACKUP_LOCATION/.gitconfig" &&
         cp "$HOME/.config/powershell/profile.ps1" "$BACKUP_LOCATION/ps_profile.ps1" &&
