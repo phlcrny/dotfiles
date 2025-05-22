@@ -471,7 +471,21 @@ config.keys = {{
             end
         end)
     }
-} -- ^ Create a new workspace after prompting for the new name
+}, -- ^ Create a new workspace after prompting for the new name
+{
+    key = ',',
+    mods = "LEADER",
+    action = act.SpawnCommandInNewTab {
+      cwd = os.getenv('WEZTERM_CONFIG_DIR'),
+      set_environment_variables = {
+        TERM = 'screen-256color',
+      },
+      args = {
+        'vim',
+        os.getenv('WEZTERM_CONFIG_FILE'),
+      },
+    },
+} -- ^ Edit this file in vim
 }
 
 mouse_bindings = {{
