@@ -1,4 +1,11 @@
 {
+    "Phil-ShellcheckSuppression": {
+        "prefix": "Phil-ShellcheckSuppression",
+        "description": "Suppresses a ShellCheck rule for the following line",
+        "body": [
+            "# shellcheck disable=${0:rule}"
+        ]
+    },
     "Phil-ShellHeader": {
         "prefix": "Phil-ShellHeader",
         "description": "Adds a script header",
