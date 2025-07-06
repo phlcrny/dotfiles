@@ -178,10 +178,6 @@
   "gitlens.views.stashes.files.layout": "tree",
   "gitlens.views.tags.files.layout": "tree",
   //
-  // Azure
-  //
-  "azureResourceGroups.groupBy": "resourceGroup",
-  //
   // Error Lens
   //
   "errorLens.delay": 10000,
