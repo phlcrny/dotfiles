@@ -95,7 +95,7 @@
   "scm.providerCountBadge": "visible",
   "telemetry.telemetryLevel": "error",
   "window.commandCenter": true,
-  "window.title": "${dirty} (${rootName}) ${activeEditorMedium} in ${rootPath}",
+  "window.title": "${dirty} ${activeEditorMedium} (in ${rootPath})",
   //
   // Powershell formatting
   //
