@@ -168,7 +168,7 @@ if (Get-Command "starship" -ErrorAction "SilentlyContinue")
     Import-Module -Name 'Terminal-Icons' -ErrorAction 'SilentlyContinue'
 }
 
-$ENV:RIPGREP_CONFIG_PATH = "$HOME\.ripgreprc"
+$ENV:RIPGREP_CONFIG_PATH = "$HOME/.ripgreprc"
 
 if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction "SilentlyContinue")
 {
