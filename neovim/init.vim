@@ -4,13 +4,15 @@ source ~/.vimrc
 
 call plug#begin()
 
-Plug 'nvim-lua/plenary.nvim', { 'tag': '*' }
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'folke/zen-mode.nvim', { 'tag': '*' }
 Plug 'itspriddle/vim-shellcheck', { 'tag': '*' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'nvim-lua/plenary.nvim', { 'tag': '*' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'psf/black', { 'tag': '*' }
 Plug 'vim-scripts/indentpython.vim', { 'tag': '*' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
