@@ -11,7 +11,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-lua/plenary.nvim', { 'tag': '*' }
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'psf/black', { 'tag': '*' }
 Plug 'vim-scripts/indentpython.vim', { 'tag': '*' }
 
 call plug#end()
