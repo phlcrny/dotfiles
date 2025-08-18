@@ -1,6 +1,6 @@
-if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
+if (Get-Module -Name 'Posh-Git' -ListAvailable -ErrorAction 'SilentlyContinue')
 {
-    [void] (Import-Module -Name "Posh-Git")
+    [void] (Import-Module -Name 'Posh-Git')
 }
 
 # Aliases and preferences
@@ -16,19 +16,19 @@ $_NewAliases = @(
         }
     }
 
-    if ($Null -ne (Get-Command "hdwwiz.cpl" -ErrorAction "SilentlyContinue"))
+    if ($Null -ne (Get-Command 'hdwwiz.cpl' -ErrorAction 'SilentlyContinue'))
     {
         @{
-            Name  = "devicemanager"
-            Value = "hdwwiz.cpl"
+            Name  = 'devicemanager'
+            Value = 'hdwwiz.cpl'
         }
     }
 
     if (Get-Module -Name 'z' -ListAvailable -ErrorAction 'SilentlyContinue')
     {
         @{
-            Name  = "j"
-            Value = "z"
+            Name  = 'j'
+            Value = 'z'
         }
     }
 
@@ -38,30 +38,30 @@ $_NewAliases = @(
     }
 
     @{
-        Name  = "gd"
-        Value = "Get-Date"
+        Name  = 'gd'
+        Value = 'Get-Date'
     }
 
     @{
-        Name  = "gfh"
-        Value = "Get-Help"
+        Name  = 'gfh'
+        Value = 'Get-Help'
     }
 
     $(
-        if (Test-Path "C:\Program Files\Git\usr\bin\vim.exe")
+        if (Test-Path 'C:\Program Files\Git\usr\bin\vim.exe')
         {
             @{
-                Name  = "vim"
-                Value = "C:\Program Files\Git\usr\bin\vim.exe"
+                Name  = 'vim'
+                Value = 'C:\Program Files\Git\usr\bin\vim.exe'
             }
         }
     )
 )
 
-forEach ($_Alias in $_NewAliases)
+foreach ($_Alias in $_NewAliases)
 {
-    if (-not ((Test-Path -Path "alias:\$($_Alias.Name)" -ErrorAction "SilentlyContinue") -and
-            (Get-Command -Name $_Alias.Name -ErrorAction "SilentlyContinue")))
+    if (-not ((Test-Path -Path "alias:\$($_Alias.Name)" -ErrorAction 'SilentlyContinue') -and
+            (Get-Command -Name $_Alias.Name -ErrorAction 'SilentlyContinue')))
     {
         $_AliasSplat = @{
             Name  = $_Alias.Name
@@ -114,29 +114,29 @@ $_HistoryHandlerScriptBlock = {
 
 $_ReadlineOptions = @{
     AddToHistoryHandler           = $_HistoryHandlerScriptBlock
-    BellStyle                     = "None"
+    BellStyle                     = 'None'
     HistoryNoDuplicates           = $True
     HistorySearchCursorMovesToEnd = $True
     ShowTooltips                  = $False
 }
 
 Set-PSReadLineOption @_ReadlineOptions
-Set-PSReadlineOption -PredictionSource 'History' -ErrorAction 'SilentlyContinue' # In case we're using an old version of PSReadline
-Set-PSReadLineKeyHandler -Key "Tab" -Function "MenuComplete"
-Set-PSReadLineKeyHandler -Key "UpArrow" -Function "HistorySearchBackward"
-Set-PSReadLineKeyHandler -Key "DownArrow" -Function "HistorySearchForward"
-$ENV:POWERSHELL_UPDATECHECK = "LTS"
+Set-PSReadLineOption -PredictionSource 'History' -ErrorAction 'SilentlyContinue' # In case we're using an old version of PSReadline
+Set-PSReadLineKeyHandler -Key 'Tab' -Function 'MenuComplete'
+Set-PSReadLineKeyHandler -Key 'UpArrow' -Function 'HistorySearchBackward'
+Set-PSReadLineKeyHandler -Key 'DownArrow' -Function 'HistorySearchForward'
+$ENV:POWERSHELL_UPDATECHECK = 'LTS'
 # Why would you choose bright green as defaults?
 $PSStyle.Formatting.TableHeader = $PSStyle.Foreground.BrightBlack
 $PSStyle.Formatting.FormatAccent = $PSStyle.Foreground.White
 
 # Default Parameter Values
 $PSDefaultParameterValues = @{
-    "Format-Table:AutoSize" = $True
-    "Get-Help:Full"         = $True
-    "Invoke-Plaster:NoLogo" = $True
-    "New-Item:ItemType"     = "File"
-    "Set-Location:Path"     = $HOME
+    'Format-Table:AutoSize' = $True
+    'Get-Help:Full'         = $True
+    'Invoke-Plaster:NoLogo' = $True
+    'New-Item:ItemType'     = 'File'
+    'Set-Location:Path'     = $HOME
 }
 
 # Via Mathias Jessen:
@@ -159,7 +159,7 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction = {
     }
 }
 
-if (Get-Command "starship" -ErrorAction "SilentlyContinue")
+if (Get-Command 'starship' -ErrorAction 'SilentlyContinue')
 {
     Invoke-Expression (&starship init powershell)
     # This is lazy
@@ -168,9 +168,10 @@ if (Get-Command "starship" -ErrorAction "SilentlyContinue")
     Import-Module -Name 'Terminal-Icons' -ErrorAction 'SilentlyContinue'
 }
 
+$ENV:PIP_REQUIRE_VIRTUALENV = 'true'
 $ENV:RIPGREP_CONFIG_PATH = "$HOME/.ripgreprc"
 
-if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction "SilentlyContinue")
+if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction 'SilentlyContinue')
 {
     # Adds items not for public consumption - work-specific etc
     . ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1'))

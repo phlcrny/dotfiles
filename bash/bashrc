@@ -72,6 +72,8 @@ if ! shopt -oq posix; then
     fi
 fi
 
+export PIP_REQUIRE_VIRTUALENV=true
+
 if [ -f "/usr/bin/vim" ]; then
     export EDITOR=/usr/bin/vim
 fi

@@ -6,6 +6,7 @@ setopt HIST_IGNORE_ALL_DUPS # Ignore duplicates/purge earlier iterations
 setopt HIST_IGNORE_SPACE    # Ignore lines starting with a space
 setopt HIST_REDUCE_BLANKS   # Remove extra blanks from each line before saving
 setopt SHARE_HISTORY        # Share history between sessions
+export PIP_REQUIRE_VIRTUALENV=true
 
 if [ -f "/usr/bin/vim" ]; then
     export EDITOR=/usr/bin/vim

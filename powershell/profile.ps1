@@ -8,13 +8,13 @@
 $NewAliases = @(
 
     @{
-        Name  = "~"
+        Name  = '~'
         Value = $HOME
     }
 
     @{
-        Name  = "devicemanager"
-        Value = "hdwwiz.cpl"
+        Name  = 'devicemanager'
+        Value = 'hdwwiz.cpl'
     }
 
     if (Get-Module -Name 'z' -ListAvailable -ErrorAction 'SilentlyContinue')
@@ -26,39 +26,39 @@ $NewAliases = @(
     }
 
     @{
-        Name  = "ll"
-        Value = "Get-ChildItem"
+        Name  = 'll'
+        Value = 'Get-ChildItem'
     }
 
     @{
-        Name  = "gd"
-        Value = "Get-Date"
+        Name  = 'gd'
+        Value = 'Get-Date'
     }
 
     @{
-        Name  = "gfh"
-        Value = "Get-Help"
+        Name  = 'gfh'
+        Value = 'Get-Help'
     }
 
     @{
-        Name  = "grep"
-        Value = "Select-String"
+        Name  = 'grep'
+        Value = 'Select-String'
     }
 
     @{
-        Name  = "Touch"
-        Value = "New-Item"
+        Name  = 'Touch'
+        Value = 'New-Item'
     }
 
     @{
-        Name  = "vim"
-        Value = "C:\Program Files\Git\usr\bin\vim.exe"
+        Name  = 'vim'
+        Value = 'C:\Program Files\Git\usr\bin\vim.exe'
     }
 )
 
-forEach ($Alias in $NewAliases)
+foreach ($Alias in $NewAliases)
 {
-    if (-not (Test-Path -Path "alias:\$($Alias.Name)" -ErrorAction "SilentlyContinue"))
+    if (-not (Test-Path -Path "alias:\$($Alias.Name)" -ErrorAction 'SilentlyContinue'))
     {
         $AliasSplat = @{
             Name  = $Alias.Name
@@ -115,7 +115,7 @@ try
 
     $_ReadlineOptions = @{
         AddToHistoryHandler           = $_HistoryHandlerScriptBlock
-        BellStyle                     = "None"
+        BellStyle                     = 'None'
         ExtraPromptLineCount          = 1
         HistoryNoDuplicates           = $True
         HistorySearchCursorMovesToEnd = $True
@@ -125,30 +125,30 @@ try
     Set-PSReadLineOption @_ReadlineOptions
     Set-PSReadLineKeyHandler -Key 'Tab' -Function 'MenuComplete'
     Set-PSReadLineKeyHandler -Key 'UpArrow' -Function 'HistorySearchBackward'
-    Set-PSReadLineKeyHandler -Key 'DownArrow' -Function "HistorySearchForward"
+    Set-PSReadLineKeyHandler -Key 'DownArrow' -Function 'HistorySearchForward'
 }
 catch [System.Management.Automation.CommandNotFoundException]
 {
-    Write-Warning "Unable to set PSReadline settings"
+    Write-Warning 'Unable to set PSReadline settings'
 }
 
 # Default Parameter Values
 $PSDefaultParameterValues = @{
-    "Export-Csv:NoTypeInformation" = $True
-    "Format-Table:AutoSize"        = { if ($Host.Name -eq "ConsoleHost") { $True } }
-    "Get-EventLog:LogName"         = "System"
-    "Get-EventLog:After"           = { (Get-Date).AddHours(-6) }
-    "Get-Help:Full"                = $True
-    "Get-Process:IncludeUsername"  = { if ($UserIsAdmin) { $True } else { $False } }
-    "Get-WinEvent:FilterHashTable" = @{ LogName = "System"; StartTime = (Get-Date).AddHours(-6) }
-    "Invoke-Plaster:NoLogo"        = $True
-    "New-Item:ItemType"            = "File"
-    "Set-Location:Path"            = $HOME
+    'Export-Csv:NoTypeInformation' = $True
+    'Format-Table:AutoSize'        = { if ($Host.Name -eq 'ConsoleHost') { $True } }
+    'Get-EventLog:LogName'         = 'System'
+    'Get-EventLog:After'           = { (Get-Date).AddHours(-6) }
+    'Get-Help:Full'                = $True
+    'Get-Process:IncludeUsername'  = { if ($UserIsAdmin) { $True } else { $False } }
+    'Get-WinEvent:FilterHashTable' = @{ LogName = 'System'; StartTime = (Get-Date).AddHours(-6) }
+    'Invoke-Plaster:NoLogo'        = $True
+    'New-Item:ItemType'            = 'File'
+    'Set-Location:Path'            = $HOME
 }
 # Display
-if (Get-Module -Name "Posh-Git" -ListAvailable -ErrorAction "SilentlyContinue")
+if (Get-Module -Name 'Posh-Git' -ListAvailable -ErrorAction 'SilentlyContinue')
 {
-    [void] (Import-Module -Name "Posh-Git")
+    [void] (Import-Module -Name 'Posh-Git')
 }
 
 # Via Mathias Jessen:
@@ -171,7 +171,7 @@ $ExecutionContext.InvokeCommand.CommandNotFoundAction = {
     }
 }
 
-if (Get-Command "starship" -ErrorAction "SilentlyContinue")
+if (Get-Command 'starship' -ErrorAction 'SilentlyContinue')
 {
     Invoke-Expression (&starship init powershell)
     # This is lazy
@@ -180,9 +180,10 @@ if (Get-Command "starship" -ErrorAction "SilentlyContinue")
     Import-Module -Name 'Terminal-Icons' -ErrorAction 'SilentlyContinue'
 }
 
+$ENV:PIP_REQUIRE_VIRTUALENV = 'true'
 $ENV:RIPGREP_CONFIG_PATH = "$HOME/.ripgreprc"
 
-if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction "SilentlyContinue")
+if (Test-Path ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1')) -ErrorAction 'SilentlyContinue')
 {
     # Adds items not for public consumption - work-specific etc
     . ([System.IO.Path]::Combine($PSScriptRoot, 'extras.ps1'))
