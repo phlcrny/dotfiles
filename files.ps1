@@ -20,6 +20,16 @@
         Description        = 'Bat config'
     }
 
+    # dig
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/dig/digrc"
+        MacDestination     = "/Users/$User/.digrc"
+        UnixDestination    = "/home/$User/.digrc"
+        WindowsDestination = "C:/Users/$User/.digrc"
+        Description        = 'Dig config'
+    }
+
     # dive
     [PSCustomObject]@{
         Type               = 'File'
