@@ -67,3 +67,7 @@ fi
 if [ -f "$HOME/.kubectl_aliases" ]; then
     source ~/.kubectl_aliases
 fi
+
+if [ -f "$HOME/.fzf-git.sh" ]; then
+    source ~/.fzf-git.sh
+fi
