@@ -64,6 +64,6 @@ if [ -f "$HOME/.profile_extras" ]; then
     . "$HOME/.profile_extras"
 fi
 
-if [ -f ~/.kubectl_aliases ]; then
+if [ -f "$HOME/.kubectl_aliases" ]; then
     source ~/.kubectl_aliases
 fi
