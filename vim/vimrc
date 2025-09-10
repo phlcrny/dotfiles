@@ -48,6 +48,7 @@ nnoremap <S-Right> <C-W><C-L>                    " Switch to the right pane with
 nnoremap <leader>stack :split<CR>                " Short-hand for stacked splits
 nnoremap <leader>sbs :vsplit<CR>                 " Short-hand for side-by-side splits
 nnoremap <leader>gf :GitGutterFold<CR>           " Folds all unchanged lines
+nnoremap <leader><ESC><ESC> :Startify<CR>        " Jump back to the Startify splash screen
 
 "" Plugins
 
