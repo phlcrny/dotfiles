@@ -32,23 +32,24 @@ set belloff=all                                  " No bells
 """ Mappings
 
 let mapleader = "\<Space>"
-nnoremap <leader>w :w<CR>                        " Save the current file
-nnoremap <leader>x :wq<CR>                       " Save and exit the current editor
-nnoremap <leader>q :q!<CR>                       " Quit the current editor without saving
-nnoremap <leader>e  :edit!<CR>                   " Reload the current file
-nnoremap <leader><left> :bp<CR>                  " Move to the previous buffer
-nnoremap <leader><right> :bn<CR>                 " Move to the next buffer
-nnoremap <C-t> :NERDTreeToggle<CR>               " Toggle NerdTree open with Ctrl+T
-nnoremap <leader>t :NERDTreeToggle<CR>           " Or with <leader> + t
-nnoremap <leader>r :NERDTreeRefreshRoot<CR>      " Refresh the file tree
-nnoremap <S-Up> <C-W><C-K>                       " Switch to the top pane with Shift+Up
-nnoremap <S-Down> <C-W><C-J>                     " Switch to the bottom pane with Shift+Down
-nnoremap <S-Left> <C-W><C-H>                     " Switch to the left pane with Shift+Left
-nnoremap <S-Right> <C-W><C-L>                    " Switch to the right pane with Shift+Right
-nnoremap <leader>stack :split<CR>                " Short-hand for stacked splits
-nnoremap <leader>sbs :vsplit<CR>                 " Short-hand for side-by-side splits
-nnoremap <leader>gf :GitGutterFold<CR>           " Folds all unchanged lines
-nnoremap <leader><ESC><ESC> :Startify<CR>        " Jump back to the Startify splash screen
+nnoremap <leader>w :w<CR>                          " Save the current file
+nnoremap <leader>x :wq<CR>                         " Save and exit the current editor
+nnoremap <leader>q :q!<CR>                         " Quit the current editor without saving
+nnoremap <leader>e  :edit!<CR>                     " Reload the current file
+nnoremap <leader><left> :bp<CR>                    " Move to the previous buffer
+nnoremap <leader><right> :bn<CR>                   " Move to the next buffer
+nnoremap <C-t> :NERDTreeToggle<CR>                 " Toggle NerdTree open with Ctrl+T
+nnoremap <leader>t :NERDTreeToggle<CR>             " Or with <leader> + t
+nnoremap <leader>r :NERDTreeRefreshRoot<CR>        " Refresh the file tree
+nnoremap <S-Up> <C-W><C-K>                         " Switch to the top pane with Shift+Up
+nnoremap <S-Down> <C-W><C-J>                       " Switch to the bottom pane with Shift+Down
+nnoremap <S-Left> <C-W><C-H>                       " Switch to the left pane with Shift+Left
+nnoremap <S-Right> <C-W><C-L>                      " Switch to the right pane with Shift+Right
+nnoremap <leader>stack :split<CR>                  " Short-hand for stacked splits
+nnoremap <leader>sbs :vsplit<CR>                   " Short-hand for side-by-side splits
+nnoremap <leader>gf :GitGutterFold<CR>             " Folds all unchanged lines
+nnoremap <leader><ESC><ESC> :Startify<CR>          " Jump back to the Startify splash screen
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>  " Ctrl+L to unlight after search then redraw
 
 "" Plugins
 
@@ -96,5 +97,8 @@ let g:airline#extensions#tabline#enabled = 1     " Enable the list of buffers
 let g:NERDTreeShowHidden = 1                     " Show hidden files by default
 let g:NERDTreeWinPos = "right"                   " Collapsible elements should be on the right in a left-to-right reading world
 let NERDTreeIgnore=['^.git$']
+let g:NERDTreeMinimalUI=1
+"let g:NERDTreeDirArrows=0
+" let g:NERDChristmasTree = 1
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Exit Vim if NERDTree is the only window remaining in the only tab.
