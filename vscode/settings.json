@@ -66,6 +66,7 @@
   "workbench.layoutControl.type": "menu",
   "workbench.panel.showLabels": false,
   "workbench.sideBar.location": "right",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
   "workbench.tree.indent": 20,
   "workbench.tree.renderIndentGuides": "always",
   "zenMode.centerLayout": false,
