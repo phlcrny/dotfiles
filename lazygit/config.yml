@@ -40,3 +40,4 @@ git:
     autoWrapWidth: 72
   paging:
     colorArg: always
+    pager: diff-so-fancy
