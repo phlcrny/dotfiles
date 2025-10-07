@@ -1,22 +1,53 @@
 #!/bin/bash
 
-alias ll='ls -alh'
+# https://github.com/nicksp/dotfiles/blob/main/zsh/aliases.zsh#L40
+command_exists() {
+  command -v "$@" &> /dev/null
+}
 
 # Adapted Windows habits
 alias cls='clear'
 alias dir='ls -al'
 alias ii='open'
 alias md='mkdir -p'
+# Lazy new habits/corrections for my own mistakes
+alias o="open"
+alias oo="open ."
+alias v="vim"
+alias e="$EDITOR"
+alias ee="$EDITOR ."
+alias eed="$EDITOR $HOME/dotfiles"
+alias where="which"
 
-if [ -x "$(command -v bat)" ]; then
-    alias cat='bat --plain'
+command_exists bat && alias cat='bat --plain'
+
+if command_exists 'code'; then
+    alias c="code ."
+    alias cdo="code $HOME/dotfiles"
 fi
 
-if [ -x "$(command -v lazydocker)" ]; then
+command_exists gcloud && alias gcp='gcloud'
+
+if command_exists 'git'; then
+    alias gf="git fee"
+    alias gp="git pull"
+    alias gs="git switch"
+fi
+
+if command_exists 'git-helper'; then
+    alias pm="git-helper cleanup_post_mr"
+    alias prebase="git-helper prebase"
+fi
+
+command_exists glab && alias gitlab='glab api'
+
+if command_exists 'lazydocker'; then
     alias doc='lazydocker' # ld already exists
 fi
 
-if [ -x "$(command -v lsd)" ]; then
+command_exists lazygit && alias lg='lazygit'
+
+if command_exists 'lsd'; then
     alias ls='lsd'
     alias ll='lsd -alh'
     alias lt='lsd --tree'
@@ -25,29 +56,11 @@ else
     alias lt='ls --tree'
 fi
 
-if [ -x "$(command -v git)" ]; then
-    alias lg='lazygit'
-fi
-
-if [ -x "$(command -v terraform)" ]; then
+if command_exists 'terraform'; then
     alias tff='terraform fmt'
     alias tfi='terraform init'
     alias tfp='terraform plan'
     alias tfv='terraform validate'
 fi
 
-if [ -x "$(command -v tmux)" ]; then
-    alias attach='tmux attach -t'
-fi
-
-# Colours
-if [ -x /usr/bin/dircolors ]; then
-    test -r "$HOME/.dircolors" && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+command_exists 'tmux' && alias attach='tmux attach -t'
