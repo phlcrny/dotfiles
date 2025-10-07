@@ -49,7 +49,7 @@ command_exists lazygit && alias lg='lazygit'
 
 if command_exists 'lsd'; then
     alias ls='lsd'
-    alias ll='lsd -alh'
+    alias ll='lsd -alhg'
     alias lt='lsd --tree'
 else
     alias ll='ls -alh'
