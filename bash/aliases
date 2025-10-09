@@ -37,6 +37,7 @@ fi
 if command_exists 'git-helper'; then
     alias pm="git-helper cleanup_post_mr"
     alias prebase="git-helper prebase"
+    alias mwps="git-helper create_branch"
 fi
 
 command_exists glab && alias gitlab='glab api'
