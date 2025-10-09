@@ -29,7 +29,11 @@ fi
 command_exists gcloud && alias gcp='gcloud'
 
 if command_exists 'git'; then
+    alias gb="git br"
+    alias gc="git commit -m"
+    alias gd="git diff"
     alias gf="git fee"
+    alias gl="git ll"
     alias gp="git pull"
     alias gs="git switch"
 fi
