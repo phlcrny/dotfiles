@@ -26,6 +26,8 @@ if command_exists 'code'; then
     alias cdo="code $HOME/dotfiles"
 fi
 
+alias diff="diff --side-by-side --suppress-common-lines"
+
 command_exists gcloud && alias gcp='gcloud'
 
 if command_exists 'git'; then
