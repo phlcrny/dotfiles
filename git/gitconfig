@@ -53,3 +53,4 @@
     autoupdate = true
 [blame]
 	markIgnoredLines = true
+	markUnblamableLines = true
