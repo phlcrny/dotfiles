@@ -51,3 +51,5 @@
 [rerere]
     enabled = true
     autoupdate = true
+[blame]
+	markIgnoredLines = true
