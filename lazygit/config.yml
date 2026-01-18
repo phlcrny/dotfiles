@@ -38,6 +38,6 @@ git:
   commit:
     autoWrapCommitMessage: true
     autoWrapWidth: 72
-  paging:
-    colorArg: always
-    pager: diff-so-fancy
+  pagers:
+    - colorArg: always
+      pager: diff-so-fancy
