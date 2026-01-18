@@ -2,7 +2,7 @@
     add-executable = add --chmod=+x
     al = commit --amend
     br = branch -avv --sort=-committerdate
-    catch-up = rebase origin/main
+    catch-up = rebase origin/main --autostash
     co = checkout .
     change = checkout
     fee = fetch --prune --all
