@@ -7,11 +7,14 @@
   "[python]": {
     "editor.autoIndent": "full",
     "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
       "source.organizeImports": "explicit"
     },
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
     "editor.rulers": [
       80
-    ],
+    ]
   },
   "[terraform]": {
     "editor.autoIndent": "full",
