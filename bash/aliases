@@ -5,6 +5,7 @@ command_exists() {
   command -v "$@" &> /dev/null
 }
 
+alias cp='cp -iv'
 # Adapted Windows habits
 alias cls='clear'
 alias dir='ls -al'
