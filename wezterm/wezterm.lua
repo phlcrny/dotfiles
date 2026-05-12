@@ -227,10 +227,6 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     local major, minor, build, rev = stdout:match("Version ([0-9]+)%.([0-9]+)%.([0-9]+)%.([0-9]+)")
     config.default_prog = {'pwsh.exe', '-NoLogo'}
     table.insert(launch_menu, {
-        label = 'Powershell',
-        args = {'powershell.exe', '-NoLogo'}
-    })
-    table.insert(launch_menu, {
         label = 'pwsh',
         args = {'pwsh.exe', '-NoLogo'}
     })

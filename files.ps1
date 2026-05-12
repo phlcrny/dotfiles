@@ -130,16 +130,6 @@
         Description        = 'Neovimconfig'
     }
 
-    # Powershell/pwsh
-    [PSCustomObject]@{
-        Type               = 'File'
-        Source             = "$PSScriptRoot/powershell/profile.ps1"
-        MacDestination     = $Null
-        UnixDestination    = $Null
-        WindowsDestination = "C:/Users/$User/Documents/WindowsPowershell/profile.ps1"
-        Description        = 'Powershell (Windows) profile'
-    }
-
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/pwsh/profile.ps1"
