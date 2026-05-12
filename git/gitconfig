@@ -1,3 +1,15 @@
+[init]
+    defaultBranch = main
+[rerere]
+    enabled = true
+    autoupdate = true
+[blame]
+	markIgnoredLines = true
+	markUnblamableLines = true
+[core]
+    pager = "diff-so-fancy | less --tabs=4 -RFX"
+[interactive]
+    diffFilter = "diff-so-fancy --patch"
 [alias]
     add-executable = add --chmod=+x
     al = commit --amend
@@ -46,11 +58,3 @@
     wc = wip-commit
 [include]
     path = .git_extras
-[init]
-    defaultBranch = main
-[rerere]
-    enabled = true
-    autoupdate = true
-[blame]
-	markIgnoredLines = true
-	markUnblamableLines = true
