@@ -91,10 +91,6 @@ if [ -x "$(command -v starship)" ]; then
     fi
 fi
 
-if [ -f "$HOME/.bash_aliases" ]; then
-    mv "$HOME/.bash_aliases" "$HOME/.aliases"
-fi
-
 if [ -f "$HOME/.aliases" ]; then
     . "$HOME/.aliases"
 fi
