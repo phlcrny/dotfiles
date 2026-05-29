@@ -121,6 +121,7 @@
         Description        = 'lsd theme'
     }
 
+    # neovim
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/neovim/init.vim"
@@ -130,6 +131,17 @@
         Description        = 'Neovimconfig'
     }
 
+    # posting
+    [PSCustomObject]@{
+        Type               = 'File'
+        Source             = "$PSScriptRoot/posting/config.yml"
+        MacDestination     = "/Users/$User/Library/Application Support/posting/config.yml"
+        UnixDestination    = "/home/$User/.config/posting/config.yml"
+        WindowsDestination = "C:/Users/$User/AppData/Local/posting/config.yml"
+        Description        = 'posting config'
+    }
+
+    # pwsh
     [PSCustomObject]@{
         Type               = 'File'
         Source             = "$PSScriptRoot/pwsh/profile.ps1"
