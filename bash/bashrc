@@ -13,6 +13,8 @@ HISTCONTROL=ignoredups # Don't put duplicate lines or lines start with space in 
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+export PATH="${PATH}:~/bin:~/.local/bin:~/.bin"
+
 # shopt settings
 shopt -s histappend # Append to the history not overwrite.
 shopt -s checkwinsize # Check and adjust window size on each command.
