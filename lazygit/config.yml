@@ -3,9 +3,6 @@ gui:
   sidePanelWidth: 0.25
   expandFocusedSidePanel: true
   nerdFontsVersion: "3"
-  authorColors:
-    "Phil Carney": "magenta"
-    "j84581012": "magenta"
   theme:
     activeBorderColor:
       - magenta
@@ -31,6 +28,9 @@ gui:
       - white
     defaultFgColor:
       - default
+    authorColors:
+      "Phil Carney": "magenta"
+      "j84581012": "magenta"
   showRandomTip: false
   showCommandLog: true
 git:
@@ -38,6 +38,6 @@ git:
   commit:
     autoWrapCommitMessage: true
     autoWrapWidth: 72
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: diff-so-fancy
+      command: diff-so-fancy
