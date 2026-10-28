@@ -1,7 +1,7 @@
 {
   "[go]": {
     "editor.autoIndent": "full",
-    "editor.defaultFormatter": "golang.go"
+    "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
       "source.organizeImports": false
